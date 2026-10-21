@@ -226,7 +226,7 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 .rrow .rn { flex: 1; font-weight: 700; letter-spacing: 0.05em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rrow .rt { font-variant-numeric: tabular-nums; letter-spacing: 0.06em; color: var(--ink); }
 .rrow .rt.dnf { color: var(--dim); }
-#mpst { position: absolute; top: calc(var(--u) * 2.6); left: max(12px, env(safe-area-inset-left, 0px)); width: min(34vw, calc(var(--u) * 15)); display: flex; flex-direction: column; gap: 3px; pointer-events: none; }
+#mpst { position: absolute; top: calc(var(--u) * 4.4); left: max(12px, env(safe-area-inset-left, 0px)); width: min(34vw, calc(var(--u) * 15)); display: flex; flex-direction: column; gap: 3px; pointer-events: none; }
 .strow { display: flex; align-items: center; gap: 6px; font: 700 max(10px, calc(var(--u) * 0.8)) var(--body); letter-spacing: 0.05em; text-shadow: 0 0 6px #000; padding: 2px 6px; border-radius: 4px; background: rgba(7, 4, 15, 0.55); position: relative; overflow: hidden; }
 .strow .fill { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--rc) 35%, transparent); width: 0; }
 .strow span { position: relative; } .strow .pn { color: var(--rc); } .strow .nn { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .strow .tt { font-variant-numeric: tabular-nums; }
@@ -238,6 +238,41 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 #mpfin b { display: block; font: calc(var(--u) * 3) var(--display); background: linear-gradient(90deg, var(--yl), var(--pk)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 #mpfin span { display: block; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-size: max(12px, calc(var(--u) * 0.95)); margin-top: 4px; }
 #mpconn { position: absolute; top: calc(var(--u) * 5); left: 50%; transform: translateX(-50%); padding: 6px 14px; border: 1px solid var(--rd); border-radius: 6px; background: rgba(10, 5, 28, 0.9); color: var(--rd); letter-spacing: 0.1em; text-transform: uppercase; font-size: max(11px, calc(var(--u) * 0.85)); z-index: 7; }
+/* wagers, race types, spectating */
+#roombody { width: min(100%, 820px); flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 0.8); padding-bottom: calc(var(--u) * 1.5); overscroll-behavior: contain; }
+#roombody > * { flex-shrink: 0; }
+#roomrules, #roomstake { width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+#roomrules .seg, #mprules .seg { flex-wrap: wrap; }
+#roomrules .rl, #roomstake .rl { color: var(--ink); font-weight: 600; letter-spacing: 0.05em; font-size: max(12px, calc(var(--u) * 0.95)); }
+#roomstake .free { color: var(--gn); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: max(11px, calc(var(--u) * 0.85)); }
+#roomstake .pot { color: var(--yl); font-weight: 700; letter-spacing: 0.06em; font-size: max(12px, calc(var(--u) * 1)); }
+.cn, .gm { vertical-align: -0.12em; }
+#mpstake .seg { flex-wrap: wrap; }
+#mpstake .sub, #mprules .sub { margin-top: 4px; }
+.tbtn.off { opacity: 0.35; }
+.slot .kick { position: absolute; top: 3px; right: 3px; width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: rgba(10, 5, 28, 0.85); color: var(--dim); cursor: pointer; font: 700 13px var(--body); line-height: 1; }
+.slot .st.unpaid { color: var(--yl); }
+.slot .st.paid { color: var(--gn); }
+#roombet { width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: calc(var(--u) * 0.7); padding: calc(var(--u) * 0.9) calc(var(--u) * 1); border: 2px solid var(--yl); border-radius: 8px; background: linear-gradient(170deg, rgba(14, 8, 34, 0.94), rgba(10, 5, 26, 0.78)); }
+#roombet h4 { margin: 0; color: var(--yl); letter-spacing: 0.18em; text-transform: uppercase; font-size: max(11px, calc(var(--u) * 0.8)); }
+#roombet .seg { flex-wrap: wrap; }
+#roombet .mine { color: var(--ink); font-weight: 700; letter-spacing: 0.05em; font-size: max(12px, calc(var(--u) * 0.95)); }
+.brow { display: flex; align-items: center; gap: 10px; padding: 5px 9px; border: 1px solid var(--line); border-left: 4px solid var(--rc, var(--line)); border-radius: 6px; background: rgba(255, 255, 255, 0.03); font-size: max(12px, calc(var(--u) * 0.9)); letter-spacing: 0.04em; }
+.brow b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--rc, var(--ink)); }
+.brow span { color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.brow.mine { border-color: var(--yl); }
+#mpmode { position: absolute; top: calc(var(--u) * 2.3); left: 50%; transform: translateX(-50%); padding: 3px 12px; border: 1px solid var(--line); border-radius: 99px; background: rgba(10, 5, 28, 0.62); font: 700 max(11px, calc(var(--u) * 0.9)) var(--body); letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 0 6px #000; pointer-events: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#mpmode .hp { color: var(--rd); letter-spacing: 0.08em; }
+#mpmode.warn { color: var(--rd); border-color: var(--rd); }
+#mpfollow { position: absolute; top: calc(var(--u) * 0.6 + 52px); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; align-items: center; gap: 6px; pointer-events: auto; }
+#mpfollow button { min-width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--line); background: rgba(10, 5, 28, 0.62); color: var(--ink); font-size: 16px; cursor: pointer; }
+#mpwho { min-width: 7em; max-width: 34vw; text-align: center; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(10, 5, 28, 0.62); font: 700 max(12px, calc(var(--u) * 0.95)) var(--body); letter-spacing: 0.08em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0 6px #000; }
+#mpverdict { text-align: center; font: calc(var(--u) * 1.7) var(--display); letter-spacing: 0.04em; background: linear-gradient(90deg, var(--yl), var(--pk)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#mpverdict small { display: block; font: 500 max(12px, calc(var(--u) * 0.95)) var(--body); letter-spacing: 0.06em; -webkit-text-fill-color: var(--dim); color: var(--dim); margin-top: 3px; }
+#mpwager { display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; font-weight: 700; letter-spacing: 0.05em; font-size: max(13px, calc(var(--u) * 1.05)); }
+#mpwager .w { color: var(--gn); } #mpwager .l { color: var(--rd); } #mpwager .r { color: var(--yl); }
+.lrow .mid small .stk { color: var(--yl); }
+.lrow .btns { display: flex; gap: 6px; }
 /* accounts + ranks */
 #acct, #ranks { justify-content: flex-start; padding-top: calc(var(--u) * 0.8 + 46px); }
 .acbody { width: min(100%, 720px); flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; display: flex; flex-direction: column; gap: calc(var(--u) * 0.9); padding-bottom: calc(var(--u) * 2); overscroll-behavior: contain; }
@@ -279,6 +314,8 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div id="mpst" hidden></div>
     <div id="mpcd"></div>
     <div id="mpfin" hidden></div>
+    <div id="mpmode" hidden></div>
+    <div id="mpfollow" hidden><button id="mpprev" aria-label="Watch the previous racer">◀</button><span id="mpwho">Auto</span><button id="mpnext" aria-label="Watch the next racer">▶</button></div>
     <div id="prac" hidden><button id="bcp" aria-label="Place checkpoint">◆+</button><button id="bcr" aria-label="Remove checkpoint">◆−</button></div>
   </div>
 
@@ -354,7 +391,9 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div class="mpcols" id="mpcols">
       <div class="mpcol">
         <div><div class="lab">Your name</div><input class="txt" id="mpnick" maxlength="12" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your racing name"></div>
-        <div><div class="lab">Create a lobby</div><div class="seg" id="mplv"></div></div>
+        <div><div class="lab">Create a lobby · level</div><div class="seg" id="mplv"></div></div>
+        <div><div class="lab">Race type</div><div id="mprules"></div></div>
+        <div><div class="lab">Entry · each racer pays</div><div id="mpstake"></div></div>
         <div class="row" style="justify-content:flex-start"><button class="btn sm hot" id="mpcreate"><span>Create lobby</span></button></div>
         <div><div class="lab">Join with a code</div><div class="row" style="justify-content:flex-start;flex-wrap:nowrap"><input class="txt code" id="mpcode" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CODE" aria-label="Lobby code"><button class="btn sm" id="mpjoin"><span>Join</span></button></div></div>
       </div>
@@ -367,15 +406,23 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 
   <section class="screen dim" id="room" hidden>
     <div class="head"><button class="btn sm ghost" id="mpleaveroom"><span>◀ Leave</span></button><h2><span class="lw">Lobby </span><span id="roomtitle"></span></h2><button class="btn sm ghost" id="mpcopy"><span>Copy code</span></button></div>
-    <div class="row" id="roomlv"></div>
-    <div class="slots" id="slots"></div>
-    <div id="roomnote"></div>
-    <div class="row"><button class="btn" id="mpready"><span>Ready</span></button><button class="btn hot" id="mpstart"><span>Start race</span></button></div>
+    <div id="roombody">
+      <div class="row" id="roomlv"></div>
+      <div id="roomrules"></div>
+      <div id="roomstake"></div>
+      <div class="slots" id="slots"></div>
+      <div id="roomwatch" class="mnote"></div>
+      <div id="roombet" hidden></div>
+      <div id="roomnote"></div>
+      <div class="row"><button class="btn hot" id="mppay" hidden><span>Pay entry</span></button><button class="btn" id="mpready"><span>Ready</span></button><button class="btn hot" id="mpstart"><span>Start race</span></button><button class="btn ghost sm" id="mpseat"><span>Watch instead</span></button></div>
+    </div>
   </section>
 
   <section class="screen dim end" id="mpres" hidden>
     <h2>Race results</h2>
+    <div id="mpverdict"></div>
     <div id="mprows"></div>
+    <div id="mpwager"></div>
     <div id="mpreward" class="mnote"></div>
     <div class="row"><button class="btn hot" id="mpback"><span>Back to lobby</span></button><button class="btn ghost" id="mpquit"><span>Leave</span></button></div>
   </section>
@@ -445,7 +492,7 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
   </section>
 
   <div class="modal" id="mpleave" hidden>
-    <div class="mbox" style="flex-direction:column;text-align:center;gap:calc(var(--u)*0.9)"><h3 style="margin:0;font:calc(var(--u)*1.8) var(--display)">Leave the race?</h3><div class="mnote">The race keeps going without you.</div><div class="row"><button class="btn hot sm" id="mpkeep"><span>Keep racing</span></button><button class="btn ghost sm" id="mpquit2"><span>Leave race</span></button></div></div>
+    <div class="mbox" style="flex-direction:column;text-align:center;gap:calc(var(--u)*0.9)"><h3 id="mplt" style="margin:0;font:calc(var(--u)*1.8) var(--display)">Leave the race?</h3><div class="mnote" id="mpln">The race keeps going without you.</div><div class="row"><button class="btn hot sm" id="mpkeep"><span id="mpkeept">Keep racing</span></button><button class="btn ghost sm" id="mpquit2"><span>Leave race</span></button></div></div>
   </div>
   <div id="mpconn" hidden>Reconnecting…</div>
   <div id="rot" hidden>Rotate your phone for the best view</div>
@@ -3021,12 +3068,12 @@ const MP = {
   /* A joiner asks "is there still a seat for me?" once, after the room has settled. */
   overflow(r, meId) {
     const me = r.find(p => p.peer === meId); if (!me) return false;
-    if (me.presence.seat === 1) return false;                // already seated: never evicted by a late newcomer
+    if (me.presence.seat === 1 || me.presence.wt === 1) return false;     // already seated, or only watching: never evicted by a late newcomer
     let n = 0;
     for (const p of r) {
       if (p.peer === meId) continue;
       if (p.presence.seat === 1) n++;
-      else if (p.presence.jn < me.presence.jn || (p.presence.jn === me.presence.jn && p.peer < me.peer)) n++;
+      else if (p.presence.wt !== 1 && (p.presence.jn < me.presence.jn || (p.presence.jn === me.presence.jn && p.peer < me.peer))) n++;
     }
     return n >= MP.MAX;
   },
@@ -3035,7 +3082,8 @@ const MP = {
     const out = [];
     for (const p of peers) {
       const lb = p.presence && p.presence.lb; if (!lb || typeof lb.c !== 'string' || !/^[A-Z]{4}$/.test(lb.c)) continue;
-      out.push({ code: lb.c, host: MP.cleanNick(lb.h) || 'Host', lv: lb.lv, n: Math.max(1, Math.min(MP.MAX, lb.n | 0)), st: lb.st === 'race' ? 'race' : 'open', mine: !!p.isMe, peer: p.peer });
+      const rl = SW.Wager ? SW.Wager.rules(lb) : { ty: 'full', tl: 0, ec: 0, eg: 0 };
+      out.push({ code: lb.c, host: MP.cleanNick(lb.h) || 'Host', lv: lb.lv, n: Math.max(1, Math.min(MP.MAX, lb.n | 0)), st: lb.st === 'race' ? 'race' : 'open', mine: !!p.isMe, peer: p.peer, ty: rl.ty, tl: rl.tl, ec: rl.ec, eg: rl.eg, w: Math.max(0, Math.min(99, lb.w | 0)) });
     }
     out.sort((a, b) => (a.st === 'open' ? 0 : 1) - (b.st === 'open' ? 0 : 1) || b.n - a.n || (a.code < b.code ? -1 : 1));
     return out;
@@ -3093,6 +3141,136 @@ const MP = {
 
 SW.MP = MP;
 if (typeof module !== 'undefined' && module.exports) module.exports = MP;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
+/* Syncwave race rules and wagers. Pure functions (no DOM, no Firebase) so every rule can be unit-tested in Node.
+
+   Three race types:
+     timed  one clock for everybody; when it runs out the highest best-progress wins, and only if it is 50% or more
+     lives  everybody has four lives; lose them all and you are out; last racer standing (or first to the finish) wins
+     full   first to reach 100% wins
+
+   Money: the host sets an entry fee in coins, gems or both (or none: a free race). Every racer pays it and the winner
+   takes the pot. Anyone who is not racing can watch and bet coins and/or gems on a racer; bettors who backed the winner
+   share the betting pool in proportion to their stake. A race with no valid winner is void and everything is returned.
+   Each player's own device moves its own coins (see game.js); nothing here touches a wallet. */
+(function (root) {
+'use strict';
+const SW = root.SW = root.SW || {};
+
+const W = {
+  MIN_PCT: 0.5, LIVES: 4, TIMES: [30, 60, 90, 120], DEF_TIME: 60,
+  COINS: [0, 25, 50, 100, 250, 500, 1000], GEMS: [0, 1, 2, 5, 10],
+  BET_COINS: [0, 10, 25, 50, 100, 250, 500, 1000], BET_GEMS: [0, 1, 2, 5, 10],
+  MAX_COINS: 100000, MAX_GEMS: 1000, MAX_BETS: 40, MAX_WATCH: 20,
+  CAP: { timed: 0, lives: 420, full: 420 },         // seconds after which a race with no result is called (timed uses its own clock)
+  TYPES: {
+    timed: { id: 'timed', name: 'Timed', blurb: 'One clock for everyone. When it runs out, the most distance wins, and the winner needs at least 50%.' },
+    lives: { id: 'lives', name: 'Four lives', blurb: 'Everyone has four lives. Lose them all and you are out. The last racer standing, or the first to the finish, wins.' },
+    full: { id: 'full', name: 'Full clear', blurb: 'First to reach 100% wins. Crash and you restart from the beginning.' }
+  },
+  ORDER: ['timed', 'lives', 'full'],
+
+  int(v, lo, hi) { v = Math.floor(+v); return v >= lo ? (v <= hi ? v : hi) : lo; },
+  /* whatever arrives in a lobby's config, as safe numbers and a known type */
+  rules(o) {
+    o = o || {};
+    const ty = W.TYPES[o.ty] ? o.ty : 'full', tl = W.int(o.tl || W.DEF_TIME, 10, 600);
+    return { ty, tl: ty === 'timed' ? tl : 0, ec: W.int(o.ec, 0, W.MAX_COINS), eg: W.int(o.eg, 0, W.MAX_GEMS) };
+  },
+  staked(r) { return !!r && ((r.ec | 0) > 0 || (r.eg | 0) > 0); },
+  clock(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); },
+  /* one line about the race itself */
+  describe(r) {
+    r = W.rules(r);
+    if (r.ty === 'timed') return 'Timed · ' + r.tl + ' s · most distance wins, 50% minimum';
+    if (r.ty === 'lives') return 'Four lives · last one standing wins';
+    return 'Full clear · first to 100% wins';
+  },
+  /* seconds a race may run before it is called */
+  capFor(r) { r = W.rules(r); return r.ty === 'timed' ? r.tl + 4 : W.CAP[r.ty]; },
+
+  /* ------------------------------------------------------------------ result */
+  /* entries: [{ id, ft (finish seconds, 0 = none), bp (best progress 0..1), out (lost every life), gone (left the room) }]
+     -> { order: ids best first, win: ids that share the win, void, why } */
+  decide(type, entries) {
+    type = W.TYPES[type] ? type : 'full';
+    const clamp = v => { v = +v; return v > 0 ? (v < 1 ? v : 1) : 0; };
+    const E = entries.map((e, k) => { const ft = +e.ft > 0 ? +e.ft : 0; return { id: e.id, k, ft, bp: ft ? 1 : clamp(e.bp), out: !!e.out && !ft, gone: !!e.gone }; });
+    const cmp = (a, b) => {
+      if (a.gone !== b.gone) return a.gone ? 1 : -1;                         // somebody who left cannot win
+      if ((a.ft > 0) !== (b.ft > 0)) return a.ft > 0 ? -1 : 1;               // finishers first, fastest first
+      if (a.ft > 0) return (a.ft - b.ft) || (a.k - b.k);
+      if (type === 'lives' && a.out !== b.out) return a.out ? 1 : -1;        // still alive beats knocked out
+      return (b.bp - a.bp) || (a.k - b.k);
+    };
+    const S = E.slice().sort(cmp), order = S.map(e => e.id), live = S.filter(e => !e.gone);
+    if (!live.length) return { order, win: [], void: true, why: 'nobody' };
+    const near = (arr, f) => arr.filter(e => Math.abs(f(e) - f(arr[0])) < 0.0005);
+    const fin = live.filter(e => e.ft > 0);
+    let win = [], why = '';
+    if (fin.length) win = fin.filter(e => e.ft === fin[0].ft).map(e => e.id);
+    else if (type === 'full') why = 'nofinish';
+    else if (type === 'timed') { if (live[0].bp < W.MIN_PCT) why = 'under50'; else win = near(live, e => e.bp).map(e => e.id); }
+    else {
+      const alive = live.filter(e => !e.out);
+      if (alive.length === 1) win = [alive[0].id];
+      else { const pool = alive.length ? alive : live; if (pool[0].bp <= 0) why = alive.length ? 'nofinish' : 'nobody'; else win = near(pool, e => e.bp).map(e => e.id); }
+    }
+    return { order, win, void: !win.length, why };
+  },
+  whyText(why) {
+    return why === 'under50' ? 'Nobody reached 50%' : why === 'nofinish' ? 'Nobody finished' : why === 'nobody' ? 'Nobody was left racing' : why === 'host' ? 'The host left' : why === 'disputed' ? 'The result did not match what your device saw' : 'No winner';
+  },
+  sameWin(a, b) { a = (Array.isArray(a) ? a : []).slice().sort(); b = (Array.isArray(b) ? b : []).slice().sort(); return a.length === b.length && a.every((v, i) => v === b[i]); },
+
+  /* ------------------------------------------------------------------ money */
+  /* what a racer receives: res = decide() output (or { void: true }); n = racers who paid in */
+  settleEntry(rules, n, res, me) {
+    const r = W.rules(rules);
+    if (res.void) return { c: r.ec, g: r.eg, kind: 'refund' };
+    const k = res.win.length, i = res.win.indexOf(me);
+    if (i < 0) return { c: 0, g: 0, kind: 'lost' };
+    const share = pot => Math.floor(pot / k) + (i === 0 ? pot % k : 0);
+    return { c: share(r.ec * n), g: share(r.eg * n), kind: 'won' };
+  },
+  /* bets: [[betId, racerId, coins, gems], ...] as frozen by the host when the race started */
+  pools(bets) {
+    const t = { c: 0, g: 0, n: 0, on: {} };
+    for (const b of bets) { t.c += b[2]; t.g += b[3]; t.n++; const o = t.on[b[1]] || (t.on[b[1]] = { c: 0, g: 0, n: 0 }); o.c += b[2]; o.g += b[3]; o.n++; }
+    return t;
+  },
+  /* what one bettor receives. Per currency: winners split what everybody bet, in proportion to their stake; if nobody
+     backed the winner with that currency, that currency is handed back to the people who put it in. */
+  settleBet(bets, mine, res) {
+    if (res.void) return { c: mine[2], g: mine[3], kind: 'refund' };
+    const t = W.pools(bets); let wc = 0, wg = 0;
+    for (const b of bets) if (res.win.includes(b[1])) { wc += b[2]; wg += b[3]; }
+    const backed = res.win.includes(mine[1]);
+    const pay = (tot, win, stake) => (win === 0 ? stake : (backed ? Math.floor(tot * stake / win) : 0));
+    const c = pay(t.c, wc, mine[2]), g = pay(t.g, wg, mine[3]);
+    return { c, g, kind: backed ? 'won' : (c + g > 0 ? 'back' : 'lost') };
+  },
+  /* bets the host freezes into the race: one per watcher, on a racer who is in the race, within what presence can carry */
+  collectBets(peers, ids) {
+    const out = [], seen = new Set();
+    for (const p of peers) {
+      const q = p.presence; if (!q || q.wt !== 1 || q.seat === 1 || !q.bet || typeof q.bet !== 'object') continue;
+      const b = q.bet, c = Math.floor(+b.c) || 0, g = Math.floor(+b.g) || 0;
+      if (typeof b.id !== 'string' || !b.id || b.id.length > 16 || seen.has(b.id) || !ids.includes(b.on) || c < 0 || g < 0 || c + g <= 0 || c > W.MAX_COINS * 100 || g > W.MAX_GEMS * 100) continue;
+      seen.add(b.id); out.push([b.id, b.on, c, g]);
+      if (out.length >= W.MAX_BETS) break;
+    }
+    return out.sort((a, b) => (a[0] < b[0] ? -1 : 1));
+  },
+  /* a stored array may come back from the database as an object, or be missing when it was empty */
+  list(v) { return Array.isArray(v) ? v : (v && typeof v === 'object' ? Object.keys(v).sort((a, b) => a - b).map(k => v[k]) : []); }
+};
+
+SW.Wager = W;
+if (typeof module !== 'undefined' && module.exports) module.exports = W;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
@@ -4192,7 +4370,7 @@ const R = {
       else { const q = Math.PI / 2; this.rot += (Math.round(this.rot / q) * q - this.rot) * min(1, dt * 24); }
     } else if (s.mode === 2) this.rot += (s.gdir > 0 ? 1 : -1) * SW.BASE * SW.SPEEDS[s.spd] * dt / 0.5;
     else this.rot += (0 - this.rot) * min(1, dt * 10);
-    if (g.dead) return;
+    if (g.dead || g.spec) return;                 // spectators have no player of their own: only the camera moves
     const col = g.skin, cc = FX.cols(col), td = col.tfx && SW.Shop && SW.Shop.trailById[col.tfx];
     FX.trailKeep = td ? td.life + 0.05 : 0.55;
     this.dustT -= dt;
@@ -4255,11 +4433,11 @@ const R = {
     if (this.flashOn && !g.dead) { const z = 1 + 0.0065 * this.pulse; ctx.translate(this.W * 0.3, this.H * 0.55); ctx.scale(z, z); ctx.translate(-this.W * 0.3, -this.H * 0.55); }
     this.drawBounds(t);
     this.drawObjects(g, t);
-    FX.drawTrailFor(ctx, this.camX, this.camY, this.ppt, this.H, t, s.mode, g.skin, s.mini);
+    if (!g.spec) FX.drawTrailFor(ctx, this.camX, this.camY, this.ppt, this.H, t, s.mode, g.skin, s.mini);
     if (g.ghosts) for (const gh of g.ghosts) this.drawGhost(gh, t);
-    if (!g.dead) FX.drawPlayer(ctx, this.sx(s.x), this.sy(s.y), this.ppt, { mode: s.mode, mini: s.mini, rot: this.rot, vy: s.vy, vx: 1, gdir: s.gdir, skin: g.skin, t });
+    if (!g.dead && !g.spec) FX.drawPlayer(ctx, this.sx(s.x), this.sy(s.y), this.ppt, { mode: s.mode, mini: s.mini, rot: this.rot, vy: s.vy, vx: 1, gdir: s.gdir, skin: g.skin, t });
     for (const o of this.vp) this.drawPortalFront(o, t);
-    if (g.showHitbox) {
+    if (g.showHitbox && !g.spec) {
       ctx.strokeStyle = '#4dff7a'; ctx.lineWidth = 2;
       ctx.strokeRect(this.sx(s.x - s.hw), this.sy(s.y + s.hh), s.hw * 2 * this.ppt, s.hh * 2 * this.ppt);
       ctx.strokeStyle = '#ff3b3b';
@@ -4290,7 +4468,7 @@ SW.Render = R;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
-<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "5031d09c89";</script>
+<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "c1a29d8d7a";</script>
 <script>
 /* Syncwave game shell: save data, input, run loop, menus. */
 (function () {
@@ -4307,7 +4485,7 @@ const KEY = 'syncwave.v1';
 const defSave = () => ({ v: 2, lv: {}, gaunt: { best: 0, done: 0 }, skin: { face: 0, c1: '#38f3ff', c2: '#ff4fa3', trail: 0, icon: null, tfx: null },
   wallet: { c: 200, g: 5 }, own: { i: {}, t: {} }, daily: { day: -1, streak: 0 }, nick: '',
   cfg: { music: 0.7, sfx: 0.8, quality: matchMedia('(pointer: coarse)').matches ? 1 : 2, shake: true, flash: true, hitbox: false, autocp: false },
-  stats: { attempts: 0, deaths: 0, jumps: 0 }, lb: {}, gen: 0 });
+  stats: { attempts: 0, deaths: 0, jumps: 0 }, lb: {}, gen: 0, wg: {} });
 let save = defSave();
 function sanitize() {
   const d = defSave();
@@ -4317,6 +4495,8 @@ function sanitize() {
   save.nick = MP.cleanNick(save.nick);
   if (!save.lb || typeof save.lb !== 'object') save.lb = {};
   save.gen = Math.max(0, Math.floor(+save.gen || 0));
+  if (!save.wg || typeof save.wg !== 'object') save.wg = {};            // entry fees and bets waiting for a race to be settled (this device only)
+  for (const k of Object.keys(save.wg)) { const e = save.wg[k]; if (!e || (e.k !== 'e' && e.k !== 'b') || !(e.c >= 0) || !(e.g >= 0)) delete save.wg[k]; }
   for (const k of Object.keys(save.lb)) if (!(save.lb[k] >= 0)) delete save.lb[k];
   save.wallet.c = Math.max(0, Math.floor(+save.wallet.c || 0)); save.wallet.g = Math.max(0, Math.floor(+save.wallet.g || 0));
   for (const k of Object.keys(save.own.i)) if (!SH.iconById[k]) delete save.own.i[k];
@@ -4412,7 +4592,7 @@ function startRun(spec, mp) {
   G.run = { prevBest: spec.kind === 'lv' ? lvSave(L.id).best : save.gaunt.best, spec, L, practice: !!spec.practice, s: SW.createState(L), attempt: 1, snaps: [], dead: false, deadT: 0, won: false, aliveSince: 0, lastCp: 0, coinGot: [], earnC: 0, earnG: 0, clock: 0 };
   if (mp) G.run.mp = mp;
   showEarn(false);
-  $('mpst').hidden = !mp; $('mpfin').hidden = true; $('mpcd').classList.remove('on'); $('mpleave').hidden = true;
+  $('mpst').hidden = !mp; $('mpfin').hidden = true; $('mpmode').hidden = !mp; $('mpfollow').hidden = true; $('mpcd').classList.remove('on'); $('mpleave').hidden = true;
   G.mode = 'play'; G.paused = false; G.acc = 0;
   R.setLevel(L); R.rot = 0;
   for (const s of SCREENS) $(s).hidden = true;
@@ -4421,7 +4601,7 @@ function startRun(spec, mp) {
   beginAttempt(true);
   if (!mp && save.stats.attempts === 0 && spec.kind === 'lv' && spec.i === 0 && !spec.practice) toast(matchMedia('(pointer: coarse)').matches ? 'Tap to jump. Hold for ship and wave.' : 'Click or press Space to jump. Hold for ship and wave.');
 }
-function endRun() { if (G.run) { G.run = null; } A.stop(true); }
+function endRun() { if (G.run) { G.run = null; } A.stop(true); $('mpmode').hidden = true; $('mpfollow').hidden = true; }
 function showEarn(pop) {
   const e = $('earn'), r = G.run;
   if (!r || r.practice || !(r.earnC || r.earnG)) { e.classList.remove('on'); return; }
@@ -4443,7 +4623,8 @@ function beginAttempt(first) {
 }
 function view() {
   const run = G.run || { s: G.demoS, L: G.demo };
-  return { s: run.s, L: run.L, skin: skin(), dead: !!run.dead, deadT: run.deadT, cps: run.practice ? run.snaps : null, showHitbox: save.cfg.hitbox, coinGot: run.coinGot, snapCam: run.snapCam, ghosts: run.mp ? run.mp.gv : null };
+  const w = !!(run.mp && (run.mp.spec || run.mp.out) && run.watchS);          // spectators and racers who are out ride along with another racer
+  return { s: w ? run.watchS : run.s, L: run.L, skin: skin(), dead: w ? false : !!run.dead, deadT: run.deadT, cps: run.practice ? run.snaps : null, showHitbox: save.cfg.hitbox, coinGot: run.coinGot, snapCam: run.snapCam, ghosts: run.mp ? run.mp.gv : null, spec: w };
 }
 function die(run) {
   const s = run.s;
@@ -4457,7 +4638,12 @@ function die(run) {
   A.stop(true); A.sfx('die');
   const pct = Math.min(1, s.x / run.L.length);
   if (run.mp) {
+    const mp = run.mp;
     run.lastPct = pct; const att = $('att'); att.textContent = Math.floor(pct * 100) + '%'; att.classList.remove('show'); void att.offsetWidth; att.classList.add('show');
+    if (mp.ty === 'lives' && mp.phase === 'race' && !mp.spec && !mp.fz) {                 // four lives: every crash costs one
+      mp.lives = Math.max(0, mp.lives - 1);
+      if (mp.lives <= 0) { att.textContent = 'Out of lives'; mpEliminate(run); }
+    }
     return;
   }
   save.stats.deaths++;
@@ -4561,7 +4747,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && G.m
 function togglePause() {
   if (G.mode !== 'play' || !G.run) return;
   const run = G.run;
-  if (run.mp) { if (run.mp.phase !== 'done') { $('mpleave').hidden = !$('mpleave').hidden; A.sfx('click'); } return; }   // races never pause
+  if (run.mp) { if (run.mp.phase !== 'done') { mpLeaveText(); $('mpleave').hidden = !$('mpleave').hidden; A.sfx('click'); } return; }   // races never pause
   if (run.won) return;
   G.paused = !G.paused; release(); G.ptrs.clear(); G.keys.clear();
   if (G.paused) {
@@ -4607,6 +4793,7 @@ function frame(ts) {
   const run = G.run;
   if (G.mode === 'play' && run && (!G.paused || run.mp)) {
     const mp = run.mp;
+    if (mp) mpRules(run, performance.now());
     if (mp && mp.phase === 'count') {
       const left = mp.goAt - performance.now(), cd = $('mpcd'), n = Math.ceil(left / 1000);
       if (left > 0) { if (cd.dataset.n !== String(n)) { cd.dataset.n = n; cd.textContent = n; cd.classList.remove('on'); void cd.offsetWidth; cd.classList.add('on'); A.sfx('check'); } }
@@ -4614,6 +4801,10 @@ function frame(ts) {
       G.acc = 0;
     } else if (mp && mp.phase === 'done') {
       G.acc = 0;
+    } else if (mp && (mp.spec || mp.out)) {
+      G.acc = 0; watchStep(run, dt);
+    } else if (mp && mp.fz && !run.won) {
+      G.acc = 0;                                                                  // time is up: hold still until the host calls it
     } else if (run.dead) {
       run.deadT += dt;
       if (run.deadT > 0.62 || (run.deadT > 0.18 && G.queued)) { run.attempt++; beginAttempt(); }
@@ -4631,7 +4822,7 @@ function frame(ts) {
     }
     G.queued = false;
     const g = view();
-    if (mp) { const pn = performance.now(); mpGhosts(run, dt); mpSend(run, pn); mpStandings(run, pn); }
+    if (mp) { const pn = performance.now(); mpGhosts(run, dt); mpSend(run, pn); mpStandings(run, pn); mpHud(run, pn); }
     R.update(dt, g); FX.update(dt); R.draw(g);
     // adaptive quality
     G.frames++; G.ftSum += dt;
@@ -4915,14 +5106,56 @@ function claimDaily() {
 /* ------------------------------------------------------------ multiplayer */
 // Racing runs on the hosting page's "room" capability: every player runs the level locally and shares a tiny state
 // object (position, mode, alive, progress, finish time) as presence. Other racers are drawn as ghosts.
+// Wagers (hosted build, signed in only): the host sets an entry fee and every racer pays it; anybody who is not racing can
+// watch and bet. Money moves on each player's own device: it leaves the wallet when paid, waits in save.wg, and is settled
+// when the host's result matches what that device saw itself (src/wager.js has the rules).
 const BUILD = window.SW_BUILD || 'dev';
+const W = SW.Wager;
 const MPS = { ns: null, state: 'init', lb: null, code: '', host: false, lv: 0, rid: '', unsubs: [], tickIv: 0, settleT: 0, noHost: 0, peers: [], myPeer: '', conn: true, connT: 0,
-  sent: {}, sentAt: 0, advKey: '', loop: 0, settled: false, racing: false, busy: false, slotCv: [], rafR: 0, rafL: 0 };
+  sent: {}, sentAt: 0, advKey: '', loop: 0, settled: false, racing: false, busy: false, slotCv: [], rafR: 0, rafL: 0,
+  watch: false, entry: '', betId: '', bet: null, draft: { on: '', c: 0, g: 0 }, rsig: '', cr: { ty: 'full', tl: W.DEF_TIME, ec: 0, eg: 0 } };
 const r2 = v => Math.round(v * 100) / 100, r3 = v => Math.round(v * 1000) / 1000;
 const PLACE = ['1st', '2nd', '3rd', '4th'];
 const lvLabel = lv => (lv === 'g' ? 'Gauntlet' : (SW.Levels.def(+lv) ? SW.Levels.def(+lv).name : 'Level'));
 const nick = () => save.nick || (save.nick = MP.defaultNick());
 const fmtT = t => SW.Acct.pure.fmtMs(Math.round(t * 1000)) + 's';
+const hostOf = () => MP.host(MP.roster(MPS.peers));
+const hostCfg = () => { const h = hostOf(); return (h && h.presence.cfg) || {}; };
+const moneyHtml = (c, g, free) => [c > 0 ? fmt(c) + ' ' + CN : '', g > 0 ? fmt(g) + ' ' + GM : ''].filter(Boolean).join(' + ') || (free === undefined ? 'nothing' : free);
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function tb(label, sel, fn, off) { const b = el('button', 'tbtn' + (sel ? ' sel' : '') + (off ? ' off' : ''), label); b.onclick = () => { A.sfx('click'); fn(); }; return b; }
+
+/* ---- the wager ledger: entry fees and bets wait here, outside the wallet, until the race is settled ---- */
+const WG = {
+  who() { const u = SW.Acct && SW.Acct.user; return u ? u.name : ''; },
+  can(c, g) { return save.wallet.c >= c && save.wallet.g >= g; },
+  add(kind, c, g, room) {
+    const id = 'w' + Date.now().toString(36) + Math.floor(Math.random() * 46656).toString(36);
+    save.wallet.c -= c; save.wallet.g -= g; save.wg[id] = { k: kind, c, g, st: 'lobby', u: WG.who(), room, at: Date.now() }; persist(); walletChanged(); return id;
+  },
+  live(id) { const e = id && save.wg[id]; if (e && e.st !== 'live') { e.st = 'live'; persist(); } },
+  pay(id, c, g) { const e = id && save.wg[id]; if (!e) return false; delete save.wg[id]; save.wallet.c += c; save.wallet.g += g; persist(); walletChanged(); return true; },
+  refund(id) { const e = id && save.wg[id]; return e ? WG.pay(id, e.c, e.g) : false; },
+  drop(id) { if (id && save.wg[id]) { delete save.wg[id]; persist(); } }              // forfeited: the money simply stays gone
+};
+function walletChanged() { if (G.screen === 'menu') updateMenuStats(); if (G.screen === 'shop') updateWallet(); }
+/* anything left over from a session that ended early: lobby money comes back, money from a race already under way does not */
+function wgRecover() {
+  const me = WG.who(); if (!me) return; let back = 0;
+  for (const id of Object.keys(save.wg)) {
+    const e = save.wg[id]; if (e.u !== me || id === MPS.entry || id === MPS.betId) continue;
+    if (e.st === 'lobby') { WG.refund(id); back++; } else WG.drop(id);
+  }
+  if (back) toast('Returned the entry fee or bet from a lobby you left');
+}
+/* leaving: what is still in a lobby comes back, what is in a live race is forfeited */
+function wgLeave() {
+  let back = 0, lost = 0;
+  for (const id of [MPS.entry, MPS.betId]) { const e = id && save.wg[id]; if (!e) continue; if (e.st === 'lobby') { WG.refund(id); back++; } else { WG.drop(id); lost++; } }
+  MPS.entry = ''; MPS.betId = ''; MPS.bet = null;
+  if (lost) toast('You left a live race: your stake is forfeited'); else if (back) toast('Your ' + (back > 1 ? 'entry and bet were' : 'stake was') + ' returned');
+}
+
 function lvChips(box, cur, onPick) {
   box.innerHTML = '';
   const n = SW.Levels.count;
@@ -4931,6 +5164,24 @@ function lvChips(box, cur, onPick) {
     b.onclick = () => { A.sfx('click'); onPick(lv); }; box.appendChild(b);
   }
 }
+/* race type + clock chips, and the stake chips for the host */
+function ruleChips(box, r, onPick) {
+  box.innerHTML = '';
+  const seg = el('div', 'seg'); for (const id of W.ORDER) seg.appendChild(tb(W.TYPES[id].name, r.ty === id, () => onPick({ ty: id, tl: id === 'timed' ? (r.tl || W.DEF_TIME) : 0 }))); box.appendChild(seg);
+  if (r.ty === 'timed') { const s2 = el('div', 'seg'); s2.style.marginTop = '6px'; for (const t of W.TIMES) s2.appendChild(tb(t + ' s', r.tl === t, () => onPick({ tl: t }))); box.appendChild(s2); }
+  box.appendChild(el('div', 'mnote sub', W.TYPES[r.ty].blurb));
+}
+function stakeChips(box) {
+  const wrap = box.parentElement; box.innerHTML = '';
+  if (!HOSTED) { wrap.hidden = true; return; } wrap.hidden = false;
+  if (!WG.who()) { box.append(el('div', 'mnote', 'Racing for free needs no account. To race for coins or gems, sign in first.'), tb('Sign in', false, () => show('acct'))); return; }
+  const r = MPS.cr;
+  const row = (label, vals, nameOf, cur, set, over) => { box.appendChild(el('div', 'lab', label)); const s = el('div', 'seg'); for (const v of vals) s.appendChild(tb(nameOf(v), cur === v, () => { set(v); stakeChips(box); }, over(v))); box.appendChild(s); };
+  row('Coins', W.COINS, v => (v ? fmt(v) : 'Free'), r.ec, v => { r.ec = v; }, v => v > save.wallet.c);
+  row('Gems', W.GEMS, v => (v ? String(v) : 'None'), r.eg, v => { r.eg = v; }, v => v > save.wallet.g);
+  const n = el('div', 'mnote sub'); n.innerHTML = W.staked(r) ? 'Each racer pays ' + moneyHtml(r.ec, r.eg) + '. The winner takes the pot. You pay when you create the lobby.' : 'A free race. Winners still earn the usual placement coins.'; box.appendChild(n);
+}
+
 function mpInit() {
   const hosted = !!window.SW_FIREBASE;            // the hosted build keeps the Race button visible and explains what is wrong
   MPS.state = 'init'; MPS.info = null; $('bmp').hidden = !hosted;
@@ -4950,7 +5201,7 @@ function buildMp() {
   $('mpdiag').hidden = !bad; $('mpcols').hidden = bad;
   if (bad) {
     const i = MPS.info, connecting = MPS.state === 'init';
-    $('mpdiagtitle').textContent = connecting ? 'Connecting\u2026' : (i && i.title) || 'Online racing is not available';
+    $('mpdiagtitle').textContent = connecting ? 'Connecting…' : (i && i.title) || 'Online racing is not available';
     $('mpdiagmsg').textContent = connecting ? 'Reaching the race server. This takes a few seconds.' : (i && i.msg) || 'Online racing could not start on this page.';
     $('mpdiagdet').textContent = connecting ? '' : (i && i.det ? 'Details: ' + i.det : '');
     $('mpretry').hidden = connecting;
@@ -4958,24 +5209,33 @@ function buildMp() {
   }
   $('mpnick').value = nick();
   lvChips($('mplv'), MPS.lv, lv => { MPS.lv = lv; buildMp(); });
+  ruleChips($('mprules'), W.rules(MPS.cr), p => { Object.assign(MPS.cr, p); buildMp(); });
+  stakeChips($('mpstake'));
   mpRenderList(); mpUpdateOnline();
 }
 function mpRenderList() {
   const list = $('mplist'); list.innerHTML = '';
   const L = MPS.ns ? MP.lobbyList(MPS.ns.peers()) : [];
-  if (!L.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'No open lobbies right now. Create one and send the code to a friend.'; list.appendChild(e); return; }
+  if (!L.length) { list.appendChild(el('div', 'empty', 'No open lobbies right now. Create one and send the code to a friend.')); return; }
   for (const l of L) {
-    const row = document.createElement('div'); row.className = 'lrow';
-    const cd = document.createElement('div'); cd.className = 'cd'; cd.textContent = l.code;
-    const mid = document.createElement('div'); mid.className = 'mid'; const b = document.createElement('b'); b.textContent = l.host; const sm = document.createElement('small'); sm.textContent = lvLabel(l.lv) + (l.st === 'race' ? ' · racing' : ''); mid.append(b, sm);
-    const n = document.createElement('div'); n.className = 'n'; n.textContent = l.n + '/4';
-    const j = document.createElement('button'); j.className = 'btn sm'; j.innerHTML = '<span>Join</span>'; j.disabled = l.st === 'race' || l.n >= 4 || l.mine;
-    j.onclick = () => { A.sfx('click'); mpEnter(l.code, false); };
-    row.append(cd, mid, n, j); list.appendChild(row);
+    const row = el('div', 'lrow'), cd = el('div', 'cd', l.code), mid = el('div', 'mid'), b = el('b', '', l.host), sm = el('small');
+    sm.innerHTML = lvLabel(l.lv) + ' · ' + W.TYPES[l.ty].name + (l.ty === 'timed' ? ' ' + l.tl + ' s' : '') + ' · ' + (W.staked(l) ? '<span class="stk">' + moneyHtml(l.ec, l.eg) + '</span>' : 'free') + (l.w ? ' · ' + l.w + ' watching' : '') + (l.st === 'race' ? ' · racing' : '');
+    mid.append(b, sm);
+    const n = el('div', 'n', l.n + '/4'), btns = el('div', 'btns');
+    const j = el('button', 'btn sm'); j.innerHTML = '<span>Join</span>'; j.disabled = l.st === 'race' || l.n >= 4 || l.mine;
+    j.onclick = () => { A.sfx('click'); if (W.staked(l) && !WG.who()) { A.sfx('deny'); toast('Sign in to race for coins or gems'); return; } mpEnter(l.code, false); };
+    const w = el('button', 'btn sm ghost'); w.innerHTML = '<span>Watch</span>'; w.disabled = l.mine || l.w >= W.MAX_WATCH;
+    w.onclick = () => { A.sfx('click'); mpEnter(l.code, false, { watch: true }); };
+    btns.append(j, w); row.append(cd, mid, n, btns); list.appendChild(row);
   }
 }
 async function mpCreate() {
   if (!MPS.ns) return;
+  const r = W.rules(MPS.cr);
+  if (W.staked(r)) {
+    if (!WG.who()) { A.sfx('deny'); toast('Sign in to race for coins or gems'); return; }
+    if (!WG.can(r.ec, r.eg)) { A.sfx('deny'); toast('You do not have enough to put up that entry'); return; }
+  }
   const taken = new Set(MP.lobbyList(MPS.ns.peers()).map(l => l.code)); let code; do { code = MP.genCode(); } while (taken.has(code));
   await mpEnter(code, true);
 }
@@ -4983,19 +5243,25 @@ function mpJoinCode() {
   const c = MP.normCode($('mpcode').value); if (!c) { A.sfx('deny'); toast('Codes are 4 letters'); return; }
   A.sfx('click'); mpEnter(c, false);
 }
-async function mpEnter(code, asHost) {
+async function mpEnter(code, asHost, opt) {
   if (!MPS.ns || MPS.busy) return; MPS.busy = true;
   try {
     if (MPS.lb) await mpLeave(true);
     let rr; try { rr = await MPS.ns.join(MP.roomName(code)); } catch (e) { toast('Could not join the lobby (' + ((e && e.code) || 'error') + ')'); return; }
-    MPS.lb = rr; MPS.code = code; MPS.host = asHost; MPS.rid = ''; MPS.noHost = 0; MPS.settled = asHost; MPS.racing = false; MPS.sent = {}; MPS.peers = rr.peers();
+    const watch = !!(opt && opt.watch), rules = asHost ? W.rules(MPS.cr) : null;
+    MPS.lb = rr; MPS.code = code; MPS.host = asHost; MPS.watch = watch; MPS.rid = ''; MPS.noHost = 0; MPS.settled = asHost || watch; MPS.racing = false; MPS.sent = {}; MPS.peers = rr.peers();
+    MPS.entry = ''; MPS.betId = ''; MPS.bet = null; MPS.draft = { on: '', c: 0, g: 0 }; MPS.rsig = '';
     const sk = skin(), I = sk.icon && SH.iconById[sk.icon];
     const me = { nm: nick(), ic: I ? I.id : '', c1: sk.c1, c2: sk.c2, fc: sk.face | 0, jn: Date.now(), seat: asHost ? 1 : 0, rd: asHost ? 1 : 0, v: BUILD, host: asHost ? 1 : 0 };
-    if (asHost) me.cfg = { st: 'lobby', lv: MPS.lv, seed: gauntletSpec(false).seed, rid: '' };
+    if (watch) me.wt = 1;
+    if (asHost) {
+      me.cfg = Object.assign({ st: 'lobby', lv: MPS.lv, seed: gauntletSpec(false).seed, rid: '' }, rules);
+      if (W.staked(rules)) { MPS.entry = WG.add('e', rules.ec, rules.eg, code); me.pd = 1; }       // the host puts up the same entry as everybody
+    }
     rr.presence(me).catch(() => {});
     MPS.unsubs = [rr.onPeers(mpOnPeers, mpRoomErr), rr.onConnection(c => { MPS.conn = c; if (!c) MPS.connT = Date.now(); })];
     clearInterval(MPS.tickIv); MPS.tickIv = setInterval(mpTick, 250);
-    clearTimeout(MPS.settleT); if (!asHost) MPS.settleT = setTimeout(mpSettle, 1800);
+    clearTimeout(MPS.settleT); if (!asHost && !watch) MPS.settleT = setTimeout(mpSettle, 1800);
     show('room'); mpAdvert();
   } finally { MPS.busy = false; }
 }
@@ -5012,7 +5278,8 @@ function mpSettle() {
 async function mpLeave(silent) {
   clearInterval(MPS.tickIv); clearTimeout(MPS.settleT);
   for (const u of MPS.unsubs) { try { u(); } catch (e) {} } MPS.unsubs = [];
-  const rr = MPS.lb; MPS.lb = null; MPS.host = false; MPS.settled = false; MPS.rid = ''; MPS.racing = false; MPS.sent = {};
+  wgLeave();
+  const rr = MPS.lb; MPS.lb = null; MPS.host = false; MPS.watch = false; MPS.settled = false; MPS.rid = ''; MPS.racing = false; MPS.sent = {};
   $('mpconn').hidden = true; $('mpleave').hidden = true; $('mpst').hidden = true; $('mpfin').hidden = true;
   if (G.run && G.run.mp) { endRun(); G.mode = 'attract'; $('hud').hidden = true; resize(); A.play(0, 124, 0); }
   mpAdvert();
@@ -5023,8 +5290,11 @@ async function mpLeave(silent) {
 function mpAdvert() {
   if (!MPS.ns) return;
   let adv = null;
-  if (MPS.lb && MPS.host) { const r = MP.roster(MPS.peers), h = MP.host(r), cfg = (h && h.presence.cfg) || {}; adv = { c: MPS.code, h: nick(), lv: cfg.lv === undefined ? MPS.lv : cfg.lv, n: Math.max(1, MP.seated(r).length), st: MPS.racing ? 'race' : 'open' }; }
-  const key = adv ? [adv.c, adv.h, adv.lv, adv.n, adv.st].join('|') : '';
+  if (MPS.lb && MPS.host) {
+    const r = MP.roster(MPS.peers), h = MP.host(r), cfg = (h && h.presence.cfg) || {}, rl = W.rules(cfg), w = r.filter(p => p.presence.wt === 1).length;
+    adv = { c: MPS.code, h: nick(), lv: cfg.lv === undefined ? MPS.lv : cfg.lv, n: Math.max(1, MP.seated(r).length), st: MPS.racing ? 'race' : 'open', ty: rl.ty, tl: rl.tl, ec: rl.ec, eg: rl.eg, w };
+  }
+  const key = adv ? [adv.c, adv.h, adv.lv, adv.n, adv.st, adv.ty, adv.tl, adv.ec, adv.eg, adv.w].join('|') : '';
   if (key === MPS.advKey) return; MPS.advKey = key;
   MPS.ns.presence({ lb: adv }).catch(() => {});
 }
@@ -5034,10 +5304,72 @@ function mpOnPeers(ch) {
   const r = MP.roster(ch.peers), h = MP.host(r), cfg = h && h.presence.cfg;
   if (MPS.host) mpAdvert();
   if (cfg && MPS.settled) {
-    if (cfg.st === 'count' && cfg.rid && cfg.rid !== MPS.rid && Array.isArray(cfg.ids) && cfg.ids.includes(MPS.myPeer)) startMpRun(cfg);
-    else if (cfg.st === 'done' && cfg.rid === MPS.rid && G.run && G.run.mp && Array.isArray(cfg.res)) mpShowResults(cfg.res);
+    const ids = W.list(cfg.ids);
+    if (cfg.st === 'count' && cfg.rid && cfg.rid !== MPS.rid) {
+      if (!MPS.watch && ids.includes(MPS.myPeer)) startMpRun(cfg);
+      else startWatch(cfg);                                       // watchers, and anybody the race started without
+    } else if (cfg.st === 'done' && cfg.rid === MPS.rid && G.run && G.run.mp && Array.isArray(cfg.res)) mpShowResults(cfg.res, cfg);
+    else if (cfg.st === 'lobby' && !MPS.host) {
+      if (W.list(cfg.kick).includes(MPS.myPeer)) { toast('The host removed you from the lobby'); mpLeave(); return; }
+      const sig = [cfg.lv, cfg.ty, cfg.tl].join('|');             // the race changed after you said you were ready: say it again
+      if (MPS.rsig && sig !== MPS.rsig && me && me.presence.rd === 1) { MPS.lb.presence({ rd: 0 }).catch(() => {}); toast('The host changed the race. Press Ready again'); }
+      MPS.rsig = sig;
+    }
   }
   if (G.screen === 'room' && G.mode !== 'play' && !MPS.rafR) MPS.rafR = requestAnimationFrame(() => { MPS.rafR = 0; if (G.screen === 'room' && G.mode !== 'play') mpRenderRoom(); });
+}
+/* host edits the race (level, type, clock) while the lobby is open; the entry fee never changes once the lobby exists */
+function mpSetCfg(p) {
+  if (!MPS.host || !MPS.lb) return;
+  const cfg = hostCfg(); if (cfg.st !== 'lobby') return;
+  const next = Object.assign({}, cfg, p), rl = W.rules(Object.assign({}, cfg, p)), keep = W.rules(cfg);
+  next.ty = rl.ty; next.tl = rl.tl; next.ec = keep.ec; next.eg = keep.eg;
+  if (p.lv !== undefined) MPS.lv = p.lv;
+  MPS.lb.presence({ cfg: next }).catch(() => {});
+}
+function mpKick(peer) {
+  if (!MPS.host || !MPS.lb) return; const cfg = hostCfg(); if (cfg.st !== 'lobby') return;
+  MPS.lb.presence({ cfg: Object.assign({}, cfg, { kick: W.list(cfg.kick).concat(peer).slice(-12) }) }).catch(() => {});
+}
+
+/* paying the entry, sitting out, taking a seat, betting */
+function mpPay() {
+  if (!MPS.lb || !MPS.settled || MPS.entry || MPS.watch) return;
+  const cfg = hostCfg(), rl = W.rules(cfg); if (cfg.st !== 'lobby' || !W.staked(rl)) return;
+  if (!WG.who()) { A.sfx('deny'); toast('Sign in from the main menu to pay the entry'); return; }
+  if (!WG.can(rl.ec, rl.eg)) { A.sfx('deny'); toast('You need ' + (rl.ec ? fmt(rl.ec) + ' coins' : '') + (rl.ec && rl.eg ? ' and ' : '') + (rl.eg ? rl.eg + ' gems' : '') + ' for the entry'); return; }
+  MPS.entry = WG.add('e', rl.ec, rl.eg, MPS.code); A.sfx('buy'); toast('Entry paid');
+  MPS.lb.presence({ pd: 1 }).catch(() => {}); mpRenderRoom();
+}
+function mpSeatToggle() {
+  if (!MPS.lb || MPS.host || hostCfg().st !== 'lobby') return;
+  if (MPS.watch) {                                                 // watcher -> racer
+    const seated = MP.seated(MP.roster(MPS.peers));
+    if (seated.length >= MP.MAX) { A.sfx('deny'); toast('The lobby is full'); return; }
+    mpCancelBet(true); MPS.watch = false; A.sfx('click');
+    MPS.lb.presence({ seat: 1, wt: null }).catch(() => {});
+    setTimeout(() => { if (MPS.lb && !MPS.watch && !MP.seated(MP.roster(MPS.peers)).some(p => p.peer === MPS.myPeer)) { toast('Somebody took the last seat'); mpStand(); } }, 900);
+  } else {                                                         // racer -> watcher, entry fee comes back
+    if (MPS.entry) { WG.refund(MPS.entry); MPS.entry = ''; toast('Entry returned'); }
+    mpStand();
+  }
+  mpRenderRoom();
+}
+function mpStand() { MPS.watch = true; MPS.lb.presence({ wt: 1, seat: 0, rd: 0, pd: null }).catch(() => {}); }
+function mpPlaceBet() {
+  const d = MPS.draft; if (!MPS.lb || !MPS.watch || MPS.betId || hostCfg().st !== 'lobby') return;
+  if (!WG.who()) { A.sfx('deny'); toast('Sign in from the main menu to bet'); return; }
+  const racers = MP.seated(MP.roster(MPS.peers));
+  if (!d.on || !racers.some(p => p.peer === d.on)) { A.sfx('deny'); toast('Pick a racer to back'); return; }
+  if (!(d.c + d.g > 0)) { A.sfx('deny'); toast('Choose how much to bet'); return; }
+  if (!WG.can(d.c, d.g)) { A.sfx('deny'); toast('You do not have that much'); return; }
+  MPS.betId = WG.add('b', d.c, d.g, MPS.code); MPS.bet = { id: MPS.betId, on: d.on, c: d.c, g: d.g };
+  MPS.lb.presence({ bet: MPS.bet }).catch(() => {}); A.sfx('buy'); toast('Bet placed'); mpRenderRoom();
+}
+function mpCancelBet(silent) {
+  if (!MPS.betId) return; WG.refund(MPS.betId); MPS.betId = ''; MPS.bet = null;
+  if (MPS.lb) MPS.lb.presence({ bet: null }).catch(() => {});
+  if (!silent) { A.sfx('click'); toast('Bet returned'); mpRenderRoom(); }
 }
 
 /* lobby room */
@@ -5045,39 +5377,90 @@ function slotSkin(q) {
   const I = q.ic && SH.iconById[q.ic];
   return { icon: I ? I.id : null, face: (((q.fc | 0) % FX.faceCount) + FX.faceCount) % FX.faceCount, c1: MP.hexOr(q.c1, '#38f3ff'), c2: MP.hexOr(q.c2, '#ff4fa3') };
 }
+function betPanel(box, r, seated, rl) {
+  box.innerHTML = '';
+  const bets = W.collectBets(r, seated.map(p => p.peer));
+  const pools = W.pools(bets), lab = p => MP.cleanNick(p.presence.nm) || 'Racer';
+  box.appendChild(el('h4', '', 'Bet on the winner'));
+  if (!WG.who()) { box.appendChild(el('div', 'mnote', HOSTED ? 'Sign in from the main menu to bet coins or gems. You can still watch.' : 'Betting needs the hosted version of the game with an account. You can still watch.')); }
+  else if (seated.length < 2) { box.appendChild(el('div', 'mnote', 'Waiting for the racers to take their seats.')); }
+  else if (MPS.betId && MPS.bet) {
+    const on = seated.find(p => p.peer === MPS.bet.on), m = el('div', 'mine'); m.innerHTML = 'Your bet: ' + moneyHtml(MPS.bet.c, MPS.bet.g) + ' on ' + (on ? '' : 'a racer who left') + '<span id="betname"></span>'; box.appendChild(m);
+    if (on) m.querySelector('#betname').textContent = lab(on);
+    box.appendChild(el('div', 'mnote', 'Locked in when the host starts the race. If you leave once it has started, the bet is forfeited.'));
+    const row = el('div', 'row'), c = el('button', 'btn sm ghost'); c.innerHTML = '<span>Take it back</span>'; c.onclick = () => mpCancelBet(false); row.appendChild(c); box.appendChild(row);
+  } else {
+    const d = MPS.draft; if (!seated.some(p => p.peer === d.on)) d.on = '';
+    box.appendChild(el('div', 'lab', 'Racer'));
+    const who = el('div', 'seg'); seated.forEach((p, i) => { const b = tb(lab(p), d.on === p.peer, () => { d.on = p.peer; mpRenderRoom(); }); b.style.borderColor = d.on === p.peer ? MP.COLORS[i] : ''; b.style.color = MP.COLORS[i]; who.appendChild(b); }); box.appendChild(who);
+    box.appendChild(el('div', 'lab', 'Coins'));
+    const sc = el('div', 'seg'); for (const v of W.BET_COINS) sc.appendChild(tb(v ? fmt(v) : '0', d.c === v, () => { d.c = v; mpRenderRoom(); }, v > save.wallet.c)); box.appendChild(sc);
+    box.appendChild(el('div', 'lab', 'Gems'));
+    const sg = el('div', 'seg'); for (const v of W.BET_GEMS) sg.appendChild(tb(String(v), d.g === v, () => { d.g = v; mpRenderRoom(); }, v > save.wallet.g)); box.appendChild(sg);
+    const row = el('div', 'row'), go = el('button', 'btn sm hot'); go.innerHTML = '<span>Place bet</span>'; go.onclick = mpPlaceBet; row.appendChild(go); box.appendChild(row);
+    box.appendChild(el('div', 'mnote', 'Everyone who backs the winner shares the pool in proportion to what they bet. No one backed the winner with coins or gems? Those come back.'));
+  }
+  if (pools.n) {
+    box.appendChild(el('div', 'lab', 'Betting pool'));
+    seated.forEach((p, i) => { const o = pools.on[p.peer] || { c: 0, g: 0, n: 0 }, row = el('div', 'brow' + (MPS.bet && MPS.bet.on === p.peer ? ' mine' : '')); row.style.setProperty('--rc', MP.COLORS[i]); const s = el('span'); s.innerHTML = o.n ? o.n + (o.n > 1 ? ' bets · ' : ' bet · ') + moneyHtml(o.c, o.g) : 'no bets'; row.append(el('b', '', lab(p)), s); box.appendChild(row); });
+  }
+}
 function mpRenderRoom() {
   if (!MPS.lb) return;
   const r = MP.roster(MPS.peers), seated = MP.seated(r), h = MP.host(r), cfg = (h && h.presence.cfg) || {}, me = r.find(p => p.peer === MPS.myPeer);
+  const rl = W.rules(cfg), staked = W.staked(rl), lobbyOpen = cfg.st === 'lobby', signed = !!WG.who();
   $('roomtitle').textContent = MPS.code;
-  const lvBox = $('roomlv');
-  if (MPS.host) lvChips(lvBox, cfg.lv === undefined ? MPS.lv : cfg.lv, lv => { MPS.lv = lv; MPS.lb.presence({ cfg: Object.assign({}, cfg, { lv }) }).catch(() => {}); });
-  else { lvBox.innerHTML = ''; const t = document.createElement('div'); t.className = 'mnote'; t.textContent = 'Level: ' + lvLabel(cfg.lv); lvBox.appendChild(t); }
+  const lvBox = $('roomlv'), ruBox = $('roomrules');
+  if (MPS.host) { lvChips(lvBox, cfg.lv === undefined ? MPS.lv : cfg.lv, lv => mpSetCfg({ lv })); ruleChips(ruBox, rl, p => mpSetCfg(p)); }
+  else {
+    lvBox.innerHTML = ''; lvBox.appendChild(el('div', 'mnote', 'Level: ' + lvLabel(cfg.lv)));
+    ruBox.innerHTML = ''; ruBox.appendChild(el('div', 'rl', W.TYPES[rl.ty].name + (rl.ty === 'timed' ? ' · ' + rl.tl + ' s' : ''))); ruBox.appendChild(el('div', 'mnote', W.TYPES[rl.ty].blurb));
+  }
+  const stBox = $('roomstake'); stBox.innerHTML = '';
+  if (!staked) stBox.appendChild(el('div', 'free', 'Free race'));
+  else {
+    const a = el('div', 'rl'); a.innerHTML = 'Entry · ' + moneyHtml(rl.ec, rl.eg) + ' each'; stBox.appendChild(a);
+    const n = Math.max(2, seated.length), p = el('div', 'pot'); p.innerHTML = 'Winner takes ' + moneyHtml(rl.ec * n, rl.eg * n) + ' with ' + n + ' racers'; stBox.appendChild(p);
+  }
   const slots = $('slots'); slots.innerHTML = ''; MPS.slotCv = [];
   for (let i = 0; i < 4; i++) {
     const p = seated[i], d = document.createElement('div'); d.className = 'slot' + (p ? '' : ' empty-slot') + (p && p.peer === MPS.myPeer ? ' me' : ''); d.style.setProperty('--sc', MP.COLORS[i]);
     if (!p) { d.textContent = 'Waiting for a racer…'; slots.appendChild(d); continue; }
     const q = p.presence, cv = document.createElement('canvas'); cv.width = cv.height = 120; cv._sk = slotSkin(q); cv._ph = i * 0.9; d.appendChild(cv); MPS.slotCv.push(cv);
     const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = MP.cleanNick(q.nm) || 'Racer'; d.appendChild(nm);
-    const st = document.createElement('div'); st.className = 'st' + (q.host === 1 ? ' hst' : (q.rd === 1 ? ' rdy' : '')); st.textContent = q.host === 1 ? 'Host' : (q.v !== BUILD ? 'Old version' : (q.rd === 1 ? 'Ready' : 'Not ready')); d.appendChild(st);
+    const paid = q.pd === 1, st = document.createElement('div');
+    st.className = 'st' + (staked && !paid ? ' unpaid' : (q.host === 1 ? ' hst' : (q.rd === 1 ? ' rdy' : '')));
+    st.textContent = q.v !== BUILD ? 'Old version' : (q.host === 1 ? (staked ? (paid ? 'Host · paid' : 'Host · unpaid') : 'Host') : (staked && !paid ? 'Unpaid' : (q.rd === 1 ? 'Ready' : 'Not ready'))); d.appendChild(st);
+    if (MPS.host && lobbyOpen && p.peer !== MPS.myPeer) { const k = el('button', 'kick', '✕'); k.setAttribute('aria-label', 'Remove ' + (MP.cleanNick(q.nm) || 'racer')); k.onclick = () => { A.sfx('back'); mpKick(p.peer); }; d.appendChild(k); }
     slots.appendChild(d);
   }
-  const iAmSeated = !!(me && me.presence.seat === 1), lobbyOpen = cfg.st === 'lobby';
+  const iAmSeated = !!(me && me.presence.seat === 1), watchers = r.filter(p => p.presence.wt === 1);
   const stale = seated.find(p => p.presence.v !== BUILD);
-  const ready = $('mpready'), start = $('mpstart'), note = $('roomnote');
-  ready.hidden = MPS.host; start.hidden = !MPS.host;
+  const bets = W.collectBets(r, seated.map(p => p.peer)), pools = W.pools(bets);
+  const wt = $('roomwatch'); wt.innerHTML = '';
+  if (watchers.length || pools.n) { wt.textContent = (watchers.length ? 'Watching (' + watchers.length + '): ' + watchers.slice(0, 6).map(p => MP.cleanNick(p.presence.nm) || 'Guest').join(', ') + (watchers.length > 6 ? '…' : '') : '') + (pools.n ? (watchers.length ? ' · ' : '') + 'Bets: ' : ''); if (pools.n) { const s = el('span'); s.innerHTML = moneyHtml(pools.c, pools.g); wt.appendChild(s); } }
+  const bb = $('roombet'); bb.hidden = !(MPS.watch && lobbyOpen); if (!bb.hidden) betPanel(bb, r, seated, rl);
+  const ready = $('mpready'), start = $('mpstart'), note = $('roomnote'), pay = $('mppay'), seat = $('mpseat');
+  const mustPay = staked && iAmSeated && !MPS.entry && lobbyOpen && !MPS.watch;
+  pay.hidden = !mustPay; if (mustPay) pay.firstChild.innerHTML = 'Pay entry · ' + moneyHtml(rl.ec, rl.eg);
+  ready.hidden = MPS.host || MPS.watch; start.hidden = !MPS.host;
   const myRd = me && me.presence.rd === 1;
-  ready.firstChild.textContent = myRd ? 'Not ready' : 'Ready'; ready.disabled = !iAmSeated || !lobbyOpen;
+  ready.firstChild.textContent = myRd ? 'Not ready' : 'Ready'; ready.disabled = !iAmSeated || !lobbyOpen || (staked && !MPS.entry);
+  seat.hidden = MPS.host || !lobbyOpen || (MPS.watch && seated.length >= MP.MAX); seat.firstChild.textContent = MPS.watch ? 'Race instead' : 'Watch instead';
   if (MPS.host) {
-    const waiting = seated.filter(p => p.presence.rd !== 1);
-    start.disabled = !(seated.length >= 2 && !waiting.length && !stale && lobbyOpen);
-    note.textContent = stale ? (MP.cleanNick(stale.presence.nm) + ' has an old version of the page. Ask them to reload.') : (seated.length < 2 ? 'Share the code ' + MPS.code + ' with a friend. You need at least 2 racers.' : (waiting.length ? 'Waiting for ' + waiting.map(p => MP.cleanNick(p.presence.nm)).join(', ') : 'Everyone is ready.'));
+    const waiting = seated.filter(p => p.presence.rd !== 1), unpaid = staked ? seated.filter(p => p.presence.pd !== 1) : [];
+    start.disabled = !(seated.length >= 2 && !waiting.length && !unpaid.length && !stale && lobbyOpen);
+    const nm = l => l.map(p => MP.cleanNick(p.presence.nm)).join(', ');
+    note.textContent = stale ? (MP.cleanNick(stale.presence.nm) + ' has an old version of the page. Ask them to reload.') : (seated.length < 2 ? 'Share the code ' + MPS.code + ' with a friend. You need at least 2 racers.' : (unpaid.length ? 'Waiting for ' + nm(unpaid) + ' to pay the entry' : (waiting.length ? 'Waiting for ' + nm(waiting) : 'Everyone is ready.')));
+  } else if (MPS.watch) {
+    note.textContent = !lobbyOpen ? 'The race is under way.' : 'You are watching. When the host starts, you follow the race live.';
   } else {
-    note.textContent = !iAmSeated ? 'Joining…' : (!lobbyOpen ? 'Waiting for the host to return to the lobby…' : (stale ? 'Someone has an old version of the page. Reload to be safe.' : (myRd ? 'Waiting for the host to start.' : 'Press Ready when you are set.')));
+    note.textContent = !iAmSeated ? 'Joining…' : (!lobbyOpen ? 'Waiting for the host to return to the lobby…' : (staked && !MPS.entry ? (signed ? 'Pay the entry to get ready.' : 'Sign in from the main menu to pay the entry.') : (stale ? 'Someone has an old version of the page. Reload to be safe.' : (myRd ? 'Waiting for the host to start.' : 'Press Ready when you are set.'))));
   }
 }
 function drawSlot(cv, t) {
-  const c = cv.getContext('2d'), W = cv.width; c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, W, W);
-  FX.drawPlayer(c, W / 2, W / 2 + 2, W * 0.3, { mode: 0, mini: 0, rot: Math.sin(t * 1.6 + cv._ph) * 0.1, vy: 0, vx: 1, gdir: 1, skin: cv._sk, t: t + cv._ph });
+  const c = cv.getContext('2d'), W2 = cv.width; c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, W2, W2);
+  FX.drawPlayer(c, W2 / 2, W2 / 2 + 2, W2 * 0.3, { mode: 0, mini: 0, rot: Math.sin(t * 1.6 + cv._ph) * 0.1, vy: 0, vx: 1, gdir: 1, skin: cv._sk, t: t + cv._ph });
 }
 function roomLoop() {
   if (G.screen !== 'room' || G.mode === 'play') { MPS.loop = 0; return; }
@@ -5086,28 +5469,54 @@ function roomLoop() {
 }
 function mpStart() {
   if (!MPS.host || !MPS.lb) return;
-  const r = MP.roster(MPS.peers), seated = MP.seated(r), h = MP.host(r), cfg = (h && h.presence.cfg) || {};
-  if (cfg.st !== 'lobby' || seated.length < 2 || !seated.every(p => p.presence.rd === 1 && p.presence.v === BUILD)) { A.sfx('deny'); return; }
-  const rid = Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36);
+  const r = MP.roster(MPS.peers), seated = MP.seated(r), h = MP.host(r), cfg = (h && h.presence.cfg) || {}, rl = W.rules(cfg);
+  if (cfg.st !== 'lobby' || seated.length < 2 || !seated.every(p => p.presence.rd === 1 && p.presence.v === BUILD && (!W.staked(rl) || p.presence.pd === 1))) { A.sfx('deny'); return; }
+  const rid = Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36), ids = seated.map(p => p.peer);
+  const next = Object.assign({}, rl, { st: 'count', lv: cfg.lv, seed: cfg.seed, rid, ids, go: Date.now() + MP.COUNT * 1000 });
+  const bets = W.collectBets(r, ids); if (bets.length) next.bets = bets;       // from here on the bets are frozen
   MPS.racing = true;
-  MPS.lb.presence({ cfg: { st: 'count', lv: cfg.lv, seed: cfg.seed, rid, ids: seated.map(p => p.peer) } }).catch(() => {});
+  MPS.lb.presence({ cfg: next }).catch(() => {});
   mpAdvert();
 }
 
 /* the race itself */
-function startMpRun(cfg) {
+function mpMode(cfg) {
   const lvOk = cfg.lv === 'g' || (Number.isInteger(+cfg.lv) && +cfg.lv >= 0 && +cfg.lv < SW.Levels.count);
-  if (!lvOk) return;
+  if (!lvOk) return null;
+  const rl = W.rules(cfg);
+  return { rl, spec: cfg.lv === 'g' ? { kind: 'gaunt', seed: cfg.seed | 0, practice: false } : { kind: 'lv', i: +cfg.lv, practice: false } };
+}
+function newMp(cfg, rl, over) {
+  return Object.assign({ rid: cfg.rid, ids: W.list(cfg.ids).slice(0, 4), phase: 'count', goAt: performance.now() + MP.COUNT * 1000, t0: 0, ft: 0, bp: 0, cp: 0, gh: new Map(), last: new Map(), gv: [], standT: 0, firstFin: 0, paid: false, shown: false, finalized: false, cfg,
+    ty: rl.ty, tl: rl.tl, stake: rl, lives: rl.ty === 'lives' ? W.LIVES : 0, fz: false, out: false, spec: false, follow: '', target: '', absent: new Map(), hud: '' }, over || {});
+}
+function startMpRun(cfg) {
+  const m = mpMode(cfg); if (!m) return;
   MPS.rid = cfg.rid; MPS.racing = true; MPS.sent = {}; $('mpleave').hidden = true;
-  const spec = cfg.lv === 'g' ? { kind: 'gaunt', seed: cfg.seed | 0, practice: false } : { kind: 'lv', i: +cfg.lv, practice: false };
-  const mp = { rid: cfg.rid, ids: cfg.ids.slice(0, 4), phase: 'count', goAt: performance.now() + MP.COUNT * 1000, t0: 0, ft: 0, bp: 0, cp: 0, gh: new Map(), last: new Map(), gv: [], standT: 0, firstFin: 0, paid: false, shown: false, finalized: false, cfg };
-  startRun(spec, mp);
+  if (MPS.entry) WG.live(MPS.entry);                                    // from the start of the race the entry is committed
+  if (MPS.betId) mpCancelBet(true);
+  startRun(m.spec, newMp(cfg, m.rl));
+}
+function startWatch(cfg) {
+  const m = mpMode(cfg); if (!m || !W.list(cfg.ids).length) return;
+  MPS.rid = cfg.rid; MPS.racing = true; $('mpleave').hidden = true;
+  const bets = W.list(cfg.bets);
+  if (MPS.betId) {
+    if (bets.some(b => b[0] === MPS.betId)) WG.live(MPS.betId);
+    else { WG.refund(MPS.betId); MPS.betId = ''; MPS.bet = null; toast('Your bet came in too late. It was returned'); }
+  }
+  if (MPS.entry && !W.list(cfg.ids).includes(MPS.myPeer)) { WG.refund(MPS.entry); MPS.entry = ''; toast('The race started without you. Your entry was returned'); }
+  const mp = newMp(cfg, m.rl, { spec: true }), lead = (+cfg.go || 0) - Date.now();
+  if (+cfg.go && lead < -1500 && lead > -(W.capFor(m.rl) * 1000)) { mp.phase = 'race'; mp.t0 = performance.now() + lead; }     // joined a race already under way: line up with its clock
+  else mp.goAt = performance.now() + (+cfg.go && lead > 0 && lead < 4000 ? lead : MP.COUNT * 1000);
+  startRun(m.spec, mp);
+  $('mpfollow').hidden = false; mpFollowUi();
 }
 function mpGhosts(run, dt) {
   const mp = run.mp, now = Date.now(); mp.gv.length = 0;
   const by = new Map(); for (const p of MPS.peers) by.set(p.peer, p);
   mp.ids.forEach((id, i) => {
-    if (id === MPS.myPeer) return;
+    if (id === MPS.myPeer && !mp.spec) return;
     const p = by.get(id); if (!p) return;
     const q = p.presence; mp.last.set(id, q);
     if (typeof q.x !== 'number' || typeof q.y !== 'number') return;
@@ -5115,45 +5524,119 @@ function mpGhosts(run, dt) {
     if (MP.stepGhost(gh, q, (now - p.updatedAt) / 1000, dt)) { FX.burst(gh.x, gh.y, { n: 16, color: MP.COLORS[i % 4], speed: 7, life: 0.7, square: true, size: 0.12, grav: 10 }); FX.ring(gh.x, gh.y, MP.COLORS[i % 4], 2.4, 0.4); }
     const key = (q.ic || '') + '|' + q.c1 + '|' + q.c2 + '|' + q.fc;
     if (gh.key !== key) { gh.key = key; gh.skin = slotSkin(q); }
-    gh.name = MP.cleanNick(q.nm) || 'Racer'; gh.col = MP.COLORS[i % 4];
+    gh.name = MP.cleanNick(q.nm) || 'Racer'; gh.col = MP.COLORS[i % 4]; gh.id = id; gh.cp = +q.cp || 0;
     mp.gv.push(gh);
   });
 }
 function mpSend(run, now) {
-  const mp = run.mp, s = run.s; if (!MPS.lb || !MPS.settled) return;
-  mp.cp = Math.min(1, s.x / run.L.length); if (mp.cp > mp.bp) mp.bp = mp.cp;
-  const st = { x: r2(s.x), y: r2(s.y), m: s.mode, mi: s.mini ? 1 : 0, r: r2(R.rot), vy: r2(s.vy), g: s.gdir, d: run.dead ? 1 : 0, at: run.attempt, sp: s.spd, cp: r3(mp.cp), bp: r3(mp.bp), ft: mp.ft ? r2(mp.ft) : 0 };
-  const urgent = st.d !== MPS.sent.d || st.at !== MPS.sent.at || st.ft !== MPS.sent.ft;
+  const mp = run.mp, s = run.s; if (!MPS.lb || !MPS.settled || mp.spec) return;
+  if (!mp.out) { mp.cp = Math.min(1, s.x / run.L.length); if (mp.cp > mp.bp) mp.bp = mp.cp; }
+  const st = { x: r2(s.x), y: r2(s.y), m: s.mode, mi: s.mini ? 1 : 0, r: r2(R.rot), vy: r2(s.vy), g: s.gdir, d: run.dead ? 1 : 0, at: run.attempt, sp: s.spd, cp: r3(mp.cp), bp: r3(mp.bp), ft: mp.ft ? r2(mp.ft) : 0, fz: mp.fz ? 1 : 0, lf: mp.ty === 'lives' ? mp.lives : undefined };
+  const urgent = st.d !== MPS.sent.d || st.at !== MPS.sent.at || st.ft !== MPS.sent.ft || st.fz !== MPS.sent.fz || st.lf !== MPS.sent.lf;
   if (!urgent && now - MPS.sentAt < MP.SEND_MS) return;
   const patch = {}; let any = false;
   for (const k in st) if (st[k] !== MPS.sent[k]) { patch[k] = st[k]; any = true; }
   if (!any) return;
   Object.assign(MPS.sent, st); MPS.sentAt = now; MPS.lb.presence(patch).catch(() => {});
 }
-function mpEntries(run) {
-  const mp = run.mp, by = new Map(); for (const p of MPS.peers) by.set(p.peer, p);
+/* everyone in the race, as this device sees them. strict: somebody who is not in the room right now has left */
+function mpEntries(run, strict) {
+  const mp = run.mp, by = new Map(), now = Date.now(); for (const p of MPS.peers) by.set(p.peer, p);
   return mp.ids.map((id, i) => {
-    if (id === MPS.myPeer) return { id, i, nm: nick(), ft: mp.ft, bp: mp.bp, cp: mp.cp, me: true, gone: false };
+    if (id === MPS.myPeer && !mp.spec) return { id, i, nm: nick(), ft: mp.ft, bp: mp.bp, cp: mp.cp, lf: mp.lives, fz: mp.fz, out: mp.out, me: true, gone: false };
     const p = by.get(id), q = (p && p.presence) || mp.last.get(id) || {};
-    return { id, i, nm: MP.cleanNick(q.nm) || 'Racer', ft: +q.ft || 0, bp: +q.bp || 0, cp: +q.cp || 0, me: false, gone: !p };
+    if (p) mp.absent.delete(id); else if (!mp.absent.has(id)) mp.absent.set(id, now);
+    const gone = !p && (strict || now - mp.absent.get(id) >= 3000), ft = +q.ft || 0;
+    return { id, i, nm: MP.cleanNick(q.nm) || 'Racer', ft, bp: +q.bp || 0, cp: +q.cp || 0, lf: q.lf === undefined ? -1 : +q.lf, fz: +q.fz === 1 || ft > 0, out: mp.ty === 'lives' && +q.fz === 1 && +q.lf === 0 && !(ft > 0), me: false, gone };
   });
 }
 function mpStandings(run, now) {
   const mp = run.mp; if (now - mp.standT < 200) return; mp.standT = now;
-  const rows = MP.rank(mpEntries(run)), box = $('mpst');
+  const entries = mpEntries(run), by = new Map(entries.map(e => [e.id, e])), rows = W.decide(mp.ty, entries).order.map(id => by.get(id)), box = $('mpst');
   while (box.children.length < rows.length) { const d = document.createElement('div'); d.className = 'strow'; d.innerHTML = '<i class="fill"></i><span class="pn"></span><span class="nn"></span><span class="tt"></span>'; box.appendChild(d); }
   while (box.children.length > rows.length) box.lastChild.remove();
   rows.forEach((e, k) => {
     const d = box.children[k]; d.style.setProperty('--rc', MP.COLORS[e.i % 4]); d.classList.toggle('me', e.me);
-    d.children[0].style.width = (Math.min(1, e.cp) * 100).toFixed(0) + '%';
-    d.children[1].textContent = k + 1; d.children[2].textContent = e.nm + (e.gone ? ' (left)' : '');
-    d.children[3].textContent = e.ft > 0 ? fmtT(e.ft) : Math.floor(e.bp * 100) + '%';
+    d.children[0].style.width = (Math.min(1, mp.ty === 'timed' ? e.bp : e.cp) * 100).toFixed(0) + '%';
+    d.children[1].textContent = k + 1; d.children[2].textContent = e.nm + (e.gone ? ' (left)' : e.out ? ' (out)' : '');
+    d.children[3].textContent = (e.ft > 0 ? fmtT(e.ft) : (mp.ty === 'lives' && !e.out && !e.gone && e.lf >= 0 ? '♥' + e.lf + ' ' : '') + Math.floor(e.bp * 100) + '%');
   });
-  if (mp.ft > 0 && mp.phase !== 'done') { const k = rows.findIndex(e => e.me); $('mpfin').innerHTML = '<b>' + (PLACE[k] || '') + ' · ' + fmtT(mp.ft) + '</b><span>Waiting for the others…</span>'; }
+  if (mp.ft > 0 && mp.phase !== 'done' && !mp.spec) { const k = rows.findIndex(e => e.me); $('mpfin').innerHTML = '<b>' + (PLACE[k] || '') + ' · ' + fmtT(mp.ft) + '</b><span>Waiting for the others…</span>'; }
+}
+/* the little banner under the progress bar: race type, clock or lives */
+function mpHud(run, pn) {
+  const mp = run.mp, box = $('mpmode'); let html = '', warn = false;
+  if (mp.phase === 'done') { box.hidden = true; return; }
+  const name = W.TYPES[mp.ty].name;
+  if (mp.ty === 'timed') {
+    const left = mp.phase === 'race' ? Math.max(0, mp.tl - (pn - mp.t0) / 1000) : (mp.phase === 'done' ? 0 : mp.tl);
+    html = name + ' · ' + W.clock(Math.ceil(left)); warn = mp.phase === 'race' && left <= 10;
+  } else if (mp.ty === 'lives' && !mp.spec) html = name + ' <span class="hp">' + '♥'.repeat(mp.lives) + '♡'.repeat(W.LIVES - mp.lives) + '</span>';
+  else html = mp.ty === 'full' ? 'First to 100%' : name;
+  if (mp.spec) html = 'Watching · ' + html;
+  box.hidden = false;
+  if (mp.hud !== html) { mp.hud = html; box.innerHTML = html; }
+  box.classList.toggle('warn', warn);
+}
+/* rules that run on this racer's own clock */
+function mpRules(run, pn) {
+  const mp = run.mp;
+  if (mp.spec || mp.phase !== 'race' || mp.fz) return;
+  if (mp.ty === 'timed' && (pn - mp.t0) / 1000 >= mp.tl) {
+    mp.fz = true; A.stop(); A.sfx('check');
+    $('mpfin').hidden = false; $('mpfin').innerHTML = '<b>Time!</b><span>Best ' + Math.floor(mp.bp * 100) + '% · waiting for the others…</span>';
+    mpSend(run, pn);
+  }
+}
+function mpEliminate(run) {
+  const mp = run.mp; if (mp.out) return;
+  mp.out = true; mp.fz = true; mp.follow = ''; mp.standT = 0;
+  $('mpfin').hidden = false; $('mpfin').innerHTML = '<b>Out of lives</b><span>Best ' + Math.floor(mp.bp * 100) + '% · watching the others</span>';
+  const S = SW.createState(run.L); S.x = run.s.x; S.y = run.s.y; run.watchS = S;
+  $('mpfollow').hidden = false; mpFollowUi(); mpSend(run, performance.now());
 }
 function mpFinish(run) {
-  const mp = run.mp; mp.ft = Math.max(0.1, (performance.now() - mp.t0) / 1000); mp.bp = 1; mp.cp = 1;
+  const mp = run.mp; mp.ft = Math.max(0.1, (performance.now() - mp.t0) / 1000); mp.bp = 1; mp.cp = 1; mp.fz = true;
   $('mpfin').hidden = false; mp.standT = 0; mpSend(run, performance.now()); mpStandings(run, performance.now() + 1000);
+}
+/* spectators (and racers who are out) get a camera that follows a racer: the leader unless told otherwise */
+function watchStep(run, dt) {
+  const mp = run.mp, S = run.watchS || (run.watchS = SW.createState(run.L)), gv = mp.gv;
+  let tgt = mp.follow ? gv.find(g => g.id === mp.follow) : null;
+  if (!tgt) { for (const g of gv) if (!g.dead && (!tgt || g.x > tgt.x)) tgt = g; if (!tgt) for (const g of gv) if (!tgt || g.x > tgt.x) tgt = g; }
+  mp.target = tgt ? tgt.id : '';
+  if (tgt) {
+    const far = Math.abs(tgt.x - S.x) > 24, k = far ? 1 : Math.min(1, dt * 9);
+    S.x += (tgt.x - S.x) * k; S.y += (tgt.y - S.y) * k; S.mode = tgt.m; S.mini = tgt.mi; S.vy = tgt.vy; S.gdir = tgt.g;
+    const pct = Math.min(1, tgt.cp || 0); $('pfill').style.width = (pct * 100).toFixed(1) + '%'; $('pct').textContent = Math.floor(pct * 100) + '%';
+  }
+  if (mp.phase === 'race') S.t += dt;
+  const who = $('mpwho'), txt = (mp.follow ? '' : 'Auto · ') + (tgt ? tgt.name : '…');
+  if (who.textContent !== txt) who.textContent = txt;
+}
+function mpFollowUi() { const who = $('mpwho'); if (who) who.textContent = 'Auto'; }
+function mpFollowStep(d) {
+  const run = G.run, mp = run && run.mp; if (!mp) return;
+  const seq = [''].concat(mp.ids.filter(id => id !== MPS.myPeer || mp.spec)), i = Math.max(0, seq.indexOf(mp.follow));
+  mp.follow = seq[(i + d + seq.length) % seq.length]; A.sfx('click');
+  const g = G.run; if (g) g.snapCam = true;
+}
+/* the host calls the race: when every racer is done (or out, or gone), or the clock/grace runs out */
+function mpJudge(run, pn) {
+  const mp = run.mp, entries = mpEntries(run), elapsed = (pn - mp.t0) / 1000;
+  const live = entries.filter(e => !e.gone), fin = live.filter(e => e.ft > 0), open = live.filter(e => !e.fz && !(e.ft > 0));
+  if (fin.length && !mp.firstFin) mp.firstFin = pn;
+  let call = !live.length || !open.length;
+  if (!call && mp.ty === 'lives' && open.length === 1 && !fin.length && entries.length > 1) call = true;       // the last racer standing wins
+  if (!call && mp.ty !== 'timed' && mp.firstFin && pn - mp.firstFin > MP.GRACE * 1000) call = true;
+  if (!call && elapsed > W.capFor(mp.stake)) call = true;
+  if (!call) return;
+  mp.finalized = true;
+  const res = W.decide(mp.ty, entries), by = new Map(entries.map(e => [e.id, e]));
+  const rows = res.order.map(id => { const e = by.get(id); return [e.id, e.nm, +(e.ft || 0), +(+e.bp || 0).toFixed(3), e.gone ? 2 : (e.out ? 1 : 0)]; });
+  const done = Object.assign({}, mp.cfg, { st: 'done', res: rows, win: res.win });
+  if (res.why) done.why = res.why; else delete done.why;
+  MPS.lb.presence({ cfg: done }).catch(() => {});
 }
 function mpTick() {
   if (!MPS.lb) return;
@@ -5164,47 +5647,88 @@ function mpTick() {
     if (!h) { if (!MPS.noHost) MPS.noHost = now; else if (now - MPS.noHost > 2500) { MPS.noHost = 0; mpHostGone(); return; } } else MPS.noHost = 0;
   }
   const run = G.run, mp = run && run.mp;
-  if (MPS.host && mp && mp.phase === 'race' && !mp.finalized) {
-    const entries = mpEntries(run);
-    if (entries.some(e => e.ft > 0) && !mp.firstFin) mp.firstFin = pn;
-    const waiting = entries.filter(e => !(e.ft > 0) && !e.gone);
-    const timeUp = (mp.firstFin && pn - mp.firstFin > MP.GRACE * 1000) || pn - mp.t0 > MP.CAP * 1000;
-    if (!waiting.length || timeUp) {
-      mp.finalized = true;
-      const res = MP.rank(entries).map(e => [e.id, e.nm, +(e.ft || 0), +(+e.bp || 0).toFixed(3)]);
-      MPS.lb.presence({ cfg: Object.assign({}, mp.cfg, { st: 'done', res }) }).catch(() => {});
-    }
-  }
+  if (MPS.host && mp && mp.phase === 'race' && !mp.finalized) mpJudge(run, pn);
 }
 function mpHostGone() {
   const run = G.run;
-  if (run && run.mp && run.mp.phase !== 'done') { toast('The host left. Showing the standings so far'); mpShowResults(MP.rank(mpEntries(run)).map(e => [e.id, e.nm, +(e.ft || 0), +(e.bp || 0).toFixed(3)])); return; }
+  if (run && run.mp && run.mp.phase !== 'done') { toast('The host left. The race is called off'); mpShowResults(mpRowsNow(run), null); return; }
   toast('The host left the lobby'); mpLeave();
 }
-function mpShowResults(res) {
+function mpRowsNow(run) {
+  const mp = run.mp, entries = mpEntries(run, true), by = new Map(entries.map(e => [e.id, e]));
+  return W.decide(mp.ty, entries).order.map(id => { const e = by.get(id); return [e.id, e.nm, +(e.ft || 0), +(+e.bp || 0).toFixed(3), e.gone ? 2 : (e.out ? 1 : 0)]; });
+}
+/* what this device was owed, judged by what this device saw itself; returns lines for the results screen */
+function mpPayout(run, cfg) {
+  const mp = run.mp, rl = mp.stake, lines = [];
+  let res;
+  if (!cfg) res = { void: true, win: [], why: 'host' };
+  else {
+    const win = W.list(cfg.win), obs = W.decide(mp.ty, mpEntries(run, true));
+    res = W.sameWin(obs.win, win) ? { void: !win.length, win, why: win.length ? '' : (cfg.why || obs.why) } : { void: true, win: [], why: 'disputed' };
+  }
+  const line = (cls, html) => lines.push([cls, html]);
+  const entryLed = MPS.entry && save.wg[MPS.entry], betLed = MPS.betId && save.wg[MPS.betId];
+  if (!mp.spec && entryLed) {
+    const same = entryLed.c === rl.ec && entryLed.g === rl.eg;
+    const pay = same ? W.settleEntry(rl, mp.ids.length, res, MPS.myPeer) : { c: entryLed.c, g: entryLed.g, kind: 'refund' };
+    WG.pay(MPS.entry, pay.c, pay.g);
+    if (pay.kind === 'won') line('w', 'You won the pot: +' + moneyHtml(pay.c, pay.g));
+    else if (pay.kind === 'lost') line('l', 'You lost your entry: −' + moneyHtml(entryLed.c, entryLed.g));
+    else line('r', 'Entry returned: ' + moneyHtml(pay.c, pay.g));
+    MPS.entry = '';
+  }
+  if (betLed) {
+    const bets = W.list(cfg && cfg.bets), mine = bets.find(b => b[0] === MPS.betId), ok = mine && mine[2] === betLed.c && mine[3] === betLed.g;
+    const pay = ok ? W.settleBet(bets, mine, res) : { c: betLed.c, g: betLed.g, kind: 'refund' };
+    WG.pay(MPS.betId, pay.c, pay.g);
+    if (pay.kind === 'won') line('w', 'Your bet won: +' + moneyHtml(pay.c, pay.g));
+    else if (pay.kind === 'lost') line('l', 'Your bet lost: −' + moneyHtml(betLed.c, betLed.g));
+    else if (pay.kind === 'back') line('r', 'Your bet lost, but ' + moneyHtml(pay.c, pay.g) + ' came back: nobody else backed the winner with that');
+    else line('r', 'Bet returned: ' + moneyHtml(pay.c, pay.g));
+    MPS.betId = ''; MPS.bet = null;
+  }
+  return { res, lines };
+}
+function mpShowResults(rows, cfg) {
   const run = G.run; if (!run || !run.mp || run.mp.shown) return;
   const mp = run.mp; mp.shown = true; mp.phase = 'done'; A.stop(); A.sfx('win');
-  $('mpst').hidden = true; $('mpfin').hidden = true; $('mpleave').hidden = true;
+  $('mpst').hidden = true; $('mpfin').hidden = true; $('mpleave').hidden = true; $('mpmode').hidden = true; $('mpfollow').hidden = true;
+  const pay = mpPayout(run, cfg), res = pay.res, free = !W.staked(mp.stake);
+  const vd = $('mpverdict'); vd.innerHTML = '';
+  const winNames = res.win.map(id => { const e = rows.find(x => x[0] === id); return e ? (MP.cleanNick(e[1]) || 'Racer') : 'Racer'; });
+  if (res.void) { vd.appendChild(document.createTextNode('No winner')); vd.appendChild(el('small', '', W.whyText(res.why) + (W.staked(mp.stake) || pay.lines.length ? ' · everything is returned' : ''))); }
+  else { vd.appendChild(document.createTextNode(winNames.join(' & ') + (winNames.length > 1 ? ' tie' : ' wins'))); vd.appendChild(el('small', '', W.TYPES[mp.ty].name + (mp.ty === 'timed' ? ' · ' + mp.tl + ' s' : ''))); }
   const box = $('mprows'); box.innerHTML = '';
-  res.forEach((e, k) => {
+  rows.forEach((e, k) => {
     const d = document.createElement('div'); d.className = 'rrow' + (e[0] === MPS.myPeer ? ' me' : '');
     const pl = document.createElement('div'); pl.className = 'pl p' + Math.min(3, k); pl.textContent = k + 1;
-    const nm = document.createElement('div'); nm.className = 'rn'; nm.style.color = MP.COLORS[Math.max(0, mp.ids.indexOf(e[0])) % 4]; nm.textContent = (MP.cleanNick(e[1]) || 'Racer') + (e[0] === MPS.myPeer ? ' (you)' : '');
-    const t = document.createElement('div'); t.className = 'rt' + (e[2] > 0 ? '' : ' dnf'); t.textContent = e[2] > 0 ? fmtT(+e[2]) : 'DNF · ' + Math.floor((+e[3] || 0) * 100) + '%';
+    const nm = document.createElement('div'); nm.className = 'rn'; nm.style.color = MP.COLORS[Math.max(0, mp.ids.indexOf(e[0])) % 4]; nm.textContent = (MP.cleanNick(e[1]) || 'Racer') + (e[0] === MPS.myPeer && !mp.spec ? ' (you)' : '') + (res.win.includes(e[0]) ? ' ★' : '');
+    const t = document.createElement('div'); t.className = 'rt' + (e[2] > 0 ? '' : ' dnf'); t.textContent = e[2] > 0 ? fmtT(+e[2]) : (e[4] === 2 ? 'Left' : e[4] === 1 ? 'Out · ' : 'DNF · ') + (e[4] === 2 ? '' : Math.floor((+e[3] || 0) * 100) + '%');
     d.append(pl, nm, t); box.appendChild(d);
   });
-  const k = res.findIndex(e => e[0] === MPS.myPeer), n = res.length, rw = $('mpreward');
-  if (k >= 0 && n >= 2 && !mp.paid) { mp.paid = true; const c = MP.reward(k, n, res[k][2] > 0); save.wallet.c += c; persist(); rw.innerHTML = c ? 'You earned +' + c + ' ' + CN : ''; } else rw.textContent = n < 2 ? 'Racing alone earns nothing.' : '';
+  const wg = $('mpwager'); wg.innerHTML = ''; for (const [cls, html] of pay.lines) { const d = el('div', cls); d.innerHTML = html; wg.appendChild(d); }
+  const k = rows.findIndex(e => e[0] === MPS.myPeer), n = rows.length, rw = $('mpreward');
+  if (!mp.spec && free && k >= 0 && n >= 2 && !mp.paid) { mp.paid = true; const c = MP.reward(k, n, rows[k][2] > 0); save.wallet.c += c; persist(); rw.innerHTML = c ? 'You earned +' + c + ' ' + CN : ''; }
+  else rw.textContent = mp.spec ? '' : (!free ? 'Staked races pay the pot instead of placement coins.' : (n < 2 ? 'Racing alone earns nothing.' : ''));
+  persist();
   $('mpback').firstChild.textContent = 'Back to lobby';
   show('mpres');
+}
+function mpLeaveText() {
+  const mp = G.run && G.run.mp; if (!mp) return;
+  const spec = mp.spec, live = (spec ? MPS.betId : MPS.entry);
+  $('mplt').textContent = spec ? 'Stop watching?' : 'Leave the race?';
+  $('mpln').textContent = spec ? (live ? 'Leaving now forfeits your bet.' : 'You can come back to the lobby any time.') : (live ? 'Leaving now forfeits your entry. The race keeps going without you.' : 'The race keeps going without you.');
+  $('mpkeept').textContent = spec ? 'Keep watching' : 'Keep racing';
 }
 function mpBack() {
   const run = G.run, cfg0 = run && run.mp && run.mp.cfg, host = MPS.host;
   endRun(); G.mode = 'attract'; $('hud').hidden = true; $('mpst').hidden = true; resize();
   MPS.racing = false; MPS.sent = {};
   if (!MPS.lb) { A.play(0, 124, 0); show('mp'); return; }
-  const clr = { x: null, y: null, m: null, mi: null, r: null, vy: null, g: null, d: null, at: null, sp: null, cp: null, bp: null, ft: null, rd: host ? 1 : 0 };
-  if (host) clr.cfg = { st: 'lobby', lv: cfg0 ? cfg0.lv : MPS.lv, seed: cfg0 ? cfg0.seed : 0, rid: MPS.rid };
+  const clr = { x: null, y: null, m: null, mi: null, r: null, vy: null, g: null, d: null, at: null, sp: null, cp: null, bp: null, ft: null, fz: null, lf: null, pd: null, bet: null, rd: host ? 1 : 0 };
+  if (host) clr.cfg = Object.assign({}, W.rules(cfg0), { st: 'lobby', lv: cfg0 ? cfg0.lv : MPS.lv, seed: cfg0 ? cfg0.seed : 0, rid: MPS.rid });
   MPS.lb.presence(clr).catch(() => {});
   A.play(0, 124, 0); show('room'); mpAdvert();
 }
@@ -5230,7 +5754,7 @@ function buildSettings() {
   rs.innerHTML = '<div>Reset progress<small>Erases stars, coins, gems, purchases and best runs' + (HOSTED ? '. Leaderboard times stay on the boards' : '') + '</small></div>';
   const b = document.createElement('button'); b.className = 'btn sm ghost'; b.innerHTML = '<span>Reset</span>';
   let armed = false;
-  b.onclick = () => { if (!armed) { armed = true; b.firstChild.textContent = 'Tap again to erase'; setTimeout(() => { armed = false; b.firstChild.textContent = 'Reset'; }, 3000); } else { const cfg = save.cfg, gen = (save.gen | 0) + 1; save = defSave(); save.cfg = cfg; save.gen = gen; persist(); armed = false; b.firstChild.textContent = 'Erased'; toast('Progress reset'); if (ACCT() && ACCT().user) ACCT().overwrite(); } };
+  b.onclick = () => { if (!armed) { armed = true; b.firstChild.textContent = 'Tap again to erase'; setTimeout(() => { armed = false; b.firstChild.textContent = 'Reset'; }, 3000); } else { const cfg = save.cfg, gen = (save.gen | 0) + 1, wg = save.wg; save = defSave(); save.cfg = cfg; save.gen = gen; save.wg = wg; persist(); armed = false; b.firstChild.textContent = 'Erased'; toast('Progress reset'); if (ACCT() && ACCT().user) ACCT().overwrite(); } };
   rs.appendChild(b); el.appendChild(rs);
 }
 
@@ -5295,7 +5819,7 @@ function updateChip() {
   if (u) { const dot = document.createElement('i'); dot.className = 'dotp' + (st === 'synced' ? '' : st === 'syncing' ? ' wait' : ' off'); sp.append(dot, u.name); } else sp.textContent = 'Sign in';
   b.appendChild(sp); b.setAttribute('aria-label', u ? 'Account: ' + u.name : 'Sign in or create an account');
 }
-function uiChanged() { updateChip(); if (G.screen === 'acct') acctRefresh(); if (G.screen === 'ranks') rkWho(); }
+function uiChanged() { updateChip(); if (G.screen === 'acct') acctRefresh(); if (G.screen === 'ranks') rkWho(); wgRecover(); if (G.screen === 'mp') stakeChips($('mpstake')); }
 function acMode(m) {
   AC.mode = m; for (const b of document.querySelectorAll('#actabs .tbtn')) b.classList.toggle('sel', b.dataset.m === m);
   $('acpin2w').hidden = m !== 'reg'; $('acgo').firstChild.textContent = m === 'reg' ? 'Create account' : 'Sign in';
@@ -5314,6 +5838,7 @@ function acctRefresh() {
 }
 async function acGo() {
   if (AC.busy) return; const AT = ACCT(), msg = $('acmsg');
+  if (MPS.lb) await mpLeave(true);                                              // the lobby belongs to whoever was signed in
   const name = $('acname').value.trim(), pin = $('acpin').value.trim();
   const fail = (t, det) => { msg.className = 'acmsg bad'; msg.textContent = t; if (det) { const sm = document.createElement('small'); sm.textContent = det; msg.appendChild(sm); } SW.Audio.sfx('deny'); };
   const pre = AT.pure.validName(name) || AT.pure.validPin(pin); if (pre) return fail(AC.mode === 'in' ? 'Wrong username or PIN.' : pre);
@@ -5328,6 +5853,7 @@ async function acGo() {
 }
 async function acLogout() {
   const AT = ACCT(), msg = $('acmsg2'), btn = $('aclogout');
+  if (MPS.lb) await mpLeave(true);
   if (AC.armOut) { clearTimeout(AC.armOut); AC.armOut = 0; btn.firstChild.textContent = 'Sign out'; msg.textContent = ''; await AT.logout(true); toast('Signed out'); acctRefresh(); return; }
   btn.disabled = true; msg.className = 'acmsg'; msg.textContent = 'Saving your progress first…';
   const r = await AT.logout(false); btn.disabled = false;
@@ -5434,6 +5960,10 @@ $('mpleaveroom').onclick = () => { A.sfx('back'); mpLeave(); };
 $('mpcopy').onclick = () => { const c = MPS.code; try { navigator.clipboard.writeText(c).then(() => toast('Code ' + c + ' copied'), () => toast('Code: ' + c)); } catch (e) { toast('Code: ' + c); } };
 $('mpready').onclick = () => { if (!MPS.lb) return; const me = MPS.peers.find(p => p.peer === MPS.myPeer); A.sfx('click'); MPS.lb.presence({ rd: me && me.presence.rd === 1 ? 0 : 1 }).catch(() => {}); };
 $('mpstart').onclick = mpStart;
+$('mppay').onclick = mpPay;
+$('mpseat').onclick = mpSeatToggle;
+$('mpprev').onclick = () => mpFollowStep(-1);
+$('mpnext').onclick = () => mpFollowStep(1);
 $('mpback').onclick = () => { A.sfx('click'); mpBack(); };
 $('mpquit').onclick = () => { A.sfx('back'); mpLeave(); };
 $('mpkeep').onclick = () => { A.sfx('click'); $('mpleave').hidden = true; };
