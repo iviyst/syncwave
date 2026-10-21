@@ -238,6 +238,33 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 #mpfin b { display: block; font: calc(var(--u) * 3) var(--display); background: linear-gradient(90deg, var(--yl), var(--pk)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 #mpfin span { display: block; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-size: max(12px, calc(var(--u) * 0.95)); margin-top: 4px; }
 #mpconn { position: absolute; top: calc(var(--u) * 5); left: 50%; transform: translateX(-50%); padding: 6px 14px; border: 1px solid var(--rd); border-radius: 6px; background: rgba(10, 5, 28, 0.9); color: var(--rd); letter-spacing: 0.1em; text-transform: uppercase; font-size: max(11px, calc(var(--u) * 0.85)); z-index: 7; }
+/* accounts + ranks */
+#acct, #ranks { justify-content: flex-start; padding-top: calc(var(--u) * 0.8 + 46px); }
+.acbody { width: min(100%, 720px); flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; display: flex; flex-direction: column; gap: calc(var(--u) * 0.9); padding-bottom: calc(var(--u) * 2); overscroll-behavior: contain; }
+.acform { display: flex; flex-wrap: wrap; gap: calc(var(--u) * 0.9); }
+.acform > div { flex: 1 1 calc(var(--u) * 14); min-width: min(100%, 150px); }
+.acmsg { min-height: 1.3em; color: var(--yl); font-weight: 500; letter-spacing: 0.04em; font-size: max(12px, calc(var(--u) * 0.95)); user-select: text; }
+.acmsg.bad { color: var(--rd); }
+.acmsg small { display: block; color: var(--dim); word-break: break-all; font-size: 0.85em; }
+#acwho { font: calc(var(--u) * 2.6) var(--display); letter-spacing: 0.03em; overflow-wrap: anywhere; }
+#acpanel { display: flex; flex-direction: column; gap: calc(var(--u) * 0.8); }
+.dotp.wait { background: var(--yl); box-shadow: 0 0 8px var(--yl); }
+#bacct { position: absolute; top: calc(var(--u) * 0.8); left: max(16px, env(safe-area-inset-left, 0px)); max-width: 46vw; overflow: hidden; text-overflow: ellipsis; }
+#bacct > span { overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.rkbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; }
+.rkbar b { font: calc(var(--u) * 1.5) var(--display); letter-spacing: 0.03em; }
+#rktabs { flex-wrap: wrap; }
+#rkrows { display: flex; flex-direction: column; gap: 5px; }
+.rk { display: grid; grid-template-columns: 3em minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 6px 10px; border: 2px solid var(--line); border-radius: 8px; background: linear-gradient(170deg, rgba(14, 8, 34, 0.94), rgba(10, 5, 26, 0.78)); font-size: max(13px, calc(var(--u) * 1.05)); }
+.rk.me { border-color: var(--cy); box-shadow: 0 0 12px rgba(56, 243, 255, 0.4); }
+.rk .pl { font: calc(var(--u) * 1.2) var(--display); text-align: center; color: var(--dim); }
+.rk .pl.p1 { color: #ffd36b; } .rk .pl.p2 { color: #cfd8e8; } .rk .pl.p3 { color: #d9915b; }
+.rk .nm { font-weight: 700; letter-spacing: 0.05em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rk .rs { font-variant-numeric: tabular-nums; font-weight: 700; }
+.rk .rs.un { color: var(--dim); }
+.rk .at { color: var(--dim); font-size: 0.85em; text-align: right; min-width: 3.4em; white-space: nowrap; }
+.rkgap { text-align: center; color: var(--dim); letter-spacing: 0.4em; line-height: 0.8; }
+#endrank { min-height: 1.4em; text-align: center; }
 @media (prefers-reduced-motion: reduce) { .logo, .blink { animation: none; } }
 </style>
 <div id="app">
@@ -267,11 +294,13 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div class="row">
       <button class="btn" id="bgaunt"><span>Gauntlet</span></button>
       <button class="btn" id="bmp" data-go="mp" hidden><span>Race</span></button>
+      <button class="btn" id="branks" data-go="ranks" hidden><span>Ranks</span></button>
       <button class="btn " id="bshop" data-go="shop"><span>Shop</span></button>
       <button class="btn" data-go="custom"><span>Icon kit</span></button>
       <button class="btn" data-go="settings"><span>Settings</span></button>
     </div>
     <div class="stats" id="mstats"></div>
+    <button class="btn sm ghost" id="bacct" data-go="acct" hidden><span>Sign in</span></button>
     <button class="btn sm ghost" id="bfs" style="position:absolute;top:calc(var(--u)*0.8);right:max(16px,env(safe-area-inset-right,0px))" hidden><span>⛶ Fullscreen</span></button>
   </section>
 
@@ -356,6 +385,46 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div class="wrapcol panel" id="setlist"></div>
   </section>
 
+  <section class="screen dim" id="acct" hidden>
+    <div class="head"><button class="btn sm ghost" data-go="menu"><span>◀ Back</span></button><h2>Account</h2><span style="width:80px"></span></div>
+    <div class="acbody">
+      <div id="acconn" class="empty" hidden>Connecting…</div>
+      <div id="acdiag" hidden><div id="mpdiag" style="margin:0"><b id="acdt"></b><p id="acdm"></p><small id="acdd"></small><button class="btn sm" id="acretry"><span>Try again</span></button></div></div>
+      <div id="acout" hidden>
+        <div id="acpanel">
+          <div class="seg" id="actabs"><button class="tbtn sel" data-m="reg">Create account</button><button class="tbtn" data-m="in">Sign in</button></div>
+          <div class="mnote" id="achint"></div>
+          <div class="acform">
+            <div><div class="lab">Username</div><input class="txt" id="acname" maxlength="12" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Username"></div>
+            <div><div class="lab">PIN</div><input class="txt" id="acpin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" aria-label="PIN"></div>
+            <div id="acpin2w"><div class="lab">Repeat PIN</div><input class="txt" id="acpin2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" aria-label="Repeat PIN"></div>
+          </div>
+          <div class="acmsg" id="acmsg"></div>
+          <div class="row" style="justify-content:flex-start"><button class="btn hot sm" id="acgo"><span>Create account</span></button></div>
+        </div>
+      </div>
+      <div id="acin" hidden>
+        <div id="acpanel2" style="display:flex;flex-direction:column;gap:calc(var(--u)*0.8)">
+          <div class="lab" style="margin:0">Signed in as</div>
+          <div id="acwho"></div>
+          <div class="mnote" id="acsync"></div>
+          <div class="acmsg" id="acmsg2"></div>
+          <div class="row" style="justify-content:flex-start"><button class="btn sm" id="acsyncnow"><span>Save now</span></button><button class="btn sm" data-go="ranks"><span>Leaderboards</span></button><button class="btn sm ghost" id="aclogout"><span>Sign out</span></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen dim" id="ranks" hidden>
+    <div class="head"><button class="btn sm ghost" data-go="menu"><span>◀ Back</span></button><h2>Ranks</h2><button class="btn sm ghost" id="rkacct" style="max-width:40vw;overflow:hidden;text-overflow:ellipsis"><span id="rkwho">Sign in</span></button></div>
+    <div class="acbody">
+      <div class="seg" id="rktabs"></div>
+      <div class="rkbar"><b id="rktitle"></b><span class="mnote" id="rkrule"></span><button class="btn sm ghost" id="rkrefresh" aria-label="Refresh"><span>↻ Refresh</span></button></div>
+      <div id="rkrows"></div>
+      <div class="mnote" id="rkfoot" style="text-align:center"></div>
+    </div>
+  </section>
+
   <section class="screen dim" id="pause" hidden>
     <h2 class="logo sm" style="font-size:calc(var(--u)*2.6)">PAUSED</h2>
     <div class="row"><button class="btn hot" id="bresume"><span>Resume</span></button></div>
@@ -371,7 +440,8 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <h2 id="endtitle">Level complete</h2>
     <div class="bigstars" id="endstars"><span>★</span><span>★</span><span>★</span></div>
     <div class="endstats" id="endstats"></div>
-    <div class="row"><button class="btn hot" id="bnext"><span>Next</span></button><button class="btn" id="bretry"><span>Retry</span></button><button class="btn ghost" id="bmenu"><span>Levels</span></button></div>
+    <div class="mnote" id="endrank"></div>
+    <div class="row"><button class="btn hot" id="bnext"><span>Next</span></button><button class="btn" id="bretry"><span>Retry</span></button><button class="btn" id="bendranks" hidden><span>Ranks</span></button><button class="btn ghost" id="bmenu"><span>Levels</span></button></div>
   </section>
 
   <div class="modal" id="mpleave" hidden>
@@ -3027,33 +3097,24 @@ if (typeof module !== 'undefined' && module.exports) module.exports = MP;
 
 </script>
 <script>
-/* Syncwave multiplayer transport on Firebase Realtime Database.
-   It gives the game the same small interface the Claude artifact "room" capability gives it (presence, peers, onPeers,
-   join, leave, connection state), so none of the lobby or race code changes. Only used when the page defines
-   window.SW_FIREBASE (the config object Firebase shows for a web app); the Claude artifact build never does.
-
-   Data layout:  rooms/<room>/<peerId>  ->  that player's presence object, plus  u = their anonymous uid  and  hb = heartbeat.
-   The lobby is rooms/lobby; every race lobby is rooms/sw-<code>. Each player writes only their own node, and the
-   server removes it when their connection drops (onDisconnect). See hosting/firebase-rules.json. */
+/* Syncwave Firebase core, shared by online racing (mp_fb.js) and accounts + leaderboards (acct.js).
+   Loads the Firebase web SDK once, starts the app from window.SW_FIREBASE (the config Firebase shows for a web app) and
+   hands out the auth + database handles. Nothing here runs unless the page defines window.SW_FIREBASE, so the Claude
+   artifact build never touches it. */
 (function (root) {
 'use strict';
 const SW = root.SW = root.SW || {};
 const SDK_VER = '10.14.1';
 const SDK_HOSTS = ['https://www.gstatic.com/firebasejs/' + SDK_VER + '/', 'https://cdn.jsdelivr.net/npm/firebase@' + SDK_VER + '/'];
-const NAME_RE = /^[a-z0-9][a-z0-9_.-]{0,47}$/, KEY_RE = /^[A-Za-z_][A-Za-z0-9_-]*$/;
-const HB_MS = 25000, STALE_MS = 150000, FLUSH_MS = 40, MAX_ROOMS = 16;
-const stats = { flushes: 0, calls: 0, maxBytes: 0, rej: [], byRoom: {} };
 const err = (code, message) => Object.assign(new Error(message || code), { code });
 const sleep = (ms, v) => new Promise((_, rej) => setTimeout(() => rej(v || err('upstream_error', 'timeout')), ms));
-const strip = p => { const o = {}; for (const k in p) if (k !== 'u' && k !== 'hb') o[k] = p[k]; return o; };
-const bytes = s => (typeof TextEncoder !== 'undefined' ? new TextEncoder().encode(s).length : s.length);
 
 /* Plain-language reasons for the failures people actually hit while setting this up */
 function explain(stage, e) {
   const code = String((e && (e.fbcode || e.code)) || ''), msg = String((e && e.message) || e || '');
   const host = (root.location && root.location.hostname) || 'this site';
   const det = stage + ': ' + (code || msg).slice(0, 140);
-  let title = 'Online racing could not start', text = 'Something unexpected went wrong. Send the details below to whoever set this up.';
+  let title = 'Online features could not start', text = 'Something unexpected went wrong. Send the details below to whoever set this up.';
   if (stage === 'sdk') { title = 'Firebase could not load'; text = 'The Firebase library did not load from Google. Check your connection, and turn off any ad or tracker blocker for this site, then try again.'; }
   else if (/operation-not-allowed|admin-restricted/.test(code)) { title = 'Anonymous sign-in is off'; text = 'In the Firebase console open Authentication, then Sign-in method, tap Anonymous, turn on Enable and Save. Then try again here.'; }
   else if (/unauthorized-domain/.test(code)) { title = 'This address is not allowed'; text = 'In the Firebase console open Authentication, then Settings, then Authorized domains, and add ' + host + '. Then try again.'; }
@@ -3089,6 +3150,61 @@ async function loadSdk() {
   }
   throw last || new Error('Firebase SDK did not load');
 }
+
+const FB = {
+  app: null, auth: null, db: null, ready: false, pending: null, stage: 'sdk', explain, err, sleep,
+  /* Load the SDK, start the app and learn who (if anyone) was signed in last time. Safe to call from many places. */
+  boot(cfg) {
+    if (FB.pending) return FB.pending;
+    FB.pending = (async () => {
+      try {
+        FB.stage = 'sdk'; await loadSdk();
+        const fb = root.firebase;
+        FB.stage = 'auth';
+        FB.app = fb.apps && fb.apps.length ? fb.app() : fb.initializeApp(cfg);
+        FB.auth = fb.auth(FB.app); FB.db = fb.database(FB.app);
+        // the SDK restores last session's user (named or anonymous) on its own; wait for that first answer
+        await new Promise(res => { let done = false; const fin = () => { if (!done) { done = true; res(); } }; const off = FB.auth.onAuthStateChanged(() => { try { off && off(); } catch (e) {} fin(); }); setTimeout(fin, 6000); });
+        FB.ready = true; return FB;
+      } catch (e) { FB.pending = null; e.fbstage = FB.stage; throw e; }
+    })();
+    return FB.pending;
+  },
+  /* whoever is signed in; signs in anonymously when nobody is (racing works without an account) */
+  async ensureUser() {
+    FB.stage = 'auth';
+    if (FB.auth.currentUser) return FB.auth.currentUser;
+    const cred = await Promise.race([FB.auth.signInAnonymously(), sleep(12000)]);
+    const u = (cred && cred.user) || FB.auth.currentUser; if (!u || !u.uid) throw new Error('no uid');
+    return u;
+  },
+  ServerValue() { return root.firebase.database.ServerValue; }
+};
+SW.FB = FB;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
+/* Syncwave multiplayer transport on Firebase Realtime Database.
+   It gives the game the same small interface the Claude artifact "room" capability gives it (presence, peers, onPeers,
+   join, leave, connection state), so none of the lobby or race code changes. Only used when the page defines
+   window.SW_FIREBASE (the config object Firebase shows for a web app); the Claude artifact build never does.
+
+   Data layout:  rooms/<room>/<peerId>  ->  that player's presence object, plus  u = their anonymous uid  and  hb = heartbeat.
+   The lobby is rooms/lobby; every race lobby is rooms/sw-<code>. Each player writes only their own node, and the
+   server removes it when their connection drops (onDisconnect). See hosting/firebase-rules.json. */
+(function (root) {
+'use strict';
+const SW = root.SW = root.SW || {};
+const NAME_RE = /^[a-z0-9][a-z0-9_.-]{0,47}$/, KEY_RE = /^[A-Za-z_][A-Za-z0-9_-]*$/;
+const HB_MS = 25000, STALE_MS = 150000, FLUSH_MS = 40, MAX_ROOMS = 16;
+const stats = { flushes: 0, calls: 0, maxBytes: 0, rej: [], byRoom: {} };
+const err = (code, message) => Object.assign(new Error(message || code), { code });
+const sleep = (ms, v) => new Promise((_, rej) => setTimeout(() => rej(v || err('upstream_error', 'timeout')), ms));
+const strip = p => { const o = {}; for (const k in p) if (k !== 'u' && k !== 'hb') o[k] = p[k]; return o; };
+const bytes = s => (typeof TextEncoder !== 'undefined' ? new TextEncoder().encode(s).length : s.length);
+
+const explain = (stage, e) => SW.FB.explain(stage, e);
 
 class Room {
   constructor(T, name) {
@@ -3216,12 +3332,20 @@ class Transport {
   constructor(db, uid) {
     this.db = db; this.uid = uid; this.id = 'p' + Array.from({ length: 10 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]).join('');
     this.rooms = new Set(); this.named = new Map(); this.connSubs = new Set(); this.connected = false; this.everConnected = false;
-    db.ref('.info/connected').on('value', s => {
+    this.connRef = db.ref('.info/connected');
+    this.onConn = s => {
       const c = s.val() === true, was = this.connected; this.connected = c;
       if (c && this.everConnected && !was) for (const R of [...this.rooms]) R.assert();     // reconnect: the server dropped us, announce again
       if (c) this.everConnected = true;
       if (c !== was) for (const x of [...this.connSubs]) { try { x.fn(c); } catch (e) { console.error(e); } }
-    });
+    };
+    this.connRef.on('value', this.onConn);
+  }
+  /* sign-out / sign-in swaps the uid under us: drop every room (their nodes are removed) and stop listening */
+  async close() {
+    try { this.connRef.off('value', this.onConn); } catch (e) {}
+    this.connSubs.clear();
+    await Promise.all([...this.rooms].map(R => R.leave().catch(() => {})));
   }
   async ns() {
     const lobby = new Room(this, 'lobby'); await lobby.start();
@@ -3238,26 +3362,310 @@ class Transport {
   }
 }
 
+let current = null;
 function connect(cfg, cb) {
   let done = false; const fin = (ns, st, info) => { if (!done) { done = true; cb(ns, st, info); } };
   (async () => {
     let stage = 'sdk';
     try {
-      await loadSdk();
-      const fb = root.firebase;
+      const FB = SW.FB;
+      try { await FB.boot(cfg); } catch (e) { stage = e.fbstage || 'sdk'; throw e; }
       stage = 'auth';
-      const app = fb.apps && fb.apps.length ? fb.app() : fb.initializeApp(cfg);
-      const cred = await Promise.race([fb.auth(app).signInAnonymously(), sleep(12000)]);
-      const uid = cred && cred.user && cred.user.uid; if (!uid) throw new Error('no anonymous uid');
+      const user = await FB.ensureUser();
       stage = 'db';
-      const T = new Transport(fb.database(app), uid);
+      const T = new Transport(FB.db, user.uid); current = T;
       if (SW.MP) SW.MP.SEND_MS = 70;                                 // lighter on bandwidth than the 50 ms the platform room can take
       fin(await T.ns(), 'ok');
     } catch (e) { const info = explain(stage, e); stats.diag = info; console.warn('[syncwave] online racing is unavailable:', info.det); fin(null, 'unavailable', info); }
   })();
 }
+/* leave every room and detach, so connect() can start over under a different uid */
+async function close() { const T = current; current = null; if (T) await T.close(); }
 
-SW.MPFB = { connect, stats };
+SW.MPFB = { connect, close, stats };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
+/* Syncwave accounts, cloud saves and per-level leaderboards (hosted build only: needs window.SW_FIREBASE).
+
+   Accounts: a player picks a username and a PIN. Firebase Auth does the real work: the username becomes an e-mail style
+   login name (never mailed) and the PIN becomes the password, so Firebase's own guess limiting protects it.
+   Cloud save: saves/<uid> holds one JSON blob (coins, gems, owned icons + trails, equipped look, level progress...).
+   Devices merge instead of overwrite: progress only ever moves forward (best, union, OR) and the wallet merges as
+   "cloud + what this device changed since it last synced", so two devices can both earn coins.
+   Leaderboards: scores/<board>/<uid> holds a player's best result. Boards are the five levels ("1".."5") and "g" (Gauntlet).
+   See hosting/firebase-rules.json for what the server accepts. */
+(function (root) {
+'use strict';
+const SW = root.SW = root.SW || {};
+const DOMAIN = '@syncwave-players.com', NAME_RE = /^[A-Za-z0-9_]{3,12}$/, PIN_RE = /^[0-9]{4,8}$/;
+const META_KEY = 'syncwave.acct', NONE = 10000000;
+const SYNC_DEBOUNCE = 8000, SYNC_MAXWAIT = 30000;
+const lc = s => String(s == null ? '' : s).toLowerCase();
+const clone = o => JSON.parse(JSON.stringify(o));
+const num = v => (typeof v === 'number' && isFinite(v) ? v : 0);
+
+/* ------------------------------------------------------------------ pure helpers (unit-tested in Node) */
+function validName(n) { return NAME_RE.test(String(n || '')) ? '' : 'Usernames are 3 to 12 letters, numbers or underscores.'; }
+function validPin(p) { return PIN_RE.test(String(p || '')) ? '' : 'A PIN is 4 to 8 digits.'; }
+const emailFor = name => lc(name) + DOMAIN;
+const passFor = pin => 'syncwave:' + pin;                      // Firebase wants 6+ characters; the digits are the secret part
+const boardOf = L => (L && L.id === 100 ? 'g' : String(L && L.id));
+/* One number sorts a whole board, lowest first. Levels: clear time in ms (retries included), else 10,000,000 minus progress
+   in tenths of a percent, so every clear beats every unfinished run. Gauntlet: furthest progress, then most clears. */
+function scoreKey(board, e) {
+  if (board === 'g') return NONE - Math.round(e.p) * 1000 - Math.min(999, Math.round(e.d || 0));
+  return e.t != null ? Math.round(e.t) : NONE - Math.round(e.p);
+}
+function entryFor(board, name, e, ts) {
+  const o = { n: name, p: Math.round(e.p), s: scoreKey(board, e), ts };
+  if (board === 'g') o.d = Math.min(99999, Math.round(e.d || 0)); else { o.a = Math.max(1, Math.min(99999, Math.round(e.a || 1))); if (e.t != null) o.t = Math.round(e.t); }
+  return o;
+}
+function fmtMs(ms) { const sec = Math.floor(ms / 1000), m = Math.floor(sec / 60); return (m ? m + ':' + String(sec % 60).padStart(2, '0') : String(sec)) + '.' + (Math.floor(ms / 100) % 10); }
+function rankRows(rows) { let r = 0, prev = null, out = []; rows.forEach((x, i) => { if (prev === null || x.s !== prev) r = i + 1; prev = x.s; out.push(r); }); return out; }
+
+function mergeLv(a, b) {
+  if (!b) return clone(a); if (!a) return clone(b);
+  const m = clone(b);
+  m.best = Math.max(num(a.best), num(b.best)); m.pbest = Math.max(num(a.pbest), num(b.pbest));
+  m.coins = (a.coins | 0) | (b.coins | 0); m.stars = Math.max(num(a.stars), num(b.stars)); m.attempts = Math.max(num(a.attempts), num(b.attempts));
+  m.done = !!(a.done || b.done); if (a.allGem || b.allGem) m.allGem = true;
+  const ta = a.tm > 0 ? a.tm : Infinity, tb = b.tm > 0 ? b.tm : Infinity;
+  if (ta < Infinity || tb < Infinity) { const w = ta <= tb ? a : b; m.tm = w.tm; if (w.ta) m.ta = w.ta; }
+  return m;
+}
+/* L = this device's save, C = the cloud copy (or null), base = {c, g, sk} as of the last sync of this device+account (or null).
+   Progress only moves forward; the wallet is cloud + (local change since base); the look follows whichever side changed it. */
+function merge(L, C, base, opt) {
+  opt = opt || {};
+  if (!C) return clone(L);
+  const lgen = L.gen | 0, cgen = C.gen | 0;
+  if (cgen > lgen) return clone(C);                            // the account was reset on another device since: start from that
+  if (lgen > cgen) return clone(L);                            // this device just reset: the cloud copy is the old generation
+  if (!base && opt.fresh) return clone(C);                     // brand-new device, nothing to lose: take the account as it is
+  const M = clone(C); M.lv = M.lv || {};
+  for (const id in (L.lv || {})) M.lv[id] = mergeLv(L.lv[id], M.lv[id]);
+  const lg = L.gaunt || {}, cg = M.gaunt || {};
+  M.gaunt = Object.assign({}, cg, { best: Math.max(num(lg.best), num(cg.best)), done: Math.max(num(lg.done), num(cg.done)) });
+  if (lg.stars || cg.stars) M.gaunt.stars = Math.max(num(lg.stars), num(cg.stars));
+  M.own = { i: Object.assign({}, (C.own || {}).i, (L.own || {}).i), t: Object.assign({}, (C.own || {}).t, (L.own || {}).t) };
+  M.stats = {}; const ls = L.stats || {}, cs = C.stats || {}; for (const k of new Set([...Object.keys(ls), ...Object.keys(cs)])) M.stats[k] = Math.max(num(ls[k]), num(cs[k]));
+  M.lb = Object.assign({}, C.lb); for (const k in (L.lb || {})) M.lb[k] = M.lb[k] === undefined ? L.lb[k] : Math.min(M.lb[k], L.lb[k]);
+  const ld = L.daily || { day: -1, streak: 0 }, cd = C.daily || { day: -1, streak: 0 };
+  M.daily = ld.day > cd.day || (ld.day === cd.day && ld.streak > cd.streak) ? clone(ld) : clone(cd);
+  const lw = L.wallet || { c: 0, g: 0 }, cw = C.wallet || { c: 0, g: 0 };
+  M.wallet = base ? { c: Math.max(0, Math.floor(num(cw.c) + num(lw.c) - num(base.c))), g: Math.max(0, Math.floor(num(cw.g) + num(lw.g) - num(base.g))) }
+    : { c: Math.max(num(lw.c), num(cw.c)), g: Math.max(num(lw.g), num(cw.g)) };
+  if (base && L.skin && JSON.stringify(L.skin) !== base.sk) M.skin = clone(L.skin);   // changed on this device since last sync: it wins
+  M.v = 2; M.gen = lgen;
+  return M;
+}
+
+/* ------------------------------------------------------------------ browser side */
+const S = { enabled: false, status: 'off', user: null, info: null, err: null, last: 0, busy: null, again: false, dirty: false, meta: { uid: '', name: '', base: null }, timer: 0, firstAt: 0, pend: {}, pendT: 0, authUid: undefined, booted: false };
+let H = null;
+const withTimeout = (p, ms) => Promise.race([p, SW.FB.sleep(ms)]);
+const changed = () => { try { H && H.changed && H.changed(); } catch (e) { console.error(e); } };
+function loadMeta(uid) { try { const m = JSON.parse(localStorage.getItem(META_KEY) || 'null'); if (m && m.uid === uid) { S.meta = m; return; } } catch (e) {} S.meta = { uid: uid || '', name: '', base: null }; }
+function saveMeta() { try { if (S.meta.uid) localStorage.setItem(META_KEY, JSON.stringify(S.meta)); else localStorage.removeItem(META_KEY); } catch (e) {} }
+function friendly(e) {
+  const code = String((e && e.code) || ''), msg = String((e && e.message) || '');
+  const o = { msg: 'Something went wrong. Try again in a moment.', det: code || msg.slice(0, 100) };
+  if (/email-already-in-use/.test(code)) o.msg = 'That username is taken. Pick another.';
+  else if (/invalid-email/.test(code)) o.msg = 'That username cannot be used. Try letters and numbers only.';
+  else if (/invalid-credential|invalid-login|wrong-password|user-not-found/.test(code)) o.msg = 'Wrong username or PIN.';
+  else if (/too-many-requests/.test(code)) o.msg = 'Too many tries. Wait a few minutes and try again.';
+  else if (/network-request-failed|timeout|upstream/.test(code + msg)) o.msg = 'Could not reach the server. Check your connection and try again.';
+  else if (/operation-not-allowed|admin-restricted/.test(code)) o.msg = 'Username sign-in is switched off. In the Firebase console open Authentication, Sign-in method, Email/Password, turn on Enable and Save.';
+  else if (/unauthorized-domain/.test(code)) o.msg = 'This address is not allowed. In Firebase open Authentication, Settings, Authorized domains and add ' + ((root.location && root.location.hostname) || 'this site') + '.';
+  else if (/weak-password/.test(code)) o.msg = 'Pick a longer PIN.';
+  else if (/permission_denied/i.test(code + msg)) o.msg = 'The server refused it. The Firebase security rules need the latest version from the game files (Realtime Database, Rules, Publish).';
+  return o;
+}
+const displayOf = u => u.displayName || lc(String(u.email || '').split('@')[0]);
+const isNamed = u => !!(u && !u.isAnonymous && u.email && lc(u.email).endsWith(DOMAIN));
+
+function onAuth(u) {
+  const named = isNamed(u) ? u : null, uid = named ? named.uid : null, authUid = u ? u.uid : null;
+  const switched = !!S.authUid && S.authUid !== authUid;      // a different signed-in identity (not the first sign-in of the page)
+  S.authUid = authUid;
+  if ((S.user ? S.user.uid : null) !== uid) {
+    S.user = named ? { uid, name: displayOf(named) } : null;
+    loadMeta(uid); if (S.user) { S.meta.name = S.user.name; saveMeta(); }
+    S.status = S.user ? 'syncing' : 'off'; S.err = null;
+    if (S.user) syncSoon(0);
+  } else if (named && S.user.name !== displayOf(named) && named.displayName) { S.user.name = displayOf(named); S.meta.name = S.user.name; saveMeta(); }
+  changed();
+  if (switched && H && H.authSwitched) H.authSwitched();     // racing re-connects under the new uid
+}
+
+async function init(host) {
+  H = host; S.enabled = !!root.SW_FIREBASE; if (!S.enabled) return;
+  S.status = 'connecting'; changed();
+  try { await SW.FB.boot(root.SW_FIREBASE); }
+  catch (e) { S.info = SW.FB.explain(e.fbstage || 'sdk', e); S.status = 'error'; S.err = S.info; console.warn('[syncwave] accounts unavailable:', S.info.det); changed(); return; }
+  S.booted = true; S.status = 'off';
+  SW.FB.auth.onAuthStateChanged(onAuth);
+  try { document.addEventListener('visibilitychange', () => { if (document.hidden) flushAll(); else if (S.user) syncSoon(0); }); root.addEventListener('online', () => { if (S.user) syncSoon(500); }); root.addEventListener('pagehide', flushAll); } catch (e) {}
+}
+const ready = async () => { await SW.FB.boot(root.SW_FIREBASE); S.booted = true; };
+
+/* ---- sign up / in / out ---- */
+async function register(name, pin) {
+  const bad = validName(name) || validPin(pin); if (bad) return { ok: false, msg: bad };
+  try {
+    await ready();
+    const cred = await withTimeout(SW.FB.auth.createUserWithEmailAndPassword(emailFor(name), passFor(pin)), 15000);
+    try { await withTimeout(cred.user.updateProfile({ displayName: name }), 8000); } catch (e) {}
+    S.user = { uid: cred.user.uid, name }; loadMeta(cred.user.uid); S.meta.name = name; saveMeta();
+    await sync(true); changed();
+    return { ok: true, name };
+  } catch (e) { const f = friendly(e); return { ok: false, msg: f.msg, det: f.det }; }
+}
+async function login(name, pin) {
+  const bad = validName(name) || validPin(pin); if (bad) return { ok: false, msg: 'Wrong username or PIN.' };
+  try {
+    await ready();
+    const cred = await withTimeout(SW.FB.auth.signInWithEmailAndPassword(emailFor(name), passFor(pin)), 15000);
+    S.user = { uid: cred.user.uid, name: displayOf(cred.user) }; loadMeta(cred.user.uid); S.meta.name = S.user.name; saveMeta();
+    await sync(true); changed();
+    return { ok: true, name: S.user.name };
+  } catch (e) { const f = friendly(e); return { ok: false, msg: f.msg, det: f.det }; }
+}
+/* Signing out hands this device a brand-new guest save, so the next person starts clean; the account keeps everything. */
+async function logout(force) {
+  if (!S.user) return { ok: true };
+  if (!force) { try { await sync(true); } catch (e) {} if (S.status !== 'synced') return { ok: false, unsynced: true }; }
+  try { await SW.FB.auth.signOut(); } catch (e) {}
+  S.user = null; S.meta = { uid: '', name: '', base: null }; saveMeta(); S.status = 'off'; S.dirty = false; S.pend = {};
+  if (H) H.reset();
+  changed();
+  return { ok: true };
+}
+
+/* ---- cloud save ---- */
+function dirty() { if (!S.user) return; S.dirty = true; syncSoon(SYNC_DEBOUNCE); }
+function syncSoon(ms) {
+  if (!S.user) return;
+  const now = Date.now(); if (!S.firstAt) S.firstAt = now;
+  clearTimeout(S.timer);
+  const wait = Math.max(0, Math.min(ms, S.firstAt + SYNC_MAXWAIT - now));
+  S.timer = setTimeout(() => { S.timer = 0; S.firstAt = 0; sync(); }, wait);
+}
+function flushAll() { if (S.user && S.dirty) { clearTimeout(S.timer); S.firstAt = 0; sync(); } flushScores(); }
+function sync(wait) {
+  if (!S.user || !S.booted) return Promise.resolve();
+  if (S.busy) { S.again = true; return wait ? S.busy.then(() => sync()) : S.busy; }
+  S.busy = (async () => {
+    S.status = 'syncing'; S.dirty = false; changed();
+    try {
+      const uid = S.user.uid, ref = SW.FB.db.ref('saves/' + uid);
+      const L = H.snapshot(), fresh = H.isFresh();
+      await withTimeout(ref.once('value'), 12000);               // fills the local cache, so the transaction starts from the truth
+      let merged = null;
+      const res = await withTimeout(ref.transaction(cur => {
+        let C = null; if (cur && typeof cur.d === 'string') { try { C = JSON.parse(cur.d); } catch (e) { C = null; } }
+        merged = merge(L, C, S.meta.base, { fresh });
+        return { d: JSON.stringify(merged), ts: Date.now() };
+      }, undefined, false), 15000);
+      if (!res || !res.committed || !merged) throw new Error('not committed');
+      const now = H.snapshot();                                  // the player kept playing while we talked: replay those changes on top
+      const fin = merge(now, merged, { c: L.wallet.c, g: L.wallet.g, sk: JSON.stringify(L.skin) });
+      H.apply(fin);
+      S.meta.base = { c: merged.wallet.c, g: merged.wallet.g, sk: JSON.stringify(merged.skin) }; saveMeta();
+      if (JSON.stringify(fin) !== JSON.stringify(merged)) S.again = true;
+      S.last = Date.now(); S.status = 'synced'; S.err = null; S.denied = 0;
+      if (S.seeded !== uid) { S.seeded = uid; seedBoards(); }
+    } catch (e) {
+      // right after a sign-in the database connection can still be using the previous identity for a moment: try again shortly
+      if (/permission_denied/i.test(String((e && (e.code || '')) + ' ' + (e && e.message || ''))) && (S.denied = (S.denied | 0) + 1) <= 3) {
+        S.dirty = true; clearTimeout(S.timer); S.timer = setTimeout(() => { S.timer = 0; sync(); }, 1500); S.busy = null; changed(); return;
+      }
+      S.status = (root.navigator && root.navigator.onLine === false) ? 'offline' : 'error'; S.err = friendly(e); S.dirty = true;
+      console.warn('[syncwave] cloud save failed:', e && (e.code || e.message || e));
+      clearTimeout(S.timer); S.timer = setTimeout(() => { S.timer = 0; sync(); }, 20000);
+    }
+    S.busy = null; changed();
+    if (S.again && S.status === 'synced') { S.again = false; syncSoon(1500); }
+  })();
+  return S.busy;
+}
+/* Reset progress while signed in: replace the cloud copy too, or the next sync would bring everything back. */
+async function overwrite() {
+  if (!S.user || !S.booted) return;
+  try {
+    const f = H.snapshot(); await withTimeout(SW.FB.db.ref('saves/' + S.user.uid).set({ d: JSON.stringify(f), ts: Date.now() }), 12000);
+    S.meta.base = { c: f.wallet.c, g: f.wallet.g, sk: JSON.stringify(f.skin) }; saveMeta(); S.status = 'synced'; S.last = Date.now(); changed();
+  } catch (e) { S.status = 'error'; S.err = friendly(e); changed(); }
+}
+
+/* ---- leaderboards ---- */
+/* report one result for a board; progress reports are batched, clears go out at once */
+function report(board, e, now) {
+  if (!S.user || !S.booted) return;
+  const lb = H.lb(), key = scoreKey(board, e);
+  if (lb[board] !== undefined && key >= lb[board]) return;     // not better than what is already posted
+  const old = S.pend[board]; if (old && scoreKey(board, old) <= key) return;
+  S.pend[board] = e;
+  if (now) flushScores(); else { clearTimeout(S.pendT); S.pendT = setTimeout(flushScores, 3000); }
+}
+/* one write at a time, so asking "is my result posted yet?" always waits for the write already in flight */
+function flushScores() { clearTimeout(S.pendT); S.pendT = 0; S.sending = (S.sending || Promise.resolve()).then(doFlush, doFlush); return S.sending; }
+async function doFlush() {
+  if (!S.user || !S.booted) return [];
+  const todo = S.pend; S.pend = {}; const out = [];
+  for (const board in todo) {
+    const e = todo[board], entry = entryFor(board, S.user.name, e, SW.FB.ServerValue().TIMESTAMP);
+    try {
+      await withTimeout(SW.FB.db.ref('scores/' + board + '/' + S.user.uid).set(entry), 12000);
+      const lb = H.lb(); if (lb[board] === undefined || entry.s < lb[board]) { lb[board] = entry.s; H.persist(); }
+      out.push(board);
+    } catch (err) {
+      // The server only accepts improvements. A refusal means either "you already have as good or better there" (remember it, stop
+      // retrying) or "the rules are out of date" (keep the result and try again later).
+      let held = null; try { const cur = await withTimeout(SW.FB.db.ref('scores/' + board + '/' + S.user.uid + '/s').once('value'), 8000); held = cur.val(); } catch (e2) {}
+      if (typeof held === 'number' && held <= entry.s) { const lb = H.lb(); if (lb[board] === undefined || held < lb[board]) { lb[board] = held; H.persist(); } }
+      else { S.pend[board] = S.pend[board] || e; S.scoreErr = friendly(err); }
+    }
+  }
+  if (out.length) S.scoreErr = null;
+  if (Object.keys(S.pend).length && !S.pendT) S.pendT = setTimeout(flushScores, 30000);      // a result the server refused for a fixable reason is tried again later
+  if (out.length && H.posted) H.posted(out);
+  return out;
+}
+/* after signing in, post whatever progress this device already has */
+function seedBoards() { try { for (const b of (H.boards ? H.boards() : [])) report(b.board, b, false); } catch (e) { console.warn(e); } }
+async function top(board, n) {
+  n = n || 25;
+  await ready(); await SW.FB.ensureUser();
+  const ref = SW.FB.db.ref('scores/' + board);
+  const snap = await withTimeout(ref.orderByChild('s').limitToFirst(n).once('value'), 12000);
+  const rows = []; snap.forEach(ch => { const v = ch.val(); if (v && typeof v.s === 'number') rows.push(Object.assign({ uid: ch.key }, v)); });
+  const ranks = rankRows(rows); rows.forEach((r, i) => { r.rank = ranks[i]; });
+  let me = null;
+  if (S.user) {
+    me = rows.find(r => r.uid === S.user.uid) || null;
+    if (!me) {
+      const mine = await withTimeout(ref.child(S.user.uid).once('value'), 12000);
+      if (mine.exists() && typeof mine.val().s === 'number') {
+        me = Object.assign({ uid: S.user.uid }, mine.val());
+        const better = await withTimeout(ref.orderByChild('s').endAt(me.s - 1).limitToFirst(200).once('value'), 12000), c = better.numChildren();
+        me.rank = c >= 200 ? '200+' : c + 1; me.outside = true;
+      }
+    }
+  }
+  return { rows, me };
+}
+
+const Acct = {
+  S, init, register, login, logout, sync, dirty, overwrite, report, flushScores, top, seedBoards,
+  get enabled() { return S.enabled; }, get user() { return S.user; },
+  pure: { validName, validPin, emailFor, passFor, scoreKey, entryFor, fmtMs, rankRows, merge, mergeLv, boardOf, friendly, NONE }
+};
+SW.Acct = Acct;
+if (typeof module !== 'undefined' && module.exports) module.exports = Acct.pure;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
@@ -3882,7 +4290,7 @@ SW.Render = R;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
-<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "fdb617c3b8";</script>
+<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "5031d09c89";</script>
 <script>
 /* Syncwave game shell: save data, input, run loop, menus. */
 (function () {
@@ -3899,7 +4307,7 @@ const KEY = 'syncwave.v1';
 const defSave = () => ({ v: 2, lv: {}, gaunt: { best: 0, done: 0 }, skin: { face: 0, c1: '#38f3ff', c2: '#ff4fa3', trail: 0, icon: null, tfx: null },
   wallet: { c: 200, g: 5 }, own: { i: {}, t: {} }, daily: { day: -1, streak: 0 }, nick: '',
   cfg: { music: 0.7, sfx: 0.8, quality: matchMedia('(pointer: coarse)').matches ? 1 : 2, shake: true, flash: true, hitbox: false, autocp: false },
-  stats: { attempts: 0, deaths: 0, jumps: 0 } });
+  stats: { attempts: 0, deaths: 0, jumps: 0 }, lb: {}, gen: 0 });
 let save = defSave();
 function sanitize() {
   const d = defSave();
@@ -3907,6 +4315,9 @@ function sanitize() {
   save.wallet = Object.assign(d.wallet, save.wallet || {}); save.daily = Object.assign(d.daily, save.daily || {});
   save.own = { i: Object.assign({}, save.own && save.own.i), t: Object.assign({}, save.own && save.own.t) };
   save.nick = MP.cleanNick(save.nick);
+  if (!save.lb || typeof save.lb !== 'object') save.lb = {};
+  save.gen = Math.max(0, Math.floor(+save.gen || 0));
+  for (const k of Object.keys(save.lb)) if (!(save.lb[k] >= 0)) delete save.lb[k];
   save.wallet.c = Math.max(0, Math.floor(+save.wallet.c || 0)); save.wallet.g = Math.max(0, Math.floor(+save.wallet.g || 0));
   for (const k of Object.keys(save.own.i)) if (!SH.iconById[k]) delete save.own.i[k];
   for (const k of Object.keys(save.own.t)) if (!SH.trailById[k]) delete save.own.t[k];
@@ -3915,7 +4326,8 @@ function sanitize() {
 }
 try { const raw = localStorage.getItem(KEY); if (raw) { save = Object.assign(defSave(), JSON.parse(raw)); } } catch (e) {}
 sanitize();
-function persist() { try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) {} }
+function persistLocal() { try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) {} }
+function persist() { persistLocal(); if (SW.Acct && SW.Acct.user) SW.Acct.dirty(); }       // signed in: the cloud copy follows a few seconds later
 const lvSave = id => save.lv[id] || (save.lv[id] = { best: 0, pbest: 0, coins: 0, stars: 0, attempts: 0, done: false });
 function totalStars() { let n = save.gaunt.stars || 0; for (const k in save.lv) n += save.lv[k].stars || 0; return n; }
 function totalCoins() { let n = 0; for (const k in save.lv) { const c = save.lv[k].coins || 0; n += (c & 1) + ((c >> 1) & 1) + ((c >> 2) & 1); } return n; }
@@ -3952,7 +4364,7 @@ function resize() {
 }
 
 /* ------------------------------------------------------------------ nav */
-const SCREENS = ['title', 'menu', 'levels', 'custom', 'shop', 'mp', 'room', 'mpres', 'settings', 'pause', 'end'];
+const SCREENS = ['title', 'menu', 'levels', 'custom', 'shop', 'mp', 'room', 'mpres', 'settings', 'acct', 'ranks', 'pause', 'end'];
 function show(name) {
   G.screen = name;
   for (const s of SCREENS) $(s).hidden = s !== name;
@@ -3962,7 +4374,9 @@ function show(name) {
   if (name === 'mp') buildMp();
   if (name === 'room') { mpRenderRoom(); if (!MPS.loop) MPS.loop = requestAnimationFrame(roomLoop); }
   if (name === 'settings') buildSettings();
-  if (name === 'menu') updateMenuStats();
+  if (name === 'acct') buildAcct();
+  if (name === 'ranks') buildRanks();
+  if (name === 'menu') { updateMenuStats(); updateChip(); }
 }
 function updateMenuStats() {
   const gb = Math.floor((save.gaunt.best || 0) * 100);
@@ -3995,7 +4409,7 @@ function startRun(spec, mp) {
   A.unlock();
   const L = getLevel(spec);
   endRun();
-  G.run = { prevBest: spec.kind === 'lv' ? lvSave(L.id).best : save.gaunt.best, spec, L, practice: !!spec.practice, s: SW.createState(L), attempt: 1, snaps: [], dead: false, deadT: 0, won: false, aliveSince: 0, lastCp: 0, coinGot: [], earnC: 0, earnG: 0 };
+  G.run = { prevBest: spec.kind === 'lv' ? lvSave(L.id).best : save.gaunt.best, spec, L, practice: !!spec.practice, s: SW.createState(L), attempt: 1, snaps: [], dead: false, deadT: 0, won: false, aliveSince: 0, lastCp: 0, coinGot: [], earnC: 0, earnG: 0, clock: 0 };
   if (mp) G.run.mp = mp;
   showEarn(false);
   $('mpst').hidden = !mp; $('mpfin').hidden = true; $('mpcd').classList.remove('on'); $('mpleave').hidden = true;
@@ -4018,6 +4432,7 @@ function trackOf(L) { return L.music || 0; }
 function beginAttempt(first) {
   const run = G.run; if (!run) return;
   const L = run.L;
+  if (!run.practice) run.clock += run.s.t || 0;                 // total simulated time of the attempts so far (the leaderboard time counts retries)
   if (run.practice && run.snaps.length) run.s = SW.clone(run.snaps[run.snaps.length - 1].s);
   else run.s = SW.createState(L);
   run.dead = false; run.deadT = 0; run.aliveSince = run.s.t; run.lastCp = run.s.t;
@@ -4058,6 +4473,7 @@ function die(run) {
     run.prevBest = Math.max(run.prevBest || 0, pct);
   }
   if (run.practice && run.snaps.length && s.t - run.aliveSince < 0.45) run.snaps.pop();
+  if (!run.practice) lbProgress(run);
   persist();
 }
 function win(run) {
@@ -4081,10 +4497,12 @@ function showEnd(run, coins) {
       const fresh = popcnt(d.coins & ~prevCoins), all = popcnt(d.coins) >= L.coinCount && L.coinCount > 0;
       stars = 1 + (all ? 1 : 0) + (run.attempt <= 12 ? 1 : 0);
       d.stars = Math.max(d.stars || 0, stars);
+      const ms = Math.round(((run.clock || 0) + run.s.t) * 1000); run.ms = ms;
+      const faster = !(d.tm > 0) || ms < d.tm; if (faster) { d.tm = ms; d.ta = run.attempt; }
       gc = SH.winCoins(run.spec, L, first) + fresh * B.secretCoin;
       if (first) gg += B.firstGems;
       if (all && !d.allGem) { d.allGem = true; gg += B.allCoinsGems; }
-      lines = [['Attempts', run.attempt], ['Secret coins', popcnt(coins) + ' / ' + L.coinCount + (fresh ? ' · ' + fresh + ' new' : '')], ['Clean run', run.attempt <= 12 ? 'Yes' : 'Under 13 attempts']];
+      lines = [['Time', fmtT(ms / 1000) + (ms === d.tm ? ' · best' : '')], ['Attempts', run.attempt], ['Secret coins', popcnt(coins) + ' / ' + L.coinCount + (fresh ? ' · ' + fresh + ' new' : '')], ['Clean run', run.attempt <= 12 ? 'Yes' : 'Under 13 attempts']];
     }
   } else {
     if (!run.practice) {
@@ -4100,6 +4518,7 @@ function showEnd(run, coins) {
     showEarn(true);
   }
   persist();
+  endReport(run);
   $('endtitle').textContent = run.spec.kind === 'lv' ? 'Level complete' : 'Gauntlet cleared';
   $('endstats').innerHTML = lines.map(l => '<span>' + l[0] + '</span><b>' + l[1] + '</b>').join('');
   const sp = $('endstars').children; for (const e of sp) e.classList.remove('on');
@@ -4250,7 +4669,7 @@ function buildLevels() {
       '<div class="kv"><span>Best</span><b>' + Math.floor(sv.best * 100) + '%</b></div><div class="bar"><i style="width:' + (sv.best * 100) + '%"></i></div>' +
       '<div class="kv"><span>Practice</span><b>' + Math.floor(sv.pbest * 100) + '%</b></div><div class="bar"><i style="width:' + (sv.pbest * 100) + '%"></i></div>' +
       '<div class="row" style="justify-content:space-between"><div class="coins">' + coins + '</div><div class="stars">' + stars + '</div></div>' +
-      '<div class="row"><button class="btn sm hot" data-play="' + i + '"><span>Play</span></button><button class="btn sm" data-practice="' + i + '"><span>Practice</span></button></div>';
+      '<div class="row"><button class="btn sm hot" data-play="' + i + '"><span>Play</span></button><button class="btn sm" data-practice="' + i + '"><span>Practice</span></button>' + (HOSTED ? '<button class="btn sm ghost" data-rank="' + i + '"><span>Ranks</span></button>' : '') + '</div>';
     row.appendChild(el);
   }
   const first = SW.Levels.def(0), target = (() => { for (let i = 0; i < SW.Levels.count; i++) if (!lvSave(SW.Levels.def(i).id).done) return i; return SW.Levels.count - 1; })();
@@ -4503,7 +4922,7 @@ const r2 = v => Math.round(v * 100) / 100, r3 = v => Math.round(v * 1000) / 1000
 const PLACE = ['1st', '2nd', '3rd', '4th'];
 const lvLabel = lv => (lv === 'g' ? 'Gauntlet' : (SW.Levels.def(+lv) ? SW.Levels.def(+lv).name : 'Level'));
 const nick = () => save.nick || (save.nick = MP.defaultNick());
-const fmtT = t => (t >= 60 ? Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0') + '.' + String(Math.floor((t % 1) * 10)) : t.toFixed(1)) + 's';
+const fmtT = t => SW.Acct.pure.fmtMs(Math.round(t * 1000)) + 's';
 function lvChips(box, cur, onPick) {
   box.innerHTML = '';
   const n = SW.Levels.count;
@@ -4808,11 +5227,158 @@ function buildSettings() {
     r.appendChild(ctl); el.appendChild(r);
   }
   const rs = document.createElement('div'); rs.className = 'set';
-  rs.innerHTML = '<div>Reset progress<small>Erases stars, coins, gems, purchases and best runs</small></div>';
+  rs.innerHTML = '<div>Reset progress<small>Erases stars, coins, gems, purchases and best runs' + (HOSTED ? '. Leaderboard times stay on the boards' : '') + '</small></div>';
   const b = document.createElement('button'); b.className = 'btn sm ghost'; b.innerHTML = '<span>Reset</span>';
   let armed = false;
-  b.onclick = () => { if (!armed) { armed = true; b.firstChild.textContent = 'Tap again to erase'; setTimeout(() => { armed = false; b.firstChild.textContent = 'Reset'; }, 3000); } else { const cfg = save.cfg; save = defSave(); save.cfg = cfg; persist(); armed = false; b.firstChild.textContent = 'Erased'; toast('Progress reset'); } };
+  b.onclick = () => { if (!armed) { armed = true; b.firstChild.textContent = 'Tap again to erase'; setTimeout(() => { armed = false; b.firstChild.textContent = 'Reset'; }, 3000); } else { const cfg = save.cfg, gen = (save.gen | 0) + 1; save = defSave(); save.cfg = cfg; save.gen = gen; persist(); armed = false; b.firstChild.textContent = 'Erased'; toast('Progress reset'); if (ACCT() && ACCT().user) ACCT().overwrite(); } };
   rs.appendChild(b); el.appendChild(rs);
+}
+
+/* --------------------------------------------------- accounts, cloud save, ranks */
+// Hosted build only (window.SW_FIREBASE). src/acct.js does the Firebase work; this is the screens and the glue.
+const HOSTED = !!window.SW_FIREBASE;
+const ACCT = () => SW.Acct;
+const boardOfLevel = L => (L.id === 100 ? 'g' : String(L.id));
+const boardName = b => (b === 'g' ? 'Gauntlet' : (SW.Levels.def(+b - 1) ? SW.Levels.def(+b - 1).name : 'Level ' + b));
+const pctOf = p => (p / 10).toFixed(p % 10 ? 1 : 0) + '%';
+const agoText = ms => { const s = Math.max(0, Math.round((Date.now() - ms) / 1000)); return s < 8 ? 'just now' : s < 90 ? s + ' s ago' : Math.round(s / 60) + ' min ago'; };
+function snapshotSave() { const o = {}; for (const k of ['v', 'lv', 'gaunt', 'skin', 'wallet', 'own', 'daily', 'stats', 'lb', 'gen']) o[k] = save[k]; return JSON.parse(JSON.stringify(o)); }
+function isFreshSave() {
+  const d = defSave();
+  return !Object.values(save.lv).some(v => v.best > 0 || v.pbest > 0 || v.attempts > 0 || v.coins) && !save.gaunt.best && !save.gaunt.done && !Object.keys(save.own.i).length && !Object.keys(save.own.t).length &&
+    save.stats.attempts === 0 && save.stats.jumps === 0 && save.daily.day === -1 && save.wallet.c === d.wallet.c && save.wallet.g === d.wallet.g;
+}
+function applyCloud(M) {                       // cloud + this device merged: take it, keep device-only things (settings, racing name)
+  for (const k of ['lv', 'gaunt', 'skin', 'wallet', 'own', 'daily', 'stats', 'lb', 'gen']) if (M[k] !== undefined) save[k] = M[k];
+  sanitize(); persistLocal();
+  if (G.screen === 'menu') updateMenuStats(); if (G.screen === 'shop') updateWallet(); if (G.screen === 'levels') buildLevels();
+}
+function resetLocal() {                        // signing out: this device goes back to a clean guest save
+  const cfg = save.cfg, nk = save.nick; save = defSave(); save.cfg = cfg; save.nick = nk; sanitize(); persistLocal();
+  applyCfg(); if (G.screen === 'menu') updateMenuStats(); closeDetail && closeDetail();
+}
+function seedList() {                          // everything this device has already earned, to post when an account is first linked
+  const out = [];
+  for (let i = 0; i < SW.Levels.count; i++) {
+    const id = SW.Levels.def(i).id, d = save.lv[id]; if (!d) continue;
+    if (d.tm > 0) out.push({ board: String(id), p: 1000, t: d.tm, a: d.ta || 1 });
+    else if (!d.done && d.best > 0) out.push({ board: String(id), p: Math.min(999, Math.floor(d.best * 1000)), a: Math.max(1, d.attempts | 0) });
+  }
+  if (save.gaunt.best > 0 || save.gaunt.done) out.push({ board: 'g', p: save.gaunt.done ? 1000 : Math.min(999, Math.floor(save.gaunt.best * 1000)), d: save.gaunt.done | 0 });
+  return out;
+}
+function lbProgress(run) {                     // a death that set a new furthest point: queue it for the board (batched a few seconds)
+  const AT = ACCT(); if (!AT || !AT.user || run.practice || run.mp) return;
+  if (run.spec.kind === 'lv') { const d = lvSave(run.L.id); if (d.best > 0 && !d.done) AT.report(boardOfLevel(run.L), { p: Math.min(999, Math.floor(d.best * 1000)), a: Math.max(1, d.attempts | 0) }, false); }
+  else if (!save.gaunt.done) AT.report('g', { p: Math.min(999, Math.floor(save.gaunt.best * 1000)), d: 0 }, false);
+}
+function endReport(run) {                      // a clear: post it at once and show where it landed
+  const el = $('endrank'); el.textContent = ''; $('bendranks').hidden = true;
+  const AT = ACCT(); if (!HOSTED || !AT || !AT.enabled || run.practice) return;
+  const board = boardOfLevel(run.L); $('bendranks').hidden = false;
+  if (!AT.user) { el.innerHTML = ''; el.append('Sign in to put your times on the leaderboard. '); const b = document.createElement('button'); b.className = 'tbtn'; b.textContent = 'Sign in'; b.onclick = () => { endRun(); G.mode = 'attract'; $('hud').hidden = true; resize(); show('acct'); SW.Audio.play(0, 124, 0); }; el.appendChild(b); return; }
+  if (run.spec.kind === 'lv') { const d = lvSave(run.L.id); AT.report(board, { p: 1000, t: d.tm, a: d.ta || run.attempt }, true); }
+  else AT.report('g', { p: 1000, d: save.gaunt.done | 0 }, true);
+  el.textContent = 'Posting to the leaderboard…';
+  (async () => {
+    try { await AT.flushScores(); if (G.run !== run || G.screen !== 'end') return; if (AT.S.scoreErr) { el.textContent = 'Could not post to the leaderboard: ' + AT.S.scoreErr.msg; return; } const r = await AT.top(board, 25); if (G.run !== run || G.screen !== 'end') return; el.textContent = r.me ? 'Leaderboard · you are #' + r.me.rank : 'Leaderboard'; }
+    catch (e) { if (G.run === run && G.screen === 'end') el.textContent = 'The leaderboard is not reachable right now.'; }
+  })();
+}
+
+/* account screen */
+const AC = { mode: 'reg', busy: false, armOut: 0 };
+function updateChip() {
+  const AT = ACCT(), b = $('bacct'), r = $('branks'); b.hidden = r.hidden = !HOSTED; if (!HOSTED) return;
+  const u = AT.user, st = AT.S.status; b.innerHTML = '';
+  const sp = document.createElement('span');
+  if (u) { const dot = document.createElement('i'); dot.className = 'dotp' + (st === 'synced' ? '' : st === 'syncing' ? ' wait' : ' off'); sp.append(dot, u.name); } else sp.textContent = 'Sign in';
+  b.appendChild(sp); b.setAttribute('aria-label', u ? 'Account: ' + u.name : 'Sign in or create an account');
+}
+function uiChanged() { updateChip(); if (G.screen === 'acct') acctRefresh(); if (G.screen === 'ranks') rkWho(); }
+function acMode(m) {
+  AC.mode = m; for (const b of document.querySelectorAll('#actabs .tbtn')) b.classList.toggle('sel', b.dataset.m === m);
+  $('acpin2w').hidden = m !== 'reg'; $('acgo').firstChild.textContent = m === 'reg' ? 'Create account' : 'Sign in';
+  $('achint').textContent = m === 'reg' ? 'Pick a username and a PIN of 4 to 8 digits. There is no way to recover a forgotten PIN, so choose one you will remember. Your coins, icons, trails and level progress are saved to the account.' : 'Sign in on any device to load your progress and your leaderboard times.';
+  $('acmsg').textContent = '';
+}
+function buildAcct() { acMode(AC.mode); acctRefresh(); if (!ACCT().S.booted && ACCT().S.status !== 'connecting') ACCT().init(acctHost); }
+function acctRefresh() {
+  const AT = ACCT(), S = AT.S, u = AT.user, bootErr = !S.booted && S.status === 'error', connecting = !S.booted && !bootErr;
+  $('acconn').hidden = !connecting; $('acdiag').hidden = !bootErr; $('acout').hidden = !(S.booted && !u); $('acin').hidden = !(S.booted && !!u);
+  if (bootErr && S.info) { $('acdt').textContent = S.info.title; $('acdm').textContent = S.info.msg; $('acdd').textContent = 'Details: ' + S.info.det; }
+  if (u) {
+    $('acwho').textContent = u.name;
+    $('acsync').textContent = S.status === 'synced' ? 'Progress saved to your account · ' + agoText(S.last) : S.status === 'syncing' ? 'Saving your progress…' : S.status === 'offline' ? 'Offline. Your progress is kept on this device and saves when you are back online.' : 'Could not save yet: ' + ((S.err && S.err.msg) || 'unknown problem') + ' Trying again soon.';
+  }
+}
+async function acGo() {
+  if (AC.busy) return; const AT = ACCT(), msg = $('acmsg');
+  const name = $('acname').value.trim(), pin = $('acpin').value.trim();
+  const fail = (t, det) => { msg.className = 'acmsg bad'; msg.textContent = t; if (det) { const sm = document.createElement('small'); sm.textContent = det; msg.appendChild(sm); } SW.Audio.sfx('deny'); };
+  const pre = AT.pure.validName(name) || AT.pure.validPin(pin); if (pre) return fail(AC.mode === 'in' ? 'Wrong username or PIN.' : pre);
+  if (AC.mode === 'reg' && pin !== $('acpin2').value.trim()) return fail('The two PINs do not match.');
+  AC.busy = true; $('acgo').disabled = true; msg.className = 'acmsg'; msg.textContent = AC.mode === 'reg' ? 'Creating your account…' : 'Signing in…';
+  const r = AC.mode === 'reg' ? await AT.register(name, pin) : await AT.login(name, pin);
+  AC.busy = false; $('acgo').disabled = false;
+  if (!r.ok) return fail(r.msg, /^(auth\/(?!email-already|invalid-cred|invalid-login|wrong|user-not))/.test(r.det || '') ? r.det : '');
+  $('acpin').value = $('acpin2').value = ''; msg.textContent = '';
+  if (!save.nick || /^Racer\d+$/.test(save.nick)) { save.nick = MP.cleanNick(r.name); persistLocal(); }
+  SW.Audio.sfx('buy'); toast(AC.mode === 'reg' ? 'Welcome, ' + r.name + '!' : 'Signed in as ' + r.name); acctRefresh(); updateChip();
+}
+async function acLogout() {
+  const AT = ACCT(), msg = $('acmsg2'), btn = $('aclogout');
+  if (AC.armOut) { clearTimeout(AC.armOut); AC.armOut = 0; btn.firstChild.textContent = 'Sign out'; msg.textContent = ''; await AT.logout(true); toast('Signed out'); acctRefresh(); return; }
+  btn.disabled = true; msg.className = 'acmsg'; msg.textContent = 'Saving your progress first…';
+  const r = await AT.logout(false); btn.disabled = false;
+  if (r.ok) { msg.textContent = ''; toast('Signed out'); acctRefresh(); return; }
+  msg.className = 'acmsg bad'; msg.textContent = 'Your latest progress has not reached the cloud yet. Tap again to sign out anyway and lose it.'; btn.firstChild.textContent = 'Sign out anyway';
+  AC.armOut = setTimeout(() => { AC.armOut = 0; btn.firstChild.textContent = 'Sign out'; msg.textContent = ''; }, 6000);
+}
+/* the racing connection belongs to whoever is signed in: when that changes, leave and reconnect */
+async function mpReconnect() {
+  if (!HOSTED) return;
+  try { if (MPS.lb) await mpLeave(true); } catch (e) {}
+  try { await SW.MPFB.close(); } catch (e) {}
+  MPS.ns = null; MPS.advKey = ''; MPS.peers = [];
+  mpInit(); if (G.screen === 'mp') buildMp();
+}
+const acctHost = { snapshot: snapshotSave, apply: applyCloud, reset: resetLocal, isFresh: isFreshSave, lb: () => save.lb, persist, boards: seedList, changed: uiChanged, authSwitched: mpReconnect };
+
+/* ranks screen */
+const RK = { board: '1', n: 0 };
+function rkWho() { const u = ACCT().user; $('rkwho').textContent = u ? u.name : 'Sign in'; }
+function buildRanks() {
+  const tabs = $('rktabs'); tabs.innerHTML = '';
+  const boards = []; for (let i = 0; i < SW.Levels.count; i++) boards.push(String(SW.Levels.def(i).id)); boards.push('g');
+  for (const b of boards) { const btn = document.createElement('button'); btn.className = 'tbtn' + (b === RK.board ? ' sel' : ''); btn.textContent = b === 'g' ? 'Gauntlet' : b; btn.setAttribute('aria-label', boardName(b)); btn.onclick = () => { if (RK.board === b) return; RK.board = b; A.sfx('click'); buildRanks(); }; tabs.appendChild(btn); }
+  rkWho(); rkLoad();
+}
+function rkRow(r, board, mine) {
+  const el = document.createElement('div'); el.className = 'rk' + (mine ? ' me' : '');
+  const pl = document.createElement('div'); pl.className = 'pl' + (r.rank <= 3 ? ' p' + r.rank : ''); pl.textContent = typeof r.rank === 'number' ? '#' + r.rank : '#' + r.rank;
+  const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = String(r.n || '?').slice(0, 12);
+  const rs = document.createElement('div'), at = document.createElement('div'); at.className = 'at';
+  if (board === 'g') { rs.className = 'rs' + (r.p >= 1000 ? '' : ' un'); rs.textContent = r.p >= 1000 ? 'Cleared' : pctOf(r.p); at.textContent = r.p >= 1000 && r.d ? '×' + r.d : ''; }
+  else { rs.className = 'rs' + (r.t != null ? '' : ' un'); rs.textContent = r.t != null ? SW.Acct.pure.fmtMs(r.t) : pctOf(r.p); at.textContent = (r.a | 0) + (r.a === 1 ? ' try' : ' tries'); }
+  el.append(pl, nm, rs, at); return el;
+}
+async function rkLoad() {
+  const AT = ACCT(), token = ++RK.n, board = RK.board, box = $('rkrows'), foot = $('rkfoot');
+  $('rktitle').textContent = boardName(board); $('rkrule').textContent = board === 'g' ? 'Furthest progress, then most clears' : 'Fastest clear · retries count toward the time';
+  box.innerHTML = ''; foot.textContent = '';
+  const msg = t => { box.innerHTML = ''; const e = document.createElement('div'); e.className = 'empty'; e.textContent = t; box.appendChild(e); };
+  msg('Loading…');
+  let r;
+  try { r = await AT.top(board, 25); }
+  catch (e) { if (token !== RK.n) return; msg(e && e.code === 'PERMISSION_DENIED' ? 'The leaderboard is not switched on yet. The Firebase rules need the latest version from the game files.' : 'Could not load the leaderboard. Check your connection and tap Refresh.'); return; }
+  if (token !== RK.n) return;
+  box.innerHTML = '';
+  if (!r.rows.length) msg('No one is on this board yet. Be the first.');
+  for (const row of r.rows) box.appendChild(rkRow(row, board, !!(r.me && row.uid === r.me.uid)));
+  if (r.me && r.me.outside) { const gap = document.createElement('div'); gap.className = 'rkgap'; gap.textContent = '···'; box.append(gap, rkRow(r.me, board, true)); }
+  if (!AT.user) { foot.textContent = 'Sign in to put your own times on the board. '; const b = document.createElement('button'); b.className = 'btn sm'; b.dataset.go = 'acct'; b.innerHTML = '<span>Sign in</span>'; foot.appendChild(b); }
+  else if (!r.me) foot.textContent = board === 'g' ? 'Play the Gauntlet to get on the board.' : 'Play this level to get on the board.';
 }
 
 /* ------------------------------------------------------------------ wiring */
@@ -4821,9 +5387,21 @@ document.addEventListener('click', e => {
   const t = e.target.closest && e.target.closest('button'); if (!t) return;
   if (t.dataset.go) { A.sfx(t.dataset.go === 'menu' ? 'back' : 'click'); if (t.dataset.go === 'menu') goMenu(); else show(t.dataset.go); return; }
   if (t.dataset.play !== undefined) { A.sfx('click'); startRun({ kind: 'lv', i: +t.dataset.play, practice: false }); return; }
+  if (t.dataset.rank !== undefined) { A.sfx('click'); RK.board = String(SW.Levels.def(+t.dataset.rank).id); show('ranks'); return; }
   if (t.dataset.practice !== undefined) { A.sfx('click'); startRun({ kind: 'lv', i: +t.dataset.practice, practice: true }); return; }
 });
 $('bgaunt').onclick = () => { A.sfx('click'); startRun(gauntletSpec(false)); };
+for (const b of document.querySelectorAll('#actabs .tbtn')) b.onclick = () => { A.sfx('click'); acMode(b.dataset.m); };
+$('acgo').onclick = acGo;
+for (const id of ['acname', 'acpin', 'acpin2']) $(id).onkeydown = e => { if (e.key === 'Enter') acGo(); };
+$('acname').oninput = e => { e.target.value = e.target.value.replace(/[^A-Za-z0-9_]/g, ''); };
+for (const id of ['acpin', 'acpin2']) $(id).oninput = e => { e.target.value = e.target.value.replace(/\D/g, ''); };
+$('acretry').onclick = () => { A.sfx('click'); ACCT().init(acctHost); acctRefresh(); };
+$('acsyncnow').onclick = async () => { A.sfx('click'); await ACCT().sync(true); acctRefresh(); };
+$('aclogout').onclick = acLogout;
+$('rkrefresh').onclick = () => { A.sfx('click'); rkLoad(); };
+$('rkacct').onclick = () => { A.sfx('click'); show('acct'); };
+$('bendranks').onclick = () => { A.sfx('click'); if (G.run) RK.board = boardOfLevel(G.run.L); endRun(); G.mode = 'attract'; $('hud').hidden = true; resize(); show('ranks'); A.play(0, 124, 0); };
 $('navL').onclick = () => { A.sfx('click'); scrollLv(-1); };
 $('navR').onclick = () => { A.sfx('click'); scrollLv(1); };
 $('bpause').onclick = () => togglePause();
@@ -4868,8 +5446,10 @@ R.init($('cv'));
 applyCfg();
 setDemo(); R.setLevel(G.demo);
 show('title');
+updateChip();
+if (HOSTED) ACCT().init(acctHost);
 mpInit();
-window.SW.G = G; window.SW.save = () => save; window.SW.MPS = MPS;
+window.SW.G = G; window.SW.save = () => save; window.SW.MPS = MPS; window.SW.persist = persist;
 requestAnimationFrame(frame);
 })();
 
