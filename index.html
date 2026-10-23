@@ -126,6 +126,10 @@ input[type=range] { width: calc(var(--u) * 11); accent-color: var(--cy); touch-a
 .shopbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
 .shopbar .seg { flex-wrap: wrap; }
 .shopbar .tbtn { font-size: max(11px, calc(var(--u) * 0.85)); }
+#stiers { flex-wrap: wrap; }
+#stiers .tbtn { font-size: max(10px, calc(var(--u) * 0.78)); padding: 4px 8px; }
+#stiers .tbtn.tier, #ipTiers .tbtn.tier { color: var(--tc, var(--ink)); }
+#stiers .tbtn.tier.sel, #ipTiers .tbtn.tier.sel { border-color: var(--tc, var(--cy)); box-shadow: 0 0 10px var(--tc, rgba(56, 243, 255, 0.6)); }
 #sgrid { flex: 1; min-height: 0; overflow-y: auto; touch-action: pan-y; display: grid; grid-template-columns: repeat(auto-fill, minmax(max(104px, calc(var(--u) * 7), 10.5vw), 1fr)); gap: calc(var(--u) * 0.7); align-content: start; padding: 4px 4px calc(var(--u) * 1.5); scrollbar-width: thin; scrollbar-color: rgba(180, 160, 255, 0.35) transparent; overscroll-behavior: contain; }
 #sgrid.t { grid-template-columns: repeat(auto-fill, minmax(max(150px, calc(var(--u) * 9), 15vw), 1fr)); }
 .item { position: relative; display: flex; flex-direction: column; gap: 3px; padding: 6px 6px 8px; border: 2px solid var(--tc, var(--line)); border-radius: 8px; background: linear-gradient(170deg, rgba(14, 8, 34, 0.94), rgba(10, 5, 26, 0.78)); color: var(--ink); cursor: pointer; text-align: center; font: 600 max(11px, calc(var(--u) * 0.85)) var(--body); box-shadow: 0 0 calc(var(--u) * 0.9) color-mix(in srgb, var(--tc, #38f3ff) 26%, transparent); transition: transform 0.12s, box-shadow 0.12s; }
@@ -169,7 +173,17 @@ input[type=range] { width: calc(var(--u) * 11); accent-color: var(--cy); touch-a
 .mbox { display: flex; flex-wrap: nowrap; gap: calc(var(--u) * 1.2); align-items: center; justify-content: center; max-width: min(100%, 860px); max-height: 100%; overflow-y: auto; touch-action: pan-y; padding: calc(var(--u) * 1.1); border: 2px solid var(--tc, var(--line)); border-radius: 10px; background: linear-gradient(160deg, rgba(14, 8, 36, 0.98), rgba(9, 4, 24, 0.96)); box-shadow: 0 0 calc(var(--u) * 3) color-mix(in srgb, var(--tc, #38f3ff) 40%, transparent); box-sizing: border-box; }
 #sdcv { width: min(44vw, 64vh, 340px); aspect-ratio: 1; border-radius: 8px; background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--tc, #38f3ff) 16%, #0b0718), #0b0718 78%); flex: none; }
 #sdcv.t { aspect-ratio: 5 / 3; width: min(48vw, 100vh, 380px); }
+#ipbox { flex-direction: column; align-items: stretch; width: min(100%, 760px); gap: calc(var(--u) * 0.6); text-align: center; }
+#ipbox h3 { margin: 0; font: calc(var(--u) * 1.8) var(--display); }
+#ipTiers { flex-wrap: wrap; justify-content: center; }
+#ipgrid { min-height: 0; max-height: min(52vh, 420px); overflow-y: auto; touch-action: pan-y; display: grid; grid-template-columns: repeat(auto-fill, minmax(max(96px, calc(var(--u) * 6.4)), 1fr)); gap: calc(var(--u) * 0.6); align-content: start; padding: 4px; overscroll-behavior: contain; scrollbar-width: thin; }
+#ipgrid.t { grid-template-columns: repeat(auto-fill, minmax(max(130px, calc(var(--u) * 8.4)), 1fr)); }
+#ipgrid.t .item canvas { aspect-ratio: 5 / 3; }
+#ipbox .row { justify-content: center; }
+@media (max-height: 440px) { #ipgrid { max-height: 44vh; } #ipgrid .item canvas { aspect-ratio: 4 / 3; } #ipgrid.t .item canvas { aspect-ratio: 2 / 1; } #ipgrid .item .tr { display: none; } }
+.ent { font-size: 0.8em; letter-spacing: 0.06em; color: var(--ink); opacity: 0.9; }
 @media (max-aspect-ratio: 1/1) { .mbox { flex-wrap: wrap; } #sdcv { width: min(78vw, 340px); } #sdcv.t { width: min(84vw, 380px); } }
+@media (max-height: 440px) { .shopbody { gap: 4px; } .shopbar { gap: 3px 10px; } .shopbar .tbtn { padding: 3px 9px; font-size: 10px; } #stiers .tbtn { padding: 2px 7px; font-size: 9px; } }
 @media (max-height: 440px) { #sgrid .item canvas { aspect-ratio: 4 / 3; } #sgrid.t .item canvas { aspect-ratio: 2 / 1; } .item .tr { display: none; } .item { padding: 5px 5px 6px; gap: 2px; } .minfo h3 { font-size: calc(var(--u) * 1.6); } }
 .minfo { display: flex; flex-direction: column; gap: calc(var(--u) * 0.6); flex: 1 1 calc(var(--u) * 16); min-width: min(100%, 200px); max-width: 360px; }
 .minfo h3 { margin: 0; font: calc(var(--u) * 1.9) / 1.05 var(--display); letter-spacing: 0.03em; }
@@ -202,6 +216,13 @@ input[type=range] { width: calc(var(--u) * 11); accent-color: var(--cy); touch-a
 #earn.on { opacity: 0.95; }
 #earn.pop { animation: pop 0.5s ease-out; }
 @keyframes pop { 0% { transform: scale(1.5); } 100% { transform: scale(1); } }
+#cratepop { position: absolute; top: calc(var(--u) * 3.2); left: 50%; transform: translate(-50%, -140%); display: flex; align-items: center; gap: 10px; padding: 6px 18px 6px 8px; background: rgba(10, 5, 28, 0.92); border: 2px solid var(--tc, var(--cy)); border-radius: 10px; box-shadow: 0 0 24px var(--tc, var(--cy)); pointer-events: none; z-index: 8; opacity: 0; transition: transform 0.45s cubic-bezier(.2, 1.3, .4, 1), opacity 0.3s; }
+#cratepop.on { transform: translate(-50%, 0); opacity: 1; }
+#cratepop canvas { width: calc(var(--u) * 5.2); height: calc(var(--u) * 5.2); }
+#cratepop .crk { font-size: calc(var(--u) * 0.7); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+#cratepop .crn { font: 400 calc(var(--u) * 1.5) var(--head); letter-spacing: 0.04em; color: var(--tc, var(--ink)); }
+#cratepop .crs { font-size: calc(var(--u) * 0.85); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.kv.drop b { color: #ffd36b; }
 
 /* multiplayer */
 input.txt { font: 700 max(13px, calc(var(--u) * 1.05)) var(--body); letter-spacing: 0.08em; color: var(--ink); background: rgba(255, 255, 255, 0.07); border: 2px solid var(--line); border-radius: 6px; padding: 7px 10px; min-width: 0; width: 100%; box-sizing: border-box; -webkit-user-select: text; user-select: text; touch-action: manipulation; outline: none; }
@@ -284,6 +305,15 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 .brow b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--rc, var(--ink)); }
 .brow span { color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .brow.mine { border-color: var(--yl); }
+#surge { position: absolute; left: max(14px, env(safe-area-inset-left, 0px)); bottom: max(14px, env(safe-area-inset-bottom, 0px)); width: max(64px, calc(var(--u) * 5.4)); aspect-ratio: 1; padding: 0; border-radius: 50%; border: 2px solid rgba(56, 243, 255, 0.55); background: radial-gradient(circle at 50% 35%, rgba(56, 243, 255, 0.28), rgba(10, 5, 28, 0.78) 70%); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; pointer-events: auto; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; font-family: var(--display); }
+#surge .rg { position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(var(--cy) calc(var(--m, 1) * 360deg), rgba(255, 255, 255, 0.1) 0); -webkit-mask: radial-gradient(circle, transparent calc(50% - 3px), #000 calc(50% - 2px)); mask: radial-gradient(circle, transparent calc(50% - 3px), #000 calc(50% - 2px)); pointer-events: none; }
+#surge b { font: 700 max(11px, calc(var(--u) * 0.95)) var(--display); letter-spacing: 0.1em; pointer-events: none; }
+#surge small { font: 600 9px var(--body); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; pointer-events: none; }
+@media (pointer: coarse) { #surge small { display: none; } }
+#surge.low { opacity: 0.55; }
+#surge.on { border-color: #fff; background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.55), rgba(56, 243, 255, 0.4) 70%); box-shadow: 0 0 calc(var(--u) * 2.2) rgba(56, 243, 255, 0.9); animation: sgpulse 0.35s ease-in-out infinite alternate; }
+@keyframes sgpulse { from { transform: scale(1); } to { transform: scale(1.06); } }
+#hud.surging::before { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 calc(var(--u) * 9) rgba(56, 243, 255, calc(var(--sg, 0) * 0.5)); }
 #mpmode { position: absolute; top: calc(var(--u) * 2.3); left: 50%; transform: translateX(-50%); padding: 3px 12px; border: 1px solid var(--line); border-radius: 99px; background: rgba(10, 5, 28, 0.62); font: 700 max(11px, calc(var(--u) * 0.9)) var(--body); letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 0 6px #000; pointer-events: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
 #mpmode .hp { color: var(--rd); letter-spacing: 0.08em; }
 #mpmode.warn { color: var(--rd); border-color: var(--rd); }
@@ -334,7 +364,9 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <button id="bpause" aria-label="Pause">❚❚</button>
     <div id="att"></div>
     <div id="earn"></div>
+    <div id="cratepop" hidden><canvas id="crcv" width="144" height="144"></canvas><div class="crt"><div class="crk">Skin crate</div><div class="crn" id="crn"></div><div class="crs" id="crs"></div></div></div>
     <div id="mpst" hidden></div>
+    <button id="surge" hidden tabindex="-1" aria-label="Surge: run the world faster for a few seconds"><i class="rg"></i><b>SURGE</b><small>Shift</small></button>
     <div id="mpcd"></div>
     <div id="mpfin" hidden></div>
     <div id="mpmode" hidden></div>
@@ -390,6 +422,7 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div class="head"><button class="btn sm ghost" data-go="menu"><span>◀ Back</span></button><h2>Shop</h2><div class="wallet"><span class="pill" id="wc"></span><span class="pill" id="wg"></span></div></div>
     <div class="shopbody">
       <div class="shopbar"><div class="seg" id="stabs"></div><div class="seg" id="sfilters"></div></div>
+      <div class="seg" id="stiers"></div>
       <div id="sgrid"></div>
     </div>
     <div class="modal" id="sdetail" hidden>
@@ -528,6 +561,9 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 
   <div class="modal" id="mpleave" hidden>
     <div class="mbox" style="flex-direction:column;text-align:center;gap:calc(var(--u)*0.9)"><h3 id="mplt" style="margin:0;font:calc(var(--u)*1.8) var(--display)">Leave the race?</h3><div class="mnote" id="mpln">The race keeps going without you.</div><div class="row"><button class="btn hot sm" id="mpkeep"><span id="mpkeept">Keep racing</span></button><button class="btn ghost sm" id="mpquit2"><span>Leave race</span></button></div></div>
+  </div>
+  <div class="modal" id="itempick" hidden>
+    <div class="mbox" id="ipbox"><h3 id="iptt"></h3><div class="mnote" id="ipnote"></div><div class="seg" id="ipTiers"></div><div id="ipgrid"></div><div class="row"><button class="btn ghost sm" id="ipcancel"><span>Cancel</span></button></div></div>
   </div>
   <div id="mpconn" hidden>Reconnecting…</div>
   <div id="rot" hidden>Rotate your phone for the best view</div>
@@ -749,7 +785,8 @@ function createState(L, o) {
   const s = {
     t: 0, x: o.x || 0, y: 0, vy: 0, mode: o.mode || 0, gdir: 1, spd: o.spd === undefined ? 1 : o.spd, mini: 0,
     hw: 0.48, hh: 0.48, grounded: false, coyote: 0, prevHeld: false, buf: 0, pressAge: 9,
-    bi: 0, used: [], coins: 0, dead: false, win: false, cause: '', slide: false, on: -1
+    bi: 0, used: [], coins: 0, dead: false, win: false, cause: '', slide: false, on: -1,
+    cr: o.cr === undefined ? -1 : o.cr, crGot: 0           // cr = index of this attempt's skin crate in L.crates (-1 = none), crGot = picked up
   };
   setDims(s);
   const b = L.bounds[0];
@@ -952,6 +989,10 @@ function step(L, s, held, ev) {
         }
         break;
     }
+  }
+  if (s.cr >= 0) {                                       // the skin crate rolled for this attempt (see drops.js); a box this generous is hit by any run that stays on the ground or hops
+    const c = L.crates && L.crates[s.cr];
+    if (c && x0 < c.x1 && x1 > c.x0 && y0 < c.y1 && y1 > c.y0) { s.cr = -1; s.crGot = 1; if (ev) ev.push({ e: 'crate', x: c.x, y: c.y }); }
   }
   if (used.length > 18) {
     const keep = [];
@@ -1875,7 +1916,7 @@ const LOOP_FROM = 2;
 const A = {
   ctx: null, master: null, musicBus: null, duck: null, drums: null, sfxBus: null, noiseBuf: null,
   vol: { music: 0.7, sfx: 0.8 },
-  playing: false, timer: 0, track: 0, bpm: 128, nextStep: 0, nextTime: 0, t0: 0, stepDur: 0.1,
+  playing: false, rate: 1, timer: 0, track: 0, bpm: 128, nextStep: 0, nextTime: 0, t0: 0, stepDur: 0.1,
   /* recorded songs: addSong(id, base64 mp3) registers one; it is decoded the first time a level asks for it (only the newest stays decoded) */
   songs: {}, songNode: null, songReq: 0, songTrim: 1.3,     // songTrim: level the mastered songs down/up to sit with the synthesized music (measured by RMS on the music bus)
   addSong(id, b64) { this.songs[id] = { data: b64, buf: null, p: null, bad: false, at: 0 }; },
@@ -1908,7 +1949,7 @@ const A = {
       const lag = 0.03, o = off + (ctx.currentTime - t0) + lag;           // a late decode still lines the music up with game time
       if (o >= buf.duration - 0.05) return;
       const src = ctx.createBufferSource(), g = ctx.createGain();
-      src.buffer = buf; g.gain.value = this.songTrim; src.connect(g); g.connect(this.musicBus);
+      src.buffer = buf; src.playbackRate.value = this.rate; g.gain.value = this.songTrim; src.connect(g); g.connect(this.musicBus);
       src.start(ctx.currentTime + lag, o);
       this.songNode = { src, g };
     };
@@ -2070,7 +2111,7 @@ const A = {
     if (!this.ctx) return;
     this.stop(true);
     if (song && this.songs[song] && !this.songs[song].bad) { this.bpm = bpm; this.playSong(song, Math.max(0, offset || 0)); return; }
-    this.track = track % TRACKS.length; this.bpm = bpm; this.stepDur = 60 / bpm / 4;
+    this.track = track % TRACKS.length; this.bpm = bpm; this.stepDur = 60 / bpm / 4 / this.rate;
     const off = Math.max(0, offset || 0);
     const stepF = off / this.stepDur;
     this.nextStep = Math.floor(stepF);
@@ -2080,6 +2121,12 @@ const A = {
     this.playing = true;
     this.timer = setInterval(() => this.tick(), 30);
     this.tick();
+  },
+  /* run the music faster or slower together with the game (Surge). 1 = normal */
+  setRate(r) {
+    r = r > 0.25 && r < 4 ? r : 1; this.rate = r;
+    if (this.songNode && this.ctx) { try { this.songNode.src.playbackRate.value = r; } catch (e) {} }
+    if (this.bpm) this.stepDur = 60 / this.bpm / 4 / r;
   },
   stop(quick) {
     if (this.timer) { clearInterval(this.timer); this.timer = 0; }
@@ -2122,6 +2169,7 @@ const A = {
         [0, 4, 7, 12, 16, 19, 24].forEach((st, i) => this.osc('square', mtof(60 + st), t + i * 0.08, 0.5, 0.09, b, { lp: 3000 }));
         break;
       }
+      case 'surge': this.osc('sawtooth', 200, t, 0.42, 0.13, b, { to: 1100, lp: 2600 }); this.osc('square', 400, t + 0.05, 0.3, 0.06, b, { to: 1600, lp: 3200 }); this.noise(t, 0.3, 0.07, b, 'bandpass', 2600, 2); break;
       case 'click': this.osc('triangle', 880, t, 0.05, 0.1, b, { to: 1200 }); break;
       case 'back': this.osc('triangle', 600, t, 0.06, 0.1, b, { to: 400 }); break;
       case 'star': this.osc('triangle', mtof(72 + (v || 0) * 4), t, 0.3, 0.16, b); this.osc('sine', mtof(84 + (v || 0) * 4), t, 0.4, 0.08, b); break;
@@ -3288,6 +3336,139 @@ if (typeof module !== 'undefined' && module.exports) module.exports = SW.Shop;
 
 </script>
 <script>
+/* Syncwave shop catalog, second collection: 50 skins (cubes and other geometric shapes, ten per tier) and 50 trails (ten per tier).
+   Everything here is also a possible skin drop (see DROP below). Drawing lives in icons.js / icons2.js. */
+(function (root) {
+'use strict';
+const SW = root.SW, SH = SW.Shop;
+
+const I = (id, name, tier, cur, price, body, c1, c2, c3, face, aura, acc, shape, desc) =>
+  ({ id, name, tier, cur, price, body, c1, c2, c3, face, aura: aura || [], acc: acc || [], shape: shape || null, desc, set: 2 });
+const SK = [
+  /* ---- common ---- */
+  I('tripop',      'Tri-Pop',          'common', 'coin', 140, 'gradient',  '#ff6b6b', '#ffd36b', '#ff9a3b', 1, ['sparkle'], [], 'tri', 'A bouncy little triangle that tumbles end over end.'),
+  I('diamdash',    'Diamond Dash',     'common', 'coin', 150, 'gradient',  '#38b6ff', '#b78cff', '#7fd0ff', 5, [], [], 'diamond', 'Cut to catch the light.'),
+  I('honeycomb',   'Honeycomb',        'common', 'coin', 160, 'honey',     '#ffb12a', '#7a4a00', '#fff4b8', 5, ['fireflies'], [], null, 'Sweet hexagon cells that glow in waves.'),
+  I('brickbud',    'Brick Buddy',      'common', 'coin', 160, 'bricks',    '#c8553d', '#e8d4b8', '#7a2a1a', 0, [], ['mohawk'], null, 'Solid, stubborn and a little punk.'),
+  I('hexy',        'Hexy',             'common', 'coin', 180, 'gradient',  '#46ff8a', '#38f3ff', '#c8ffd8', 0, ['bits'], [], 'hex', 'Six sides, zero corners cut.'),
+  I('polka',       'Polka Pop',        'common', 'coin', 180, 'halftone',  '#ff4fa3', '#ffe0f0', '#ffffff', 5, ['bubbles'], [], null, 'Dots that swell and shrink in time.'),
+  I('plaidpal',    'Plaid Pal',        'common', 'coin', 200, 'tartan',    '#d02a3a', '#1a1a2e', '#ffd36b', 0, [], ['bowtie'], null, 'Dressed for the occasion.'),
+  I('pentapink',   'Penta Pink',       'common', 'coin', 200, 'gradient',  '#ff8de1', '#ffc6e0', '#ffffff', 5, ['petals'], [], 'penta', 'A five-sided blossom.'),
+  I('squircle',    'Squircle',         'common', 'coin', 220, 'gradient',  '#3dffa8', '#2fd0ff', '#c8ffd8', 3, ['ring'], [], 'squircle', 'Not quite a square, not quite a circle.'),
+  I('roundrobin',  'Round Robin',      'common', 'coin', 240, 'solid',     '#ff8a1f', '#ffd36b', '#ffffff', 5, [], ['propeller'], 'circle', 'A round little flyer with a propeller cap.'),
+  /* ---- rare ---- */
+  I('octoice',     'Octo-Ice',         'rare', 'coin', 320, 'ice',        '#bfeaff', '#ffffff', '#7fd0ff', 0, ['snow'], [], 'oct', 'Eight frosted sides and drifting snow.'),
+  I('starlet',     'Starlet',          'rare', 'coin', 340, 'gradient',   '#ffd36b', '#ff9a3b', '#fff4b8', 5, ['sparkle'], [], 'star5', 'A five-point star on a spin.'),
+  I('zigzagger',   'Zig Zagger',       'rare', 'coin', 360, 'zigzag',     '#7a5cff', '#ff4fa3', '#ffffff', 4, ['streaks'], [], null, 'Chevron stripes that crawl upward.'),
+  I('scalemail',   'Scale Mail',       'rare', 'coin', 380, 'scales',     '#2fa86a', '#8dffb0', '#0a3a2a', 0, ['smoke'], ['horns'], null, 'Armored in shimmering scales.'),
+  I('blueprinter', 'Blueprint',        'rare', 'coin', 400, 'blueprint',  '#1a4aa0', '#bfe0ff', '#ffffff', 3, ['gears'], ['antenna'], null, 'Drawn on the go, gears turning.'),
+  I('marblebust',  'Marble Bust',      'rare', 'coin', 420, 'marble',     '#f0f0f8', '#8a93b0', '#ffffff', 0, [], ['laurel'], null, 'Veined stone with a laurel wreath.'),
+  I('plusone',     'Plus One',         'rare', 'coin', 440, 'neon',       '#46ff8a', '#38f3ff', '#46ff8a', 5, ['ring'], [], 'plus', 'A glowing cross that pulses outward.'),
+  I('woodgrain',   'Wood Grain',       'rare', 'coin', 450, 'wood',       '#c98a4a', '#7a4a22', '#3a2210', 0, ['leaves'], [], 'chamfer', 'Carved from an old oak, shedding leaves.'),
+  I('argyleprince','Argyle Prince',    'rare', 'coin', 480, 'argyle',     '#2a3a8a', '#ffd36b', '#ffffff', 5, [], ['monocle'], 'diamond', 'A very fashionable diamond.'),
+  I('shieldwall',  'Shield Wall',      'rare', 'coin', 500, 'solid',      '#5a6a8a', '#ffd36b', '#ffffff', 0, [], ['visor'], 'shield', 'Plated and ready, with a scanning visor.'),
+  /* ---- epic ---- */
+  I('radarping',   'Radar Ping',       'epic', 'coin', 560, 'radar',      '#0a3a2a', '#46ff8a', '#ffffff', 3, ['ring'], [], 'circle', 'A sweeping scope with blips.'),
+  I('bullseye',    'Bullseye',         'epic', 'coin', 600, 'target',     '#ffffff', '#ff2d3d', '#ffd36b', 5, [], ['shades'], 'circle', 'Right on target, and cool about it.'),
+  I('prismgem',    'Prism Gem',        'epic', 'coin', 650, 'facets',     '#38f3ff', '#b78cff', '#ffffff', 5, ['shards'], [], 'diamond', 'A cut gem with orbiting shards.'),
+  I('wireframe',   'Wireframe',        'epic', 'coin', 700, 'wire',       '#14102a', '#38f3ff', '#ffffff', 0, ['bits'], [], null, 'A tunnel of glowing squares.'),
+  I('hypnohex',    'Hypno Hex',        'epic', 'coin', 720, 'spiral',     '#14102a', '#ff4fd8', '#ffffff', 3, ['orbit'], [], 'hex', 'Look into the spiral.'),
+  I('confettiboom','Confetti Boom',    'epic', 'coin', 750, 'confetti',   '#38f3ff', '#ff4fa3', '#ffd36b', 5, ['sparkle'], ['partyhat'], null, 'Every jump is a party.'),
+  I('kiterunner',  'Kite Runner',      'epic', 'coin', 780, 'gradient',   '#ff4fa3', '#ffd36b', '#38f3ff', 5, ['streaks'], [], 'kite', 'Catches the wind and a little attitude.'),
+  I('pearldrop',   'Pearl Drop',       'epic', 'coin', 820, 'pearl',      '#f4e8ff', '#b78cff', '#ffffff', 5, ['bubbles'], [], 'drop', 'Shimmering, shifting, pearl-white.'),
+  I('starsailor',  'Star Sailor',      'epic', 'coin', 880, 'plasma',     '#3b6aff', '#38f3ff', '#ff4fd8', 3, ['stars'], [], 'star4', 'A four-point star adrift in plasma.'),
+  I('gearhead',    'Gear Head',        'epic', 'coin', 950, 'carbon',     '#ffb12a', '#ffffff', '#ffb12a', 4, ['gears'], ['visor'], 'oct', 'Woven carbon, spinning gears and a visor.'),
+  /* ---- legendary ---- */
+  I('crystalhex',  'Crystal Hex',      'legendary', 'gem', 45, 'facets',   '#9fe0ff', '#ffffff', '#38b6ff', 5, ['shards', 'sparkle'], [], 'hex', 'Flawless facets that throw light everywhere.'),
+  I('solarflare',  'Solar Flare',      'legendary', 'gem', 50, 'fire',     '#ffb12a', '#fff2a0', '#d01a00', 4, ['flame'], [], 'star5', 'A burning star trailing fire.'),
+  I('moonstone',   'Moonstone',        'legendary', 'gem', 55, 'galaxy',   '#1a1a4e', '#b78cff', '#38f3ff', 5, ['moons', 'stars'], [], 'circle', 'A night sky with two moons in orbit.'),
+  I('stormshield', 'Storm Shield',     'legendary', 'gem', 60, 'lightning','#16245a', '#8ac8ff', '#ffe14a', 0, ['electric'], [], 'shield', 'Lightning crackles across the plating.'),
+  I('gildedtri',   'Gilded Triangle',  'legendary', 'gem', 65, 'gold',     '#ffcf4a', '#fff0a0', '#8a5a00', 5, ['sparkle'], ['tiara'], 'tri', 'Solid gold, a jeweled tiara.'),
+  I('neonoct',     'Neon Octagon',     'legendary', 'gem', 65, 'neon',     '#ff4fa3', '#38f3ff', '#ff4fa3', 1, ['eq', 'ring'], [], 'oct', 'A stop sign from the future.'),
+  I('runeblock',   'Rune Block',       'legendary', 'gem', 70, 'marble',   '#2a1a4e', '#b78cff', '#ffffff', 3, ['runes'], ['laurel'], null, 'Ancient stone that writes in the air.'),
+  I('cyberkite',   'Cyber Kite',       'legendary', 'gem', 75, 'hologram', '#38f3ff', '#b78cff', '#38f3ff', 3, ['bits'], ['visor'], 'kite', 'A flickering projection of a kite.'),
+  I('glassheart',  'Heart of Glass',   'legendary', 'gem', 80, 'facets',   '#ff4f8a', '#ffc6e0', '#ffffff', 5, ['hearts', 'sparkle'], [], 'heart', 'Fragile-looking. It is not.'),
+  I('quantumplus', 'Quantum Plus',     'legendary', 'gem', 85, 'plasma',   '#38f3ff', '#b78cff', '#ffffff', 3, ['gyro'], [], 'plus', 'A cross wrapped in spinning rings.'),
+  /* ---- mythic ---- */
+  I('infinitycube','Infinity Cube',    'mythic', 'gem', 100, 'rainbow',    '#ffffff', '#ffffff', '#ffffff', 3, ['orbit', 'ring'], ['visor'], null, 'Every colour, forever.'),
+  I('cosmictri',   'Cosmic Triangle',  'mythic', 'gem', 110, 'galaxy',     '#2a0a5e', '#ff4fd8', '#38f3ff', 5, ['stars', 'moons'], ['halo'], 'tri', 'A haloed pyramid of deep space.'),
+  I('dragonscale', 'Dragon Scale',     'mythic', 'gem', 120, 'scales',     '#d01a00', '#ffb12a', '#3a0a00', 4, ['flame'], ['wings'], 'hex', 'Armored in dragon scales, wings aflame.'),
+  I('absolutezero','Absolute Zero',    'mythic', 'gem', 130, 'ice',        '#9fe0ff', '#ffffff', '#38b6ff', 5, ['snow', 'shards'], ['crown'], 'star6', 'A frozen six-point star. Nothing is colder.'),
+  I('pharaoh',     'Pharaoh Pyramid',  'mythic', 'gem', 140, 'gold',       '#ffcf4a', '#fff0a0', '#8a5a00', 0, ['runes', 'sparkle'], ['crown'], 'tri', 'Gold, hieroglyphs and a very old crown.'),
+  I('aetherorb',   'Aether Orb',       'mythic', 'gem', 150, 'void',       '#7a3cff', '#38f3ff', '#7a3cff', 1, ['moons', 'ring', 'orbit'], [], 'circle', 'A pocket universe with its own moons.'),
+  I('chronodiamond','Chrono Diamond',  'mythic', 'gem', 160, 'hologram',   '#ffd36b', '#38f3ff', '#ffd36b', 3, ['gyro', 'gears'], [], 'diamond', 'Time itself, cut into a gem.'),
+  I('tesseract',   'Tesseract',        'mythic', 'gem', 170, 'wire',       '#2a0a4e', '#ff4fd8', '#ffffff', 0, ['gyro', 'bits', 'ring'], [], null, 'A cube inside a cube inside a cube.'),
+  I('solarcrown',  'Solar Crown',      'mythic', 'gem', 185, 'gold',       '#ffcf4a', '#fff0a0', '#8a5a00', 7, ['flame', 'sparkle'], ['crown'], 'star5', 'A burning star that wears a crown.'),
+  I('genesis',     'Genesis',          'mythic', 'gem', 200, 'rainbow',    '#ffffff', '#ffffff', '#ffffff', 7, ['orbit', 'ring', 'sparkle', 'stars'], ['wings', 'halo'], 'circle', 'The first light. Wings, halo, everything.')
+];
+
+const T = (id, name, tier, cur, price, styles, c1, c2, c3, life, desc, opt) =>
+  Object.assign({ id, name, tier, cur, price, styles: [].concat(styles), c1, c2, c3, life: life || 0.6, desc, set: 2 }, opt || {});
+const TK = [
+  /* ---- common ---- */
+  T('puff',      'Puff',            'common', 'coin', 100, 'smoke',    '#c8d0e8', '#8a93b0', '#ffffff', 0.9,  'Soft puffs of cloud.'),
+  T('autumn',    'Autumn',          'common', 'coin', 120, 'leaves',   '#ff8a1f', '#d94a1a', '#ffd36b', 1.0,  'Leaves tumble in your wake.'),
+  T('lovetrail', 'Love Trail',      'common', 'coin', 130, 'hearts',   '#ff4f8a', '#ff9ac8', '#ffffff', 1.0,  'A little love behind you.'),
+  T('popper',    'Party Popper',    'common', 'coin', 150, 'confetti', '#ff4fa3', '#38f3ff', '#ffd36b', 0.9,  'Confetti on every jump.'),
+  T('dashed',    'Dashed Line',     'common', 'coin', 150, 'dashes',   '#38f3ff', '#ffffff', '#b78cff', 0.6,  'A dotted line to follow.'),
+  T('raindrops', 'Raindrops',       'common', 'coin', 160, 'rain',     '#8ac8ff', '#ffffff', '#38b6ff', 0.7,  'A sudden shower.'),
+  T('flagtrail', 'Checkered Flag',  'common', 'coin', 180, 'checker',  '#ffffff', '#1a1a2e', '#ff2d3d', 0.6,  'Race-day squares.'),
+  T('arrowhead', 'Arrowhead',       'common', 'coin', 200, 'arrows',   '#46ff8a', '#c8ffd8', '#38f3ff', 0.5,  'Chevrons pointing the way forward.'),
+  T('fireflies', 'Firefly Field',   'common', 'coin', 220, 'orbs',     '#d4ff3b', '#ffffff', '#46ff8a', 1.0,  'Blinking fireflies drift behind you.'),
+  T('barbeat',   'Bar Beat',        'common', 'coin', 240, 'bars',     '#ff4fa3', '#38f3ff', '#ffd36b', 0.6,  'Tiny equalizer bars.'),
+  /* ---- rare ---- */
+  T('ribbondance','Ribbon Dance',   'rare', 'coin', 260, 'ribbon',   '#ff4fa3', '#ffd36b', '#38f3ff', 0.7,  'Twin ribbons that wave as you fly.'),
+  T('zigbolt',   'Zig Bolt',        'rare', 'coin', 280, 'zigzag',   '#ffe14a', '#ffffff', '#ff9a1a', 0.4,  'A jagged bolt of light.'),
+  T('emberrise', 'Ember Rise',      'rare', 'coin', 300, 'embers',   '#ffd36b', '#ff7a1a', '#e02a00', 1.0,  'Glowing embers drift upward.'),
+  T('crystalshards','Crystal Shards','rare', 'coin', 320, 'shards',  '#bfeaff', '#7fd0ff', '#ffffff', 0.8,  'Tumbling shards of ice.'),
+  T('starchain', 'Star Chain',      'rare', 'coin', 340, 'stars',    '#ffd36b', '#ffffff', '#ff9a1a', 0.8,  'A string of spinning stars.'),
+  T('clockwork', 'Clockwork',       'rare', 'coin', 350, 'gears',    '#ffcf4a', '#b8860b', '#c8d4e8', 0.8,  'Little gears turn in your wake.'),
+  T('ninjastars','Ninja Stars',     'rare', 'coin', 370, 'shuriken', '#c8d4e8', '#ffffff', '#ff2d3d', 0.6,  'Throwing stars, spinning fast.'),
+  T('paintbrush','Paintbrush',      'rare', 'coin', 380, 'paint',    '#ff4fa3', '#38f3ff', '#ffd36b', 0.8,  'Thick strokes and flicked paint.'),
+  T('frostbite', 'Frostbite',       'rare', 'coin', 400, 'frost',    '#bfeaff', '#ffffff', '#7fd0ff', 0.9,  'Delicate ice crystals.'),
+  T('soundwave', 'Sound Wave',      'rare', 'coin', 420, 'wave',     '#38f3ff', '#ff4fa3', '#ffffff', 0.7,  'Three waves in phase.'),
+  /* ---- epic ---- */
+  T('vortextrail','Vortex',         'epic', 'coin', 450, 'vortex',   '#b78cff', '#38f3ff', '#ff4fd8', 0.8,  'A corkscrew of light.'),
+  T('slashtrail','Slash',           'epic', 'coin', 500, 'slash',    '#ffffff', '#ff2d3d', '#ffd36b', 0.4,  'Crescent blade cuts.'),
+  T('prismbeam', 'Prism Beam',      'epic', 'coin', 550, 'prism',    '#ff4fa3', '#38f3ff', '#ffd36b', 0.6,  'White light splitting into colour.'),
+  T('batswarm',  'Bat Swarm',       'epic', 'coin', 580, 'bats',     '#7a4cff', '#ff4fd8', '#ffe9a6', 1.0,  'A flutter of bats.'),
+  T('runepath',  'Rune Path',       'epic', 'coin', 620, 'runes',    '#3dffa8', '#38f3ff', '#b8ffd8', 1.0,  'Glowing glyphs hang in the air.'),
+  T('plasmastream','Plasma Stream', 'epic', 'coin', 660, 'plasma',   '#ff4fa3', '#38f3ff', '#b78cff', 0.8,  'Blobs of living plasma.'),
+  T('inkflow',   'Ink Flow',        'epic', 'coin', 700, 'ink',      '#7a5cff', '#38f3ff', '#ffffff', 0.8,  'A tapering brush of ink, with drips.'),
+  T('gearstorm', 'Gear Storm',      'epic', 'coin', 740, ['gears', 'sparkle'], '#ffcf4a', '#ffffff', '#b8860b', 0.8, 'Gold gears and glittering sparks.'),
+  T('heartstorm','Heartstorm',      'epic', 'coin', 780, ['hearts', 'sparkle'], '#ff4f8a', '#ffffff', '#ff9ac8', 1.0, 'Hearts and stars, everywhere.'),
+  T('auroraveil','Aurora Veil',     'epic', 'coin', 800, ['ribbon', 'sparkle'], '#3dffa8', '#b78cff', '#ffffff', 0.8, 'Northern lights that follow you.'),
+  /* ---- legendary ---- */
+  T('lightbeam', 'Lightbeam',       'legendary', 'gem', 30, 'beam',  '#38f3ff', '#ffffff', '#b78cff', 0.6, 'A solid beam of pure light.'),
+  T('maplecyclone','Maple Cyclone', 'legendary', 'gem', 35, ['leaves', 'vortex'], '#ff8a1f', '#d94a1a', '#ffd36b', 0.9, 'Autumn leaves caught in a whirl.'),
+  T('diamonddust','Diamond Dust',   'legendary', 'gem', 40, ['shards', 'sparkle'], '#ffffff', '#bfeaff', '#7fd0ff', 0.8, 'A glittering wake of diamonds.'),
+  T('hellfire',  'Hellfire',        'legendary', 'gem', 45, ['embers', 'flame'], '#ffd36b', '#ff2d3d', '#7a0010', 0.7, 'A trail straight from below.', { hot: true }),
+  T('zerohour',  'Zero Hour',       'legendary', 'gem', 50, ['gears', 'rings'], '#38f3ff', '#ffcf4a', '#ffffff', 0.8, 'Gears and shock rings, ticking down.'),
+  T('bladedance','Blade Dance',     'legendary', 'gem', 55, ['slash', 'shuriken'], '#ffffff', '#ff2d3d', '#c8d4e8', 0.5, 'Slashes and throwing stars.'),
+  T('frozenheart','Frozen Heart',   'legendary', 'gem', 60, ['frost', 'hearts'], '#bfeaff', '#ff9ac8', '#ffffff', 0.9, 'Ice crystals and little cold hearts.'),
+  T('midnightbats','Midnight Bats', 'legendary', 'gem', 65, ['bats', 'stars'], '#5a3cff', '#ff4fd8', '#ffe9a6', 1.0, 'Bats under a field of stars.'),
+  T('digitalrain','Digital Rain',   'legendary', 'gem', 70, ['rain', 'binary'], '#46ff8a', '#c8ffd8', '#46ff8a', 0.8, 'Green code falls behind you.'),
+  T('spiritrunes','Spirit Runes',   'legendary', 'gem', 75, ['runes', 'orbs'], '#b78cff', '#38f3ff', '#ffffff', 1.0, 'Runes and wisps of spirit light.'),
+  /* ---- mythic ---- */
+  T('rainbowbeam','Rainbow Beam',   'mythic', 'gem', 80,  ['beam', 'sparkle'], '#ffffff', '#ffffff', '#ffffff', 0.7, 'A beam that cycles every colour.', { rainbow: true }),
+  T('chronovortex','Chrono Vortex', 'mythic', 'gem', 90,  ['vortex', 'gears', 'sparkle'], '#38f3ff', '#ffcf4a', '#ffffff', 0.8, 'A whirl of gears and time.'),
+  T('starfall',  'Starfall',        'mythic', 'gem', 100, ['stars', 'comet', 'sparkle'], '#ffd36b', '#9fe0ff', '#ffffff', 0.8, 'A comet that sheds falling stars.'),
+  T('dragonbreath','Dragon Breath', 'mythic', 'gem', 110, ['flame', 'embers', 'vortex'], '#ffffff', '#ffb12a', '#e02a00', 0.7, 'Fire that spirals as it burns.', { hot: true }),
+  T('blossomstorm','Blossom Storm', 'mythic', 'gem', 120, ['petals', 'leaves', 'vortex'], '#ffc6e0', '#ff7eb6', '#ffffff', 0.9, 'A storm of cherry blossom.'),
+  T('neonprism', 'Neon Prism',      'mythic', 'gem', 130, ['prism', 'strobe', 'sparkle'], '#ffffff', '#ffffff', '#ffffff', 0.6, 'Colour splits, flashes and fades.', { rainbow: true }),
+  T('voidribbon','Void Ribbon',     'mythic', 'gem', 135, ['ribbon', 'galaxy'], '#7a3cff', '#38f3ff', '#ff4fd8', 0.9, 'A ribbon torn from deep space.'),
+  T('thunderheart','Thunderheart',  'mythic', 'gem', 140, ['zigzag', 'hearts', 'sparkle'], '#ffe14a', '#ff4f8a', '#ffffff', 0.6, 'Lightning with a heart.'),
+  T('phantomflame','Phantom Flame', 'mythic', 'gem', 145, ['flame', 'orbs'], '#ffffff', '#38b6ff', '#5a3cff', 0.8, 'Cold blue fire and drifting wisps.'),
+  T('eternity',  'Eternity',        'mythic', 'gem', 150, ['rainbow', 'stars', 'vortex', 'sparkle'], '#ffffff', '#ffffff', '#ffffff', 0.8, 'Everything, all at once, forever.', { rainbow: true })
+];
+
+for (const x of SK) { SH.ICONS.push(x); SH.iconById[x.id] = x; }
+for (const x of TK) { SH.TRAILS.push(x); SH.trailById[x.id] = x; }
+SH.NEW_ICONS = SK; SH.NEW_TRAILS = TK;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
 /* Syncwave sprites: the Halloween artwork (skins and treasure chest frames) shipped as small base64 images.
    build.py appends the data last, so the game can draw before it has all arrived; get() is null until an image has decoded. */
 (function (root) {
@@ -3317,9 +3498,38 @@ const fr = v => v - floor(v);
 const hh = (i, j) => fr(sin(i * 127.1 + j * 311.7) * 43758.5453);
 
 /* ------------------------------------------------------------- helpers */
-function bodyPath(c, kind, s) {
+/* Shape skins change only how the icon looks: the hitbox is always the 1x1 tile. f = [face shift, face scale];
+   q = the shape lands upright after any quarter turn (4-fold or finer), so it can tumble like a cube; the others spin a full turn per quarter. */
+const rp = (c, n, r, a0) => { for (let i = 0; i < n; i++) { const a = a0 + i / n * TAU; i ? c.lineTo(cos(a) * r, sin(a) * r) : c.moveTo(cos(a) * r, sin(a) * r); } c.closePath(); };
+const spk = (c, n, ro, ri, a0) => { for (let i = 0; i < n * 2; i++) { const a = a0 + i / (n * 2) * TAU, r = i & 1 ? ri : ro; i ? c.lineTo(cos(a) * r, sin(a) * r) : c.moveTo(cos(a) * r, sin(a) * r); } c.closePath(); };
+const SHAPES = {
+  tri:      { f: [0.12, 0.72], hint: 1, path(c) { c.moveTo(0, -0.6); c.lineTo(0.6, 0.48); c.lineTo(-0.6, 0.48); c.closePath(); } },
+  diamond:  { f: [0, 0.8], q: 1, hint: 1, path(c) { c.moveTo(0, -0.64); c.lineTo(0.64, 0); c.lineTo(0, 0.64); c.lineTo(-0.64, 0); c.closePath(); } },
+  hex:      { f: [0, 0.86], hint: 1, path(c) { rp(c, 6, 0.57, 0); } },
+  oct:      { f: [0, 0.9], q: 1, hint: 1, path(c) { rp(c, 8, 0.56, PI / 8); } },
+  penta:    { f: [0.03, 0.84], hint: 1, path(c) { rp(c, 5, 0.58, -PI / 2); } },
+  circle:   { f: [0, 0.9], q: 1, hint: 1, path(c) { c.arc(0, 0, 0.52, 0, TAU); } },
+  star5:    { f: [0.04, 0.6], hint: 1, path(c) { spk(c, 5, 0.66, 0.29, -PI / 2); } },
+  star4:    { f: [0, 0.55], q: 1, hint: 1, path(c) { spk(c, 4, 0.68, 0.24, -PI / 2); } },
+  star6:    { f: [0, 0.62], hint: 1, path(c) { spk(c, 6, 0.66, 0.36, -PI / 2); } },
+  plus:     { f: [0, 0.72], q: 1, hint: 1, path(c) { const a = 0.19, b = 0.5; c.moveTo(-a, -b); c.lineTo(a, -b); c.lineTo(a, -a); c.lineTo(b, -a); c.lineTo(b, a); c.lineTo(a, a); c.lineTo(a, b); c.lineTo(-a, b); c.lineTo(-a, a); c.lineTo(-b, a); c.lineTo(-b, -a); c.lineTo(-a, -a); c.closePath(); } },
+  shield:   { f: [-0.05, 0.8], hint: 1, path(c) { c.moveTo(-0.5, -0.5); c.lineTo(0.5, -0.5); c.lineTo(0.5, 0.04); c.quadraticCurveTo(0.46, 0.38, 0, 0.62); c.quadraticCurveTo(-0.46, 0.38, -0.5, 0.04); c.closePath(); } },
+  kite:     { f: [0.02, 0.7], hint: 1, path(c) { c.moveTo(0, -0.64); c.lineTo(0.52, -0.12); c.lineTo(0, 0.6); c.lineTo(-0.52, -0.12); c.closePath(); } },
+  trap:     { f: [0.04, 0.8], hint: 1, path(c) { c.moveTo(-0.36, -0.5); c.lineTo(0.36, -0.5); c.lineTo(0.62, 0.5); c.lineTo(-0.62, 0.5); c.closePath(); } },
+  para:     { f: [0, 0.8], hint: 1, path(c) { c.moveTo(-0.3, -0.5); c.lineTo(0.64, -0.5); c.lineTo(0.3, 0.5); c.lineTo(-0.64, 0.5); c.closePath(); } },
+  chamfer:  { f: [0, 1], q: 1, path(c) { const k = 0.2; c.moveTo(-0.5 + k, -0.5); c.lineTo(0.5 - k, -0.5); c.lineTo(0.5, -0.5 + k); c.lineTo(0.5, 0.5 - k); c.lineTo(0.5 - k, 0.5); c.lineTo(-0.5 + k, 0.5); c.lineTo(-0.5, 0.5 - k); c.lineTo(-0.5, -0.5 + k); c.closePath(); } },
+  squircle: { f: [0, 1], q: 1, path(c) { for (let i = 0; i <= 48; i++) { const a = i / 48 * TAU, ca = cos(a), sa = sin(a), x = 0.5 * Math.sign(ca) * pow(abs(ca), 0.42), y = 0.5 * Math.sign(sa) * pow(abs(sa), 0.42); i ? c.lineTo(x, y) : c.moveTo(x, y); } c.closePath(); } },
+  drop:     { f: [0.1, 0.8], hint: 1, path(c) { c.moveTo(0, -0.66); c.quadraticCurveTo(0.2, -0.28, 0.46, 0.08); c.arc(0, 0.1, 0.46, 0, PI); c.quadraticCurveTo(-0.2, -0.28, 0, -0.66); c.closePath(); } },
+  heart:    { f: [-0.04, 0.7], hint: 1, path(c) { c.moveTo(0, 0.56); c.bezierCurveTo(-0.7, 0.1, -0.62, -0.5, -0.26, -0.5); c.bezierCurveTo(-0.1, -0.5, 0, -0.38, 0, -0.28); c.bezierCurveTo(0, -0.38, 0.1, -0.5, 0.26, -0.5); c.bezierCurveTo(0.62, -0.5, 0.7, 0.1, 0, 0.56); c.closePath(); } }
+};
+function rotFor(I, rot) {
+  const S = I.shape && SHAPES[I.shape]; if (!S || S.q) return rot;
+  const q = PI / 2, m = Math.round(rot / q); return (rot - m * q) * 4;
+}
+function bodyPath(c, kind, s, shape) {
   s = s || 1; c.beginPath();
-  if (kind === 'ball') c.arc(0, 0, 0.5 * s, 0, TAU);
+  if (kind === 'cube' && shape && SHAPES[shape]) { c.save(); c.scale(s, s); SHAPES[shape].path(c); c.restore(); }
+  else if (kind === 'ball') c.arc(0, 0, 0.5 * s, 0, TAU);
   else if (kind === 'wave') { c.moveTo(0.55 * s, 0); c.lineTo(-0.45 * s, -0.42 * s); c.lineTo(-0.2 * s, 0); c.lineTo(-0.45 * s, 0.42 * s); c.closePath(); }
   else c.rect(-0.5 * s, -0.5 * s, s, s);
 }
@@ -3508,12 +3718,13 @@ const BODY = {
 };
 
 function paintBody(c, I, kind, t) {
+  const sh = kind === 'cube' ? I.shape : null;
   c.save();
-  bodyPath(c, kind); c.lineJoin = 'round'; c.lineWidth = 0.2; c.strokeStyle = 'rgba(0,0,0,0.75)'; c.stroke();
-  bodyPath(c, kind); c.clip();
+  bodyPath(c, kind, 1, sh); c.lineJoin = 'round'; c.lineWidth = 0.2; c.strokeStyle = 'rgba(0,0,0,0.75)'; c.stroke();
+  bodyPath(c, kind, 1, sh); c.clip();
   (BODY[I.body] || BODY.solid)(c, I, t, kind);
   c.restore();
-  bodyPath(c, kind); c.lineJoin = 'round'; c.lineWidth = 0.06;
+  bodyPath(c, kind, 1, sh); c.lineJoin = 'round'; c.lineWidth = 0.06;
   c.strokeStyle = I.body === 'rainbow' ? hsl(t * 0.3 + 0.5, 1, 0.8) : (I.body === 'neon' ? rgba(mix(I.c1, '#ffffff', 0.4), 0.9) : rgba(mix(I.c2, '#ffffff', 0.25), 0.8)); c.stroke();
 }
 
@@ -3730,8 +3941,11 @@ function drawHead(c, I, t, st) {
   const sp = spriteOf(I);
   if (sp) c.drawImage(sp, -SPR / 2, -SPR / 2, SPR, SPR);
   else {
+    const SS = I.shape && SHAPES[I.shape];
+    if (SS && SS.hint) { c.save(); c.setLineDash([0.07, 0.07]); c.lineWidth = 0.03; c.strokeStyle = rgba(I.c2 === I.c1 ? '#ffffff' : I.c2, 0.3); c.strokeRect(-0.5, -0.5, 1, 1); c.restore(); }      // the real hitbox, so a pointed shape never feels unfair
     paintBody(c, I, 'cube', t);
-    c.save(); const FA = SW.FX.faces; FA[I.face % FA.length](c, faceColor(I), I.c1); c.restore();
+    c.save(); if (SS) { c.translate(0, SS.f[0]); c.scale(SS.f[1], SS.f[1]); }
+    const FA = SW.FX.faces; FA[I.face % FA.length](c, faceColor(I), I.c1); c.restore();
   }
   for (const a of I.acc) { const A = ACC[a]; if (A && !A.back) A.draw(c, I, t, st); }
 }
@@ -3748,7 +3962,7 @@ function drawPlayer(ctx, sx, sy, ppt, st, I) {
   ctx.globalCompositeOperation = 'source-over';
   ctx.scale(sc, sc);
   auras(ctx, I, t, st, true);
-  if (mode === 0) { ctx.save(); ctx.rotate(rot); drawHead(ctx, I, t, st); ctx.restore(); }
+  if (mode === 0) { ctx.save(); ctx.rotate(rotFor(I, rot)); drawHead(ctx, I, t, st); ctx.restore(); }
   else if (mode === 2) { ctx.save(); ctx.rotate(rot); paintBody(ctx, I, 'ball', t); ctx.strokeStyle = rgba(mix(I.c2, '#ffffff', 0.2), 0.8); ctx.lineWidth = 0.04; ctx.beginPath(); ctx.moveTo(-0.45, 0); ctx.lineTo(0.45, 0); ctx.moveTo(0, -0.45); ctx.lineTo(0, 0.45); ctx.stroke();
     const sp = spriteOf(I); if (sp) ctx.drawImage(sp, -SPR * 0.35, -SPR * 0.35, SPR * 0.7, SPR * 0.7); ctx.restore(); }
   else if (mode === 4) { ctx.save(); ctx.rotate((vy > 0 ? -1 : 1) * PI / 4); ctx.scale(1.15, 1.15); paintBody(ctx, I, 'wave', t); ctx.restore();
@@ -3956,7 +4170,539 @@ function previewPts(t, W, H, life) {
 }
 function colors(skin) { const I = skin && skin.icon && SW.Shop && SW.Shop.iconById[skin.icon]; return I ? [I.c1 === '#ffffff' || lum(I.c1) < 0.12 ? I.c2 : I.c1, I.c2 === I.c1 ? I.c3 : I.c2] : [skin.c1, skin.c2]; }
 
-SW.Icons = { drawPlayer, drawTrail, previewPts, colors, ACC, AURA, BODY, TR };
+SW.Icons = { drawPlayer, drawTrail, previewPts, colors, ACC, AURA, BODY, TR, SHAPES, H: { lin, rad, fillAll, gloss, shine, star4, poly, hh, fr, lum, glowOf, ink, rp, spk, rgba, mix, hsl, faceColor } };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
+/* Syncwave icons, second set: 17 more body paintings, 8 accessories, 7 auras and 29 trail styles for the second skin and trail collection
+   (catalog in shop2.js). Plugs into the tables exported by icons.js; everything is still a pure function of time. */
+(function (root) {
+'use strict';
+const SW = root.SW, IC = SW.Icons, TAU = Math.PI * 2, PI = Math.PI;
+const { lin, rad, fillAll, gloss, shine, star4, poly, hh, fr, glowOf, ink, rp, spk, rgba, mix, hsl } = IC.H;
+const sin = Math.sin, cos = Math.cos, abs = Math.abs, floor = Math.floor, min = Math.min, max = Math.max, pow = Math.pow;
+const { BODY, ACC, AURA, TR } = IC;
+
+/* ---------------------------------------------------------------- bodies */
+Object.assign(BODY, {
+  honey(c, I, t) {
+    fillAll(c, lin(c, 0, -0.5, 0, 0.5, [0, I.c1, 1, mix(I.c1, '#000000', 0.28)]));
+    const r = 0.2, w = r * Math.sqrt(3);
+    for (let row = -5; row <= 5; row++) for (let col = -5; col <= 5; col++) {
+      const x = col * w + (row & 1 ? w / 2 : 0), y = row * r * 1.5; if (abs(x) > 0.85 || abs(y) > 0.85) continue;
+      c.save(); c.translate(x, y); c.beginPath(); rp(c, 6, r * 0.93, PI / 6); c.restore();
+      const a = 0.5 + 0.5 * sin(t * 1.6 + row * 0.9 + col * 1.3); c.fillStyle = rgba(I.c3 || '#ffffff', 0.38 * a * a); c.fill();
+      c.lineWidth = 0.028; c.strokeStyle = rgba(I.c2, 0.9); c.stroke();
+    }
+    gloss(c);
+  },
+  scales(c, I, t) {
+    fillAll(c, I.c1); const r = 0.18;
+    for (let row = -6; row <= 6; row++) for (let col = -5; col <= 5; col++) {
+      const x = col * r * 2 + (row & 1 ? r : 0), y = row * r * 0.9, k = 0.5 + 0.5 * sin(t * 1.3 + x * 5 + y * 3);
+      c.beginPath(); c.arc(x, y, r, 0, PI); c.fillStyle = mix(I.c1, I.c2, 0.25 + 0.6 * k * (0.5 + 0.5 * hh(row, col))); c.fill();
+      c.lineWidth = 0.022; c.strokeStyle = rgba(I.c3 || '#000000', 0.75); c.stroke();
+    }
+    gloss(c);
+  },
+  bricks(c, I, t) {
+    fillAll(c, I.c2); const bh = 0.2, bw = 0.42;
+    for (let row = -5; row <= 5; row++) for (let col = -4; col <= 4; col++) {
+      const x = col * bw + (row & 1 ? bw / 2 : 0) - bw / 2 + 0.02, y = row * bh - bh / 2 + 0.02;
+      c.fillStyle = mix(I.c1, I.c3 || '#000000', 0.12 + hh(row, col) * 0.3); c.fillRect(x, y, bw - 0.04, bh - 0.04);
+    }
+    shine(c, t, 0.5, 0.16, 0.12);
+  },
+  tartan(c, I, t) {
+    fillAll(c, I.c1);
+    for (const [p, w, col, a] of [[-0.42, 0.16, I.c2, 0.6], [-0.06, 0.07, I.c3, 0.8], [0.3, 0.16, I.c2, 0.6], [0.52, 0.06, I.c3, 0.8]]) { c.globalAlpha = a; c.fillStyle = col; c.fillRect(p - w / 2, -0.7, w, 1.4); c.fillRect(-0.7, p - w / 2, 1.4, w); }
+    c.globalAlpha = 0.3; c.fillStyle = '#000000'; for (const p of [-0.42, 0.3]) c.fillRect(p - 0.08, p - 0.08, 0.16, 0.16);
+    c.globalAlpha = 1; shine(c, t, 0.45, 0.14, 0.1);
+  },
+  halftone(c, I, t) {
+    fillAll(c, I.c1); const g = 0.115;
+    for (let j = -6; j <= 6; j++) for (let i = -6; i <= 6; i++) {
+      const x = i * g + (j & 1 ? g / 2 : 0), y = j * g * 0.9, k = 0.5 + 0.5 * sin((x + y) * 5 - t * 2.2);
+      c.fillStyle = I.c2; c.beginPath(); c.arc(x, y, g * (0.12 + 0.34 * k), 0, TAU); c.fill();
+    }
+  },
+  zigzag(c, I, t) {
+    fillAll(c, I.c1); const h = 0.24, off = (t * 0.22) % (h * 2); c.fillStyle = I.c2;
+    for (let k = -4; k <= 4; k++) {
+      const y0 = k * h * 2 - off; c.beginPath();
+      for (let i = 0; i <= 8; i++) { const x = -0.8 + i * 0.2, y = y0 + (i & 1 ? 0.1 : -0.1); i ? c.lineTo(x, y) : c.moveTo(x, y); }
+      for (let i = 8; i >= 0; i--) c.lineTo(-0.8 + i * 0.2, y0 + (i & 1 ? 0.1 : -0.1) + h);
+      c.closePath(); c.fill();
+    }
+  },
+  wire(c, I, t) {
+    fillAll(c, rad(c, 0, 0, 0, 0.8, [0, mix(I.c1, '#000000', 0.5), 1, '#04010c']));
+    c.lineWidth = 0.028; c.lineJoin = 'round';
+    for (let k = 0; k < 5; k++) {
+      const p = fr(t * 0.45 + k / 5), s = 0.06 + p * 0.95; c.strokeStyle = rgba(I.c2, 0.15 + 0.85 * sin(p * PI) * 0.9); c.strokeRect(-s / 2, -s / 2, s, s);
+    }
+    c.strokeStyle = rgba(I.c2, 0.5); c.lineWidth = 0.02; c.beginPath(); c.moveTo(-0.7, -0.7); c.lineTo(0.7, 0.7); c.moveTo(0.7, -0.7); c.lineTo(-0.7, 0.7); c.moveTo(0, -0.7); c.lineTo(0, 0.7); c.moveTo(-0.7, 0); c.lineTo(0.7, 0); c.stroke();
+  },
+  facets(c, I, t) {
+    const cx = sin(t * 0.5) * 0.1, cy = cos(t * 0.4) * 0.1, pts = [];
+    for (let i = 0; i < 9; i++) { const a = i / 9 * TAU + 0.3; pts.push([cos(a) * 0.95, sin(a) * 0.95]); }
+    for (let i = 0; i < 9; i++) {
+      const a = pts[i], b = pts[(i + 1) % 9], k = 0.5 + 0.5 * sin(t * 1.4 + i * 1.9); c.fillStyle = mix(I.c1, I.c2, 0.1 + 0.8 * k); c.beginPath(); c.moveTo(cx, cy); c.lineTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.closePath(); c.fill();
+      c.fillStyle = rgba(I.c3 || '#ffffff', 0.25 * (1 - k)); c.beginPath(); c.moveTo((a[0] + b[0]) / 2 * 0.5, (a[1] + b[1]) / 2 * 0.5); c.lineTo(a[0] * 0.6, a[1] * 0.6); c.lineTo(b[0] * 0.6, b[1] * 0.6); c.closePath(); c.fill();
+    }
+    c.strokeStyle = 'rgba(255,255,255,0.4)'; c.lineWidth = 0.014; c.beginPath(); for (const p of pts) { c.moveTo(cx, cy); c.lineTo(p[0], p[1]); } c.stroke();
+    const g = fr(t * 0.5); c.globalAlpha = sin(g * PI); c.strokeStyle = '#ffffff'; star4(c, cx + 0.12, cy - 0.15, 0.12); c.globalAlpha = 1;
+  },
+  marble(c, I, t) {
+    fillAll(c, lin(c, -0.5, -0.5, 0.5, 0.5, [0, I.c1, 1, mix(I.c1, '#ffffff', 0.35)])); c.lineCap = 'round';
+    for (let k = 0; k < 6; k++) {
+      c.beginPath(); for (let i = 0; i <= 18; i++) { const x = -0.75 + i * 0.083, y = -0.55 + k * 0.22 + sin(x * 5 + k * 1.7 + t * 0.25) * 0.1 + sin(x * 13 + k * 2.3) * 0.03; i ? c.lineTo(x, y) : c.moveTo(x, y); }
+      c.strokeStyle = rgba(I.c2, 0.55 - 0.05 * k); c.lineWidth = 0.02 + 0.025 * hh(k, 2); c.stroke();
+    }
+    shine(c, t, 0.6, 0.22, 0.1);
+  },
+  wood(c, I, t) {
+    fillAll(c, lin(c, 0, -0.5, 0, 0.5, [0, I.c1, 1, mix(I.c1, '#000000', 0.2)]));
+    for (let k = 1; k < 10; k++) { c.beginPath(); c.ellipse(0.12, -0.04, k * 0.1, k * 0.074, 0.35, 0, TAU); c.strokeStyle = rgba(I.c2, 0.3 + 0.18 * (k & 1)); c.lineWidth = 0.022; c.stroke(); }
+    c.fillStyle = rgba(I.c3 || '#000000', 0.45); c.beginPath(); c.ellipse(0.12, -0.04, 0.07, 0.05, 0.35, 0, TAU); c.fill();
+    gloss(c);
+  },
+  argyle(c, I, t) {
+    fillAll(c, I.c1); const d = 0.25;
+    for (let i = -4; i <= 4; i++) for (let j = -4; j <= 4; j++) {
+      if ((i + j) & 1) continue; const x = i * d, y = j * d; c.fillStyle = (i % 2 === 0) ? I.c2 : mix(I.c2, I.c1, 0.5);
+      c.beginPath(); c.moveTo(x, y - d); c.lineTo(x + d, y); c.lineTo(x, y + d); c.lineTo(x - d, y); c.closePath(); c.fill();
+    }
+    c.strokeStyle = rgba(I.c3 || '#ffffff', 0.7); c.lineWidth = 0.018; c.beginPath(); for (let k = -4; k <= 4; k++) { c.moveTo(-0.9, k * d * 2 - 0.9); c.lineTo(0.9, k * d * 2 + 0.9); c.moveTo(-0.9, k * d * 2 + 0.9); c.lineTo(0.9, k * d * 2 - 0.9); } c.stroke();
+    shine(c, t, 0.5, 0.14, 0.1);
+  },
+  radar(c, I, t) {
+    fillAll(c, rad(c, 0, 0, 0, 0.8, [0, mix(I.c1, '#000000', 0.35), 1, mix(I.c1, '#000000', 0.7)]));
+    c.strokeStyle = rgba(I.c2, 0.45); c.lineWidth = 0.02; for (let k = 1; k <= 3; k++) { c.beginPath(); c.arc(0, 0, k * 0.2, 0, TAU); c.stroke(); }
+    c.beginPath(); c.moveTo(-0.7, 0); c.lineTo(0.7, 0); c.moveTo(0, -0.7); c.lineTo(0, 0.7); c.stroke();
+    const a = t * 2.3; c.globalCompositeOperation = 'lighter';
+    for (let j = 0; j < 14; j++) { c.fillStyle = rgba(I.c2, 0.4 * (1 - j / 14)); c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, 0.8, a - (j + 1) * 0.06, a - j * 0.06); c.closePath(); c.fill(); }
+    for (let i = 0; i < 4; i++) { const ba = hh(i, 6) * TAU, br = 0.12 + hh(i, 7) * 0.3, d = ((a - ba) % TAU + TAU) % TAU; c.fillStyle = rgba(I.c3 || '#ffffff', max(0, 1 - d / 3)); c.beginPath(); c.arc(cos(ba) * br, sin(ba) * br, 0.035, 0, TAU); c.fill(); }
+    c.globalCompositeOperation = 'source-over';
+  },
+  target(c, I, t) {
+    fillAll(c, I.c1);
+    for (let k = 6; k >= 1; k--) { c.fillStyle = k & 1 ? I.c2 : I.c1; c.beginPath(); c.arc(0, 0, k * 0.1 + 0.02, 0, TAU); c.fill(); }
+    c.fillStyle = I.c3 || '#ffffff'; c.beginPath(); c.arc(0, 0, 0.065 + 0.012 * sin(t * 5), 0, TAU); c.fill();
+    const p = fr(t * 0.8); c.strokeStyle = rgba('#ffffff', 0.6 * (1 - p)); c.lineWidth = 0.03; c.beginPath(); c.arc(0, 0, 0.1 + p * 0.55, 0, TAU); c.stroke();
+    gloss(c);
+  },
+  spiral(c, I, t) {
+    fillAll(c, I.c1); c.save(); c.rotate(t * 1.5); c.lineCap = 'round'; c.lineWidth = 0.1; c.strokeStyle = I.c2;
+    for (let arm = 0; arm < 3; arm++) { c.beginPath(); for (let th = 0; th < 7; th += 0.2) { const r = 0.03 + th * 0.105, a = th + arm * TAU / 3; th ? c.lineTo(cos(a) * r, sin(a) * r) : c.moveTo(cos(a) * r, sin(a) * r); } c.stroke(); }
+    c.restore(); fillAll(c, rad(c, 0, 0, 0, 0.16, [0, rgba(I.c3 || '#ffffff', 0.7), 1, rgba(I.c3 || '#ffffff', 0)]));
+  },
+  blueprint(c, I, t) {
+    fillAll(c, I.c1); c.strokeStyle = rgba(I.c2, 0.28); c.lineWidth = 0.014; c.beginPath(); for (let k = -4; k <= 4; k++) { c.moveTo(k * 0.125, -0.7); c.lineTo(k * 0.125, 0.7); c.moveTo(-0.7, k * 0.125); c.lineTo(0.7, k * 0.125); } c.stroke();
+    const p = fr(t * 0.3); c.strokeStyle = rgba(I.c2, 0.95); c.lineWidth = 0.028; c.setLineDash([0.06, 0.04]);
+    c.beginPath(); c.arc(0, 0, 0.28, 0, TAU * min(1, p * 1.6)); c.stroke(); c.setLineDash([]);
+    c.beginPath(); c.moveTo(-0.38, 0.34); c.lineTo(0.38, 0.34); c.moveTo(-0.38, 0.29); c.lineTo(-0.38, 0.39); c.moveTo(0.38, 0.29); c.lineTo(0.38, 0.39); c.moveTo(-0.34, -0.38); c.lineTo(0.34, 0.2); c.stroke();
+    c.fillStyle = rgba(I.c2, 0.9); c.fillRect(-0.12, 0.38, 0.24, 0.02);
+  },
+  confetti(c, I, t) {
+    fillAll(c, I.c1); const cols = [I.c2, I.c3 || '#ffffff', '#ffffff', mix(I.c2, I.c1, 0.5)];
+    for (let i = 0; i < 22; i++) {
+      const sp = 0.2 + hh(i, 1) * 0.3, y = ((hh(i, 2) + t * sp) % 1.2) - 0.6, x = (hh(i, 3) - 0.5) * 1.1 + sin(t * 2 + i) * 0.05;
+      c.save(); c.translate(x, y); c.rotate(t * (1 + hh(i, 4) * 3) + i); c.scale(1, abs(cos(t * 2 + i))); c.fillStyle = cols[i % 4]; c.fillRect(-0.045, -0.025, 0.09, 0.05); c.restore();
+    }
+  },
+  pearl(c, I, t) {
+    fillAll(c, lin(c, -0.5, -0.5, 0.5, 0.5, [0, mix(I.c1, '#ffffff', 0.55), 0.55, I.c1, 1, mix(I.c1, '#000000', 0.18)]));
+    c.globalCompositeOperation = 'lighter';
+    for (let k = 0; k < 3; k++) fillAll(c, rad(c, sin(t * 0.6 + k * 2) * 0.3, cos(t * 0.5 + k * 1.7) * 0.3, 0, 0.6, [0, rgba(hsl(t * 0.08 + k * 0.33, 0.85, 0.72), 0.4), 1, rgba('#ffffff', 0)]));
+    c.globalCompositeOperation = 'source-over'; shine(c, t, 0.7, 0.4, 0.12);
+  }
+});
+
+/* ---------------------------------------------------------- accessories */
+const leafPath = (c, x, y, a, s) => { c.save(); c.translate(x, y); c.rotate(a); c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(s * 0.5, -s * 0.45, s, 0); c.quadraticCurveTo(s * 0.5, s * 0.45, 0, 0); c.restore(); };
+Object.assign(ACC, {
+  visor: { draw(c, I, t) {
+    c.fillStyle = '#0a0a14'; c.fillRect(-0.46, -0.26, 0.92, 0.22); c.strokeStyle = rgba(I.c2, 0.9); c.lineWidth = 0.025; c.strokeRect(-0.46, -0.26, 0.92, 0.22);
+    const x = -0.4 + fr(t * 0.7) * 0.8; c.save(); c.globalCompositeOperation = 'lighter'; c.fillStyle = rgba(I.c2, 0.9); c.fillRect(x - 0.05, -0.24, 0.1, 0.18); c.fillStyle = rgba(I.c2, 0.3); c.fillRect(x - 0.18, -0.24, 0.36, 0.18); c.restore();
+  } },
+  monocle: { draw(c, I, t) {
+    c.lineWidth = 0.035; c.strokeStyle = '#ffd36b'; c.beginPath(); c.arc(0.17, -0.06, 0.15, 0, TAU); c.stroke(); c.fillStyle = 'rgba(180,230,255,0.25)'; c.fill();
+    c.lineWidth = 0.014; c.strokeStyle = '#ffd36b'; c.beginPath(); c.moveTo(0.3, 0.04); c.quadraticCurveTo(0.42, 0.3, 0.3, 0.5); c.stroke();
+  } },
+  bowtie: { draw(c, I, t) {
+    c.lineJoin = 'round'; c.lineWidth = 0.08; c.strokeStyle = 'rgba(0,0,0,0.7)'; poly(c, [0, 0.34, -0.2, 0.22, -0.2, 0.46]); c.closePath(); poly(c, [0, 0.34, 0.2, 0.22, 0.2, 0.46]); c.closePath(); c.stroke();
+    c.fillStyle = I.c2; poly(c, [0, 0.34, -0.2, 0.22, -0.2, 0.46]); c.closePath(); c.fill(); poly(c, [0, 0.34, 0.2, 0.22, 0.2, 0.46]); c.closePath(); c.fill();
+    c.fillStyle = mix(I.c2, '#000000', 0.3); c.beginPath(); c.arc(0, 0.34, 0.045, 0, TAU); c.fill();
+  } },
+  laurel: { back: true, draw(c, I, t) {
+    for (const s of [-1, 1]) for (let i = 0; i < 6; i++) {
+      const a = PI * (0.62 + i * 0.1), x = s * cos(a) * 0.66 * -1, y = sin(a) * 0.66 - 0.04; leafPath(c, x, y, (s < 0 ? PI : 0) + s * (a - PI / 2) * -1 + (s < 0 ? 0 : 0) - 0.5 * s, 0.26);
+      c.fillStyle = i & 1 ? '#6fd44a' : '#46b83a'; c.fill(); c.lineWidth = 0.02; c.strokeStyle = 'rgba(0,0,0,0.5)'; c.stroke();
+    }
+  } },
+  propeller: { draw(c, I, t) {
+    c.fillStyle = I.c2; c.beginPath(); c.arc(0, -0.5, 0.24, PI, TAU); c.fill(); c.lineWidth = 0.05; c.strokeStyle = 'rgba(0,0,0,0.6)'; c.stroke();
+    c.fillStyle = '#ffffff'; c.fillRect(-0.04, -0.82, 0.08, 0.1);
+    c.save(); c.translate(0, -0.84); c.scale(abs(cos(t * 14)) * 0.9 + 0.1, 1); c.fillStyle = '#ffd36b'; c.beginPath(); c.ellipse(0, 0, 0.38, 0.045, 0, 0, TAU); c.fill(); c.restore();
+  } },
+  partyhat: { draw(c, I, t) {
+    c.save(); c.translate(0.06, -0.5); c.rotate(0.12); c.beginPath(); c.moveTo(-0.22, 0); c.lineTo(0, -0.62); c.lineTo(0.22, 0); c.closePath(); c.lineJoin = 'round'; c.lineWidth = 0.07; c.strokeStyle = 'rgba(0,0,0,0.65)'; c.stroke();
+    c.fillStyle = I.c2; c.fill(); c.clip(); c.fillStyle = '#ffffff'; for (let k = 0; k < 4; k++) { c.fillRect(-0.3, -0.12 - k * 0.15, 0.6, 0.05); } c.restore();
+    c.fillStyle = '#ffd36b'; c.beginPath(); c.arc(0.14, -1.12, 0.07, 0, TAU); c.fill();
+  } },
+  mohawk: { draw(c, I, t) {
+    for (let i = 0; i < 5; i++) { const x = -0.28 + i * 0.14, h = 0.28 + 0.1 * sin(t * 5 + i * 1.3) + (i === 2 ? 0.12 : 0); poly(c, [x - 0.08, -0.48, x, -0.48 - h, x + 0.08, -0.48]); c.closePath(); c.lineJoin = 'round'; c.lineWidth = 0.05; c.strokeStyle = 'rgba(0,0,0,0.6)'; c.stroke(); c.fillStyle = i & 1 ? I.c2 : I.c1 === '#ffffff' ? '#ff4fa3' : I.c1; c.fill(); }
+  } },
+  tiara: { draw(c, I, t) {
+    poly(c, [-0.3, -0.5, -0.22, -0.74, -0.1, -0.58, 0, -0.84, 0.1, -0.58, 0.22, -0.74, 0.3, -0.5]); c.closePath(); c.lineJoin = 'round'; c.lineWidth = 0.08; c.strokeStyle = 'rgba(0,0,0,0.65)'; c.stroke();
+    c.fillStyle = lin(c, 0, -0.84, 0, -0.5, [0, '#ffffff', 0.5, '#ffe28a', 1, '#d49a10']); c.fill();
+    for (const [x, y, col] of [[0, -0.8, '#38f3ff'], [-0.22, -0.7, '#ff4fa3'], [0.22, -0.7, '#ff4fa3']]) { c.fillStyle = col; c.beginPath(); c.arc(x, y, 0.04, 0, TAU); c.fill(); }
+  } }
+});
+
+/* --------------------------------------------------------------- auras */
+Object.assign(AURA, {
+  gears: { draw(c, I, t) {
+    for (let k = 0; k < 3; k++) {
+      const a = t * 0.9 + k * TAU / 3, x = cos(a) * 0.95, y = sin(a) * 0.6, r = 0.15 - k * 0.02, sp = t * (k & 1 ? -3 : 3);
+      c.save(); c.translate(x, y); c.rotate(sp); c.beginPath(); for (let i = 0; i < 16; i++) { const aa = i / 16 * TAU, rr = i & 1 ? r * 0.78 : r; i ? c.lineTo(cos(aa) * rr, sin(aa) * rr) : c.moveTo(cos(aa) * rr, sin(aa) * rr); } c.closePath();
+      c.lineWidth = 0.04; c.strokeStyle = 'rgba(0,0,0,0.6)'; c.stroke(); c.fillStyle = k === 1 ? I.c2 : '#c8d4e8'; c.fill(); c.fillStyle = '#14102a'; c.beginPath(); c.arc(0, 0, r * 0.3, 0, TAU); c.fill(); c.restore();
+    }
+  } },
+  runes: { draw(c, I, t) {
+    c.globalCompositeOperation = 'lighter'; c.lineCap = 'round'; c.lineWidth = 0.035;
+    for (let i = 0; i < 6; i++) {
+      const p = fr(t * 0.5 + i / 6), a = i / 6 * TAU + t * 0.3, x = cos(a) * (0.75 + 0.1 * sin(t + i)), y = 0.5 - p * 1.3 + (i % 2) * 0.1, g = i % 4, s = 0.09;
+      c.strokeStyle = rgba(i & 1 ? '#ffffff' : glowOf(I, t), sin(p * PI)); c.beginPath();
+      if (g === 0) { c.moveTo(x, y - s); c.lineTo(x, y + s); c.moveTo(x, y - s * 0.2); c.lineTo(x + s, y - s); }
+      else if (g === 1) { c.moveTo(x - s, y - s); c.lineTo(x + s, y); c.lineTo(x - s, y + s); }
+      else if (g === 2) { c.moveTo(x - s, y + s); c.lineTo(x, y - s); c.lineTo(x + s, y + s); c.moveTo(x - s * 0.5, y + s * 0.2); c.lineTo(x + s * 0.5, y + s * 0.2); }
+      else { c.moveTo(x - s, y - s); c.lineTo(x + s, y + s); c.moveTo(x + s, y - s); c.lineTo(x - s, y + s); }
+      c.stroke();
+    }
+    c.globalCompositeOperation = 'source-over';
+  } },
+  hearts: { draw(c, I, t) {
+    for (let i = 0; i < 6; i++) {
+      const p = fr(t * 0.55 + hh(i, 1)), a = hh(i, 2) * TAU, x = cos(a) * 0.62 + sin(t * 2 + i) * 0.06, y = 0.4 - p * 1.4, s = 0.07 + 0.05 * hh(i, 3);
+      c.save(); c.translate(x, y); c.scale(s * 10, s * 10); c.globalAlpha = sin(p * PI); c.fillStyle = i & 1 ? '#ff4f8a' : '#ff9ac8'; c.beginPath(); c.moveTo(0, 0.056); c.bezierCurveTo(-0.07, 0.01, -0.062, -0.05, -0.026, -0.05); c.bezierCurveTo(-0.01, -0.05, 0, -0.038, 0, -0.028); c.bezierCurveTo(0, -0.038, 0.01, -0.05, 0.026, -0.05); c.bezierCurveTo(0.062, -0.05, 0.07, 0.01, 0, 0.056); c.fill(); c.restore();
+    }
+    c.globalAlpha = 1;
+  } },
+  leaves: { draw(c, I, t) {
+    for (let i = 0; i < 7; i++) {
+      const p = fr(t * 0.4 + hh(i, 1)), a = hh(i, 2) * TAU + t * 0.5, r = 0.7 + 0.2 * sin(t + i), x = cos(a) * r, y = sin(a) * r * 0.7 + p * 0.3;
+      leafPath(c, x, y, a * 2 + t * 2, 0.17); c.globalAlpha = 0.9; c.fillStyle = [I.c2, '#6fd44a', '#ffb12a', I.c1][i % 4]; c.fill(); c.lineWidth = 0.02; c.strokeStyle = 'rgba(0,0,0,0.5)'; c.stroke();
+    }
+    c.globalAlpha = 1;
+  } },
+  shards: { draw(c, I, t) {
+    c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 6; i++) {
+      const a = t * (0.8 + hh(i, 1) * 0.5) + i * TAU / 6, r = 0.85 + 0.12 * sin(t * 2 + i), x = cos(a) * r, y = sin(a) * r * 0.65;
+      c.save(); c.translate(x, y); c.rotate(a * 2); c.beginPath(); c.moveTo(0, -0.12); c.lineTo(0.06, 0); c.lineTo(0, 0.12); c.lineTo(-0.06, 0); c.closePath(); c.fillStyle = rgba(i & 1 ? I.c2 : I.c1, 0.8); c.fill(); c.strokeStyle = 'rgba(255,255,255,0.8)'; c.lineWidth = 0.015; c.stroke(); c.restore();
+    }
+    c.globalCompositeOperation = 'source-over';
+  } },
+  moons: { draw(c, I, t) {
+    for (let k = 0; k < 2; k++) {
+      const a = t * (k ? -1.3 : 1.7) + k * PI, x = cos(a) * (0.9 + k * 0.1), y = sin(a) * (0.5 + k * 0.1), r = 0.11 - k * 0.025;
+      c.save(); c.translate(x, y); c.fillStyle = k ? '#ffe9a6' : '#e8f0ff'; c.beginPath(); c.arc(0, 0, r, 0, TAU); c.fill(); c.globalCompositeOperation = 'destination-out'; c.beginPath(); c.arc(r * 0.45, -r * 0.2, r * 0.85, 0, TAU); c.fill(); c.restore();
+    }
+  } },
+  fireflies: { draw(c, I, t) {
+    c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 8; i++) {
+      const a = hh(i, 1) * TAU + t * (0.4 + hh(i, 2) * 0.5), r = 0.7 + hh(i, 3) * 0.35, x = cos(a) * r, y = sin(a * 1.3) * r * 0.7, bl = 0.5 + 0.5 * sin(t * 4 + i * 2);
+      c.fillStyle = rgba('#d4ff3b', 0.25 * bl); c.beginPath(); c.arc(x, y, 0.12, 0, TAU); c.fill(); c.fillStyle = rgba('#ffffff', 0.9 * bl); c.beginPath(); c.arc(x, y, 0.03, 0, TAU); c.fill();
+    }
+    c.globalCompositeOperation = 'source-over';
+  } }
+});
+
+/* --------------------------------------------------------------- trails */
+const heartAt = (c, x, y, s) => { c.save(); c.translate(x, y); c.scale(s, s); c.beginPath(); c.moveTo(0, 0.56); c.bezierCurveTo(-0.7, 0.1, -0.62, -0.5, -0.26, -0.5); c.bezierCurveTo(-0.1, -0.5, 0, -0.38, 0, -0.28); c.bezierCurveTo(0, -0.38, 0.1, -0.5, 0.26, -0.5); c.bezierCurveTo(0.62, -0.5, 0.7, 0.1, 0, 0.56); c.restore(); };
+const gearAt = (c, x, y, r, a, teeth) => { c.save(); c.translate(x, y); c.rotate(a); c.beginPath(); for (let i = 0; i < teeth * 2; i++) { const aa = i / (teeth * 2) * TAU, rr = i & 1 ? r * 0.76 : r; i ? c.lineTo(cos(aa) * rr, sin(aa) * rr) : c.moveTo(cos(aa) * rr, sin(aa) * rr); } c.closePath(); c.restore(); };
+const polyline = (c, e, off) => { c.beginPath(); for (let i = 0; i < e.n; i++) { const o = off ? off(i) : 0; i ? c.lineTo(e.XS[i], e.YS[i] + o) : c.moveTo(e.XS[i], e.YS[i] + o); } };
+Object.assign(TR, {
+  smoke(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i += 2) { const k = 1 - e.AG[i] / def.life, r = ppt * (0.1 + 0.32 * (1 - k)), x = e.XS[i] + sin(e.AG[i] * 3 + e.SD[i] * 9) * ppt * 0.1, y = e.YS[i] - (1 - k) * ppt * 0.6; c.fillStyle = rgba(e.SD[i] > 0.5 ? def.c1 : def.c2, 0.34 * k); c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill(); }
+  },
+  leaves(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i++) {
+      if (e.SD[i] > 0.4) continue; const k = 1 - e.AG[i] / def.life, s = ppt * (0.1 + 0.1 * e.SD[i]);
+      c.save(); c.translate(e.XS[i] + sin(e.AG[i] * 4 + e.SD[i] * 20) * ppt * 0.2, e.YS[i] + (1 - k) * ppt * 0.7); c.rotate(e.AG[i] * 4 + e.SD[i] * 7); c.globalAlpha = min(1, k * 1.4);
+      c.fillStyle = ink(e, i, k); c.beginPath(); c.moveTo(-s, 0); c.quadraticCurveTo(0, -s * 0.9, s, 0); c.quadraticCurveTo(0, s * 0.9, -s, 0); c.fill();
+      c.strokeStyle = 'rgba(0,0,0,0.3)'; c.lineWidth = max(1, ppt * 0.02); c.beginPath(); c.moveTo(-s, 0); c.lineTo(s * 0.8, 0); c.stroke(); c.restore();
+    }
+    c.globalAlpha = 1;
+  },
+  hearts(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i += 2) {
+      if (e.SD[i] > 0.6) continue; const k = 1 - e.AG[i] / def.life, s = ppt * (0.1 + 0.16 * e.SD[i]) * (0.5 + 0.5 * k);
+      heartAt(c, e.XS[i] + sin(e.AG[i] * 4 + e.SD[i] * 20) * ppt * 0.15, e.YS[i] - (1 - k) * ppt * 0.5, s * 2); c.globalAlpha = min(1, k * 1.3); c.fillStyle = ink(e, i, k); c.fill();
+    }
+    c.globalAlpha = 1;
+  },
+  confetti(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i++) {
+      if (e.SD[i] > 0.5) continue; const k = 1 - e.AG[i] / def.life; c.save(); c.translate(e.XS[i] + (e.SD[i] - 0.25) * ppt * 0.4, e.YS[i] + (1 - k) * ppt * 0.8 + (fr(e.SD[i] * 17) - 0.5) * ppt * 0.4); c.rotate(e.AG[i] * 9 + e.SD[i] * 8); c.scale(1, abs(cos(e.AG[i] * 6 + e.SD[i] * 9)));
+      c.globalAlpha = min(1, k * 1.5); c.fillStyle = ink(e, i, k); const s = ppt * 0.1; c.fillRect(-s, -s * 0.5, s * 2, s); c.restore();
+    }
+    c.globalAlpha = 1;
+  },
+  dashes(c, e) {
+    const { n, ppt, def } = e; c.lineCap = 'round';
+    for (let i = 1; i < n; i++) { if (floor(i / 3) & 1) continue; const k = 1 - e.AG[i] / def.life; c.strokeStyle = rgba(floor(i / 6) & 1 ? def.c1 : def.c2, min(1, k * 1.5)); c.lineWidth = ppt * 0.16 * (0.3 + 0.7 * k); c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1]); c.lineTo(e.XS[i], e.YS[i]); c.stroke(); }
+  },
+  rain(c, e) {
+    const { n, ppt, def } = e; c.lineCap = 'round'; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i++) {
+      if (e.SD[i] > 0.55) continue; const k = 1 - e.AG[i] / def.life, x = e.XS[i] + (fr(e.SD[i] * 9.7) - 0.5) * ppt * 0.5, y = e.YS[i] + (1 - k) * ppt * 1.0 - ppt * 0.2, len = ppt * (0.14 + 0.2 * e.SD[i]);
+      c.strokeStyle = rgba(e.SD[i] > 0.25 ? def.c1 : def.c3, k * 0.9); c.lineWidth = max(1, ppt * 0.035); c.beginPath(); c.moveTo(x, y); c.lineTo(x - len * 0.25, y + len); c.stroke();
+    }
+  },
+  checker(c, e) {
+    const { n, ppt, def } = e, g = ppt * 0.13;
+    for (let i = 0; i < n; i += 2) {
+      const k = 1 - e.AG[i] / def.life, cx = floor(e.XS[i] / g);
+      for (let r = -2; r <= 1; r++) { c.fillStyle = rgba(((cx + r) & 1) ? def.c1 : def.c2, min(1, k * 1.6)); c.fillRect(cx * g, floor(e.YS[i] / g) * g + r * g, g, g); }
+    }
+  },
+  arrows(c, e) {
+    const { n, ppt, def } = e; c.lineCap = 'round'; c.lineJoin = 'round'; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i += 4) { const k = 1 - e.AG[i] / def.life, s = ppt * 0.2 * (0.6 + 0.6 * k); c.strokeStyle = rgba(i % 8 ? def.c1 : def.c2, k); c.lineWidth = max(1.5, ppt * 0.07 * k); c.beginPath(); c.moveTo(e.XS[i] - s, e.YS[i] - s); c.lineTo(e.XS[i], e.YS[i]); c.lineTo(e.XS[i] - s, e.YS[i] + s); c.stroke(); }
+  },
+  orbs(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i += 2) {
+      if (e.SD[i] > 0.6) continue; const k = 1 - e.AG[i] / def.life, bl = 0.5 + 0.5 * sin(t * 6 + e.SD[i] * 30), x = e.XS[i] + sin(e.AG[i] * 2 + e.SD[i] * 9) * ppt * 0.3, y = e.YS[i] + cos(e.AG[i] * 2.4 + e.SD[i] * 7) * ppt * 0.25 - (1 - k) * ppt * 0.2, r = ppt * (0.05 + 0.1 * e.SD[i]);
+      c.fillStyle = rgba(ink(e, i, k), 0.55 * k * bl); c.beginPath(); c.arc(x, y, r * 2.4, 0, TAU); c.fill(); c.fillStyle = rgba('#ffffff', 0.9 * k * bl); c.beginPath(); c.arc(x, y, r * 0.5, 0, TAU); c.fill();
+    }
+  },
+  bars(c, e) {
+    const { n, ppt, def, t } = e; c.lineCap = 'round';
+    for (let i = 0; i < n; i += 3) { const k = 1 - e.AG[i] / def.life, h = ppt * (0.15 + 0.7 * abs(sin(t * 7 + i * 0.9 + e.SD[i] * 6))) * (0.4 + 0.6 * k); c.strokeStyle = rgba([def.c1, def.c2, def.c3][floor(i / 3) % 3], k); c.lineWidth = max(2, ppt * 0.1); c.beginPath(); c.moveTo(e.XS[i], e.YS[i] + h / 2); c.lineTo(e.XS[i], e.YS[i] - h / 2); c.stroke(); }
+  },
+  ribbon(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter'; c.lineCap = 'round';
+    for (let r = 0; r < 2; r++) for (let i = 1; i < n; i++) {
+      const k = 1 - e.AG[i] / def.life, o0 = sin(t * 7 - (i - 1) * 0.28 + r * PI) * ppt * 0.3 * (0.3 + 0.7 * k), o1 = sin(t * 7 - i * 0.28 + r * PI) * ppt * 0.3 * (0.3 + 0.7 * k);
+      c.strokeStyle = rgba(e.rainbow ? hsl(t * 0.5 - e.AG[i] + r * 0.4, 1, 0.6) : (r ? def.c2 : def.c1), min(1, k * 1.4) * 0.9); c.lineWidth = ppt * 0.2 * (0.2 + 0.8 * k); c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1] + o0); c.lineTo(e.XS[i], e.YS[i] + o1); c.stroke();
+    }
+  },
+  zigzag(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter'; c.lineJoin = 'miter'; c.lineCap = 'round';
+    for (const pass of [0, 1]) { polyline(c, e, i => ((i % 6 < 3 ? 1 : -1) * (i % 3 + 1) * ppt * 0.07) * (0.4 + 0.6 * (1 - e.AG[i] / def.life))); c.strokeStyle = pass ? rgba('#ffffff', 0.95) : rgba(def.c1, 0.45); c.lineWidth = pass ? max(1.5, ppt * 0.05) : ppt * 0.2; c.stroke(); }
+  },
+  shards(c, e) {
+    const { n, ppt, def } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i++) {
+      if (e.SD[i] > 0.35) continue; const k = 1 - e.AG[i] / def.life, s = ppt * (0.07 + 0.09 * e.SD[i]), x = e.XS[i] + (e.SD[i] - 0.2) * ppt * 0.6, y = e.YS[i] + (1 - k) * ppt * 0.5 + (fr(e.SD[i] * 13) - 0.5) * ppt * 0.4;
+      c.save(); c.translate(x, y); c.rotate(e.SD[i] * 20 + e.AG[i] * 3); c.beginPath(); c.moveTo(0, -s * 1.6); c.lineTo(s, 0); c.lineTo(0, s * 1.6); c.lineTo(-s, 0); c.closePath(); c.fillStyle = rgba(ink(e, i, k), 0.65 * k); c.fill(); c.strokeStyle = rgba('#ffffff', 0.8 * k); c.lineWidth = max(1, ppt * 0.02); c.stroke(); c.restore();
+    }
+  },
+  embers(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i++) {
+      if (e.SD[i] > 0.6) continue; const k = 1 - e.AG[i] / def.life, x = e.XS[i] + sin(e.AG[i] * 5 + e.SD[i] * 20) * ppt * 0.14, y = e.YS[i] - (1 - k) * ppt * (0.5 + e.SD[i] * 0.6), r = ppt * (0.025 + 0.05 * e.SD[i]) * (0.4 + 0.6 * k), fl = 0.6 + 0.4 * sin(t * 30 + e.SD[i] * 50);
+      c.fillStyle = rgba(k > 0.5 ? def.c1 : def.c2, k * fl); c.beginPath(); c.arc(x, y, r * 1.5, 0, TAU); c.fill(); c.fillStyle = rgba(def.c3, 0.35 * k); c.beginPath(); c.arc(x, y, r * 3, 0, TAU); c.fill();
+    }
+  },
+  paint(c, e) {
+    const { n, ppt, def, t } = e; c.lineCap = 'round';
+    for (let i = 1; i < n; i++) { const k = 1 - e.AG[i] / def.life; c.strokeStyle = e.rainbow ? hsl(t * 0.3 + i * 0.01, 0.9, 0.6) : [def.c1, def.c2, def.c3][floor(i / 12) % 3]; c.globalAlpha = min(1, k * 1.5); c.lineWidth = ppt * 0.42 * pow(k, 0.8); c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1]); c.lineTo(e.XS[i], e.YS[i]); c.stroke(); }
+    for (let i = 0; i < n; i += 5) { if (e.SD[i] > 0.5) continue; const k = 1 - e.AG[i] / def.life; c.globalAlpha = k; c.fillStyle = [def.c1, def.c2, def.c3][floor(i / 12) % 3]; c.beginPath(); c.arc(e.XS[i] + (e.SD[i] - 0.25) * ppt * 1.2, e.YS[i] + (fr(e.SD[i] * 11) - 0.5) * ppt * 0.9, ppt * 0.04 * (0.4 + k), 0, TAU); c.fill(); }
+    c.globalAlpha = 1;
+  },
+  stars(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i += 2) {
+      if (e.SD[i] > 0.65) continue; const k = 1 - e.AG[i] / def.life, r = ppt * (0.08 + 0.13 * e.SD[i]) * (0.4 + 0.6 * k);
+      c.save(); c.translate(e.XS[i] + (e.SD[i] - 0.3) * ppt * 0.3, e.YS[i] + (fr(e.SD[i] * 9) - 0.5) * ppt * 0.5); c.rotate(e.AG[i] * 4 + e.SD[i] * 6); c.beginPath(); spk(c, 5, r, r * 0.45, -PI / 2); c.fillStyle = rgba(ink(e, i, k), k * 0.95); c.fill(); c.restore();
+    }
+  },
+  gears(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i += 4) {
+      if (e.SD[i] > 0.7) continue; const k = 1 - e.AG[i] / def.life, r = ppt * (0.1 + 0.1 * e.SD[i]); gearAt(c, e.XS[i], e.YS[i] + (fr(e.SD[i] * 7) - 0.5) * ppt * 0.5, r, e.AG[i] * (e.SD[i] > 0.4 ? -4 : 4), 8);
+      c.globalAlpha = min(1, k * 1.5); c.fillStyle = ink(e, i, k); c.fill(); c.lineWidth = max(1, ppt * 0.025); c.strokeStyle = 'rgba(0,0,0,0.55)'; c.stroke(); c.fillStyle = 'rgba(20,16,42,0.7)'; c.beginPath(); c.arc(e.XS[i], e.YS[i] + (fr(e.SD[i] * 7) - 0.5) * ppt * 0.5, r * 0.3, 0, TAU); c.fill();
+    }
+    c.globalAlpha = 1;
+  },
+  chain(c, e) {
+    const { n, ppt, def } = e; c.lineWidth = max(2, ppt * 0.06);
+    for (let i = 0; i < n; i += 3) { const k = 1 - e.AG[i] / def.life, j = floor(i / 3) & 1; c.strokeStyle = rgba(j ? def.c1 : def.c2, min(1, k * 1.5)); c.beginPath(); c.ellipse(e.XS[i], e.YS[i], ppt * (j ? 0.12 : 0.07), ppt * (j ? 0.07 : 0.12), 0, 0, TAU); c.stroke(); }
+  },
+  shuriken(c, e) {
+    const { n, ppt, def } = e;
+    for (let i = 0; i < n; i += 3) {
+      if (e.SD[i] > 0.7) continue; const k = 1 - e.AG[i] / def.life, r = ppt * (0.12 + 0.1 * e.SD[i]);
+      c.save(); c.translate(e.XS[i], e.YS[i] + (fr(e.SD[i] * 9) - 0.5) * ppt * 0.6); c.rotate(e.AG[i] * 14); c.beginPath(); spk(c, 4, r, r * 0.3, 0); c.globalAlpha = min(1, k * 1.5); c.fillStyle = def.c1; c.fill(); c.lineWidth = max(1, ppt * 0.02); c.strokeStyle = def.c3; c.stroke(); c.fillStyle = def.c2; c.beginPath(); c.arc(0, 0, r * 0.18, 0, TAU); c.fill(); c.restore();
+    }
+    c.globalAlpha = 1;
+  },
+  frost(c, e) {
+    const { n, ppt, def } = e; c.lineCap = 'round';
+    for (let i = 0; i < n; i += 4) {
+      if (e.SD[i] > 0.6) continue; const k = 1 - e.AG[i] / def.life, r = ppt * (0.1 + 0.14 * e.SD[i]) * (0.5 + 0.5 * k), x = e.XS[i], y = e.YS[i] + (fr(e.SD[i] * 9) - 0.5) * ppt * 0.5 + (1 - k) * ppt * 0.4;
+      c.save(); c.translate(x, y); c.rotate(e.AG[i] * 1.5 + e.SD[i] * 5); c.strokeStyle = rgba(e.SD[i] > 0.3 ? def.c1 : def.c3, k); c.lineWidth = max(1, ppt * 0.03); c.beginPath();
+      for (let a = 0; a < 6; a++) { const ca = a * PI / 3, dx = cos(ca), dy = sin(ca); c.moveTo(0, 0); c.lineTo(dx * r, dy * r); c.moveTo(dx * r * 0.6, dy * r * 0.6); c.lineTo(cos(ca + 0.6) * r * 0.85, sin(ca + 0.6) * r * 0.85); c.moveTo(dx * r * 0.6, dy * r * 0.6); c.lineTo(cos(ca - 0.6) * r * 0.85, sin(ca - 0.6) * r * 0.85); }
+      c.stroke(); c.restore();
+    }
+  },
+  vortex(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i++) {
+      const k = 1 - e.AG[i] / def.life, a = e.AG[i] * 11 + e.SD[i] * 6.28 * (i & 1), r = ppt * (0.08 + 0.5 * (1 - k)) * (0.6 + 0.4 * e.SD[i]);
+      c.fillStyle = rgba(e.rainbow ? hsl(t * 0.6 - e.AG[i] * 1.2, 1, 0.65) : [def.c1, def.c2, def.c3][i % 3], k * 0.9); const s = ppt * (0.03 + 0.04 * k); c.fillRect(e.XS[i] + cos(a) * r * 0.5, e.YS[i] + sin(a) * r, s * 2, s * 2);
+    }
+  },
+  slash(c, e) {
+    const { n, ppt, def } = e; c.lineCap = 'round'; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i += 6) {
+      const k = 1 - e.AG[i] / def.life, r = ppt * (0.25 + 0.3 * (1 - k)); c.strokeStyle = rgba(i % 12 ? def.c1 : def.c2, k * 0.9); c.lineWidth = max(1.5, ppt * 0.08 * k);
+      c.beginPath(); c.arc(e.XS[i] + r * 0.6, e.YS[i], r, PI * 0.62, PI * 1.38); c.stroke(); c.strokeStyle = rgba('#ffffff', k * 0.8); c.lineWidth = max(1, ppt * 0.025); c.beginPath(); c.arc(e.XS[i] + r * 0.6, e.YS[i], r, PI * 0.7, PI * 1.3); c.stroke();
+    }
+  },
+  prism(c, e) {
+    const { n, ppt, def } = e; c.globalCompositeOperation = 'lighter'; c.lineCap = 'round';
+    for (const [o, col] of [[-1, def.c1], [0, def.c2], [1, def.c3]]) for (let i = 1; i < n; i++) {
+      const k = 1 - e.AG[i] / def.life, sp = (1 - k) * ppt * 0.5 * o + o * ppt * 0.06; c.strokeStyle = e.rainbow ? hsl(0.55 + o * 0.25 + e.t * 0.3, 1, 0.6) : rgba(col, min(1, k * 1.4) * 0.85); c.lineWidth = ppt * 0.1 * (0.3 + 0.7 * k);
+      c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1] + (1 - (1 - e.AG[i - 1] / def.life)) * ppt * 0.5 * o + o * ppt * 0.06); c.lineTo(e.XS[i], e.YS[i] + sp); c.stroke();
+    }
+    c.strokeStyle = 'rgba(255,255,255,0.75)'; c.lineWidth = max(1, ppt * 0.04); polyline(c, e); c.stroke();
+  },
+  bats(c, e) {
+    const { n, ppt, def, t } = e;
+    for (let i = 0; i < n; i += 6) {
+      if (e.SD[i] > 0.75) continue; const k = 1 - e.AG[i] / def.life, s = ppt * (0.16 + 0.12 * e.SD[i]), fl = sin(t * 14 + e.SD[i] * 20), x = e.XS[i], y = e.YS[i] + (fr(e.SD[i] * 9) - 0.5) * ppt * 0.7 - (1 - k) * ppt * 0.2;
+      c.save(); c.translate(x, y); c.globalAlpha = min(1, k * 1.6); c.fillStyle = e.SD[i] > 0.3 ? def.c1 : def.c2;
+      c.beginPath(); c.moveTo(0, -s * 0.2); c.quadraticCurveTo(-s * 0.5, -s * (0.9 + 0.5 * fl), -s * 1.5, -s * 0.2 * fl); c.quadraticCurveTo(-s * 1.0, s * 0.1, -s * 0.7, s * 0.25); c.quadraticCurveTo(-s * 0.4, 0, 0, s * 0.3); c.quadraticCurveTo(s * 0.4, 0, s * 0.7, s * 0.25); c.quadraticCurveTo(s * 1.0, s * 0.1, s * 1.5, -s * 0.2 * fl); c.quadraticCurveTo(s * 0.5, -s * (0.9 + 0.5 * fl), 0, -s * 0.2); c.fill();
+      c.fillStyle = def.c3; c.fillRect(-s * 0.18, -s * 0.08, s * 0.1, s * 0.1); c.fillRect(s * 0.08, -s * 0.08, s * 0.1, s * 0.1); c.restore();
+    }
+    c.globalAlpha = 1;
+  },
+  runes(c, e) {
+    const { n, ppt, def } = e; c.globalCompositeOperation = 'lighter'; c.lineCap = 'round';
+    for (let i = 0; i < n; i += 5) {
+      const k = 1 - e.AG[i] / def.life, g = floor(e.SD[i] * 6), s = ppt * 0.13, x = e.XS[i], y = e.YS[i] - (1 - k) * ppt * 0.5 + (fr(e.SD[i] * 9) - 0.5) * ppt * 0.6;
+      c.strokeStyle = rgba(g & 1 ? def.c1 : def.c2, k); c.lineWidth = max(1.5, ppt * 0.045); c.beginPath();
+      if (g === 0) { c.moveTo(x, y - s); c.lineTo(x, y + s); c.moveTo(x, y - s * 0.2); c.lineTo(x + s, y - s); }
+      else if (g === 1) { c.moveTo(x - s, y - s); c.lineTo(x + s, y); c.lineTo(x - s, y + s); }
+      else if (g === 2) { c.moveTo(x - s, y + s); c.lineTo(x, y - s); c.lineTo(x + s, y + s); c.moveTo(x - s * 0.5, y + s * 0.2); c.lineTo(x + s * 0.5, y + s * 0.2); }
+      else if (g === 3) { c.moveTo(x - s, y - s); c.lineTo(x + s, y + s); c.moveTo(x + s, y - s); c.lineTo(x - s, y + s); }
+      else if (g === 4) { c.moveTo(x - s, y); c.lineTo(x + s, y); c.moveTo(x, y - s); c.lineTo(x, y + s); c.arc(x, y, s * 0.7, 0, TAU); }
+      else { c.moveTo(x + s * 0.6, y - s); c.lineTo(x - s * 0.6, y); c.lineTo(x + s * 0.6, y + s); c.moveTo(x - s * 0.6, y - s); c.lineTo(x - s * 0.6, y + s); }
+      c.stroke();
+    }
+  },
+  plasma(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < n; i += 2) {
+      const k = 1 - e.AG[i] / def.life, r = ppt * (0.14 + 0.2 * k), x = e.XS[i] + sin(t * 3 + i * 0.5) * ppt * 0.1, y = e.YS[i] + cos(t * 2.6 + i * 0.4) * ppt * 0.12, col = [def.c1, def.c2, def.c3][(i >> 1) % 3];
+      const g = c.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, rgba(col, 0.55 * k)); g.addColorStop(1, rgba(col, 0)); c.fillStyle = g; c.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+  },
+  beam(c, e) {
+    const { n, ppt, def, t } = e; c.globalCompositeOperation = 'lighter'; c.lineCap = 'round'; c.lineJoin = 'round';
+    for (const [w, a, col] of [[0.3, 0.2, def.c3], [0.18, 0.4, def.c1], [0.08, 0.9, def.c2]]) {
+      for (let i = 1; i < n; i++) { const k = 1 - e.AG[i] / def.life; if (e.rainbow) { c.globalAlpha = a * min(1, k * 1.3) * 0.8; c.strokeStyle = hsl(t * 0.5 - e.AG[i] * 1.2, 1, 0.55); } else c.strokeStyle = rgba(col, a * min(1, k * 1.3)); c.lineWidth = ppt * w * (0.15 + 0.85 * k); c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1]); c.lineTo(e.XS[i], e.YS[i]); c.stroke(); }
+    }
+    c.globalAlpha = 1; c.strokeStyle = e.rainbow ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.95)'; c.lineWidth = max(1.5, ppt * (e.rainbow ? 0.02 : 0.035)); polyline(c, e); c.stroke();
+  },
+  ink(c, e) {
+    const { n, ppt, def, t } = e; c.lineCap = 'round';
+    for (let i = 1; i < n; i++) { const k = 1 - e.AG[i] / def.life, w = ppt * 0.36 * pow(k, 0.6) * (0.55 + 0.45 * sin(i * 0.35)); c.strokeStyle = rgba(mix(def.c1, def.c2, 1 - k), min(1, k * 1.6)); c.lineWidth = max(1, w); c.beginPath(); c.moveTo(e.XS[i - 1], e.YS[i - 1]); c.lineTo(e.XS[i], e.YS[i]); c.stroke(); }
+    for (let i = 0; i < n; i += 7) { if (e.SD[i] > 0.6) continue; const k = 1 - e.AG[i] / def.life; c.fillStyle = rgba(def.c3, k); c.beginPath(); c.arc(e.XS[i] + (e.SD[i] - 0.3) * ppt * 0.6, e.YS[i] + (1 - k) * ppt * 0.9, ppt * 0.04 * (0.5 + k), 0, TAU); c.fill(); }
+  },
+  wave(c, e) {
+    const { n, ppt, def, t } = e; c.lineCap = 'round'; c.globalCompositeOperation = 'lighter';
+    for (const [ph, col] of [[0, def.c1], [PI * 0.66, def.c2], [PI * 1.33, def.c3]]) {
+      c.beginPath(); for (let i = 0; i < n; i++) { const k = 1 - e.AG[i] / def.life, o = sin(t * 9 - i * 0.4 + ph) * ppt * 0.24 * k; i ? c.lineTo(e.XS[i], e.YS[i] + o) : c.moveTo(e.XS[i], e.YS[i] + o); }
+      c.strokeStyle = rgba(col, 0.9); c.lineWidth = max(1.5, ppt * 0.07); c.stroke();
+    }
+  }
+});
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
+/* Skin crates. Each attempt of a level (not practice, not a race) has a small chance to hide one crate on a stretch of calm ground.
+   Pick it up and you instantly get a random skin from the new collection (odds below; a skin you already own pays back coins).
+   Crate positions are scanned from the level itself, so they can never sit inside or beside a hazard. */
+(function (root) {
+'use strict';
+const SW = root.SW, SH = SW.Shop, { T, K } = SW;
+
+/* chance that an attempt has a crate, by level id (Gauntlet = 100). Harder levels pay out a little better. */
+const CHANCE = { 1: 0.06, 2: 0.07, 3: 0.08, 4: 0.09, 5: 0.10, 6: 0.10, 100: 0.12 };
+/* tier odds, in percent, for an easy and a hard level */
+const ODDS_EASY = { common: 60, rare: 25, epic: 10, legendary: 4, mythic: 1 };
+const ODDS_HARD = { common: 38, rare: 30, epic: 19, legendary: 10, mythic: 3 };
+const HARD = { 4: 1, 5: 1, 6: 1, 100: 1 };
+const DUP = { common: 100, rare: 200, epic: 300, legendary: 450, mythic: 600 };   // coins for a skin you already own: always less than it costs
+const oddsFor = L => (HARD[L.id] ? ODDS_HARD : ODDS_EASY);
+const chanceFor = L => CHANCE[L.id] || 0;
+
+function modeAt(L, x) {
+  let mode = 0, g = 1;
+  for (const o of L.objs) { if (o.hx0 >= x) break; if (o.t === T.PORTAL) { if (o.kind === K.MODE) { mode = o.val; g = 1; } else if (o.kind === K.GRAV) g = o.val; } }
+  return mode === 0 && g === 1;
+}
+/* Calm ground: cube mode, normal gravity, flat floor, headroom, and nothing at all (blocks, spikes, saws, pads, orbs, portals, coins, moving hazards)
+   in the 5 tiles before the crate and the 3 after it, so a runner who simply keeps going, or hops, passes through the pickup box. */
+function calm(L, x, back, fwd, band) {
+  if (!modeAt(L, x - back) || !modeAt(L, x + fwd)) return false;
+  const b0 = SW.boundsAt(L, x - back), b1 = SW.boundsAt(L, x + fwd), bm = SW.boundsAt(L, x);
+  if (b0.floor !== bm.floor || b1.floor !== bm.floor || bm.ceil - bm.floor < band + 0.5) return false;
+  for (const o of L.objs) { if (o.hx0 > x + fwd) break; if (o.hx1 > x - back && o.hy1 > bm.floor - 0.2 && o.hy0 < bm.floor + band) return false; }
+  return true;
+}
+/* up to 10 slots spread over the middle of the level: in each tenth, the middle of the longest calm stretch */
+function slots(L) {
+  if (L.crates) return L.crates;
+  const out = [], lo = L.length * 0.1, hi = L.length * 0.94, N = 10, w = (hi - lo) / N;
+  for (let k = 0; k < N; k++) {
+    let best = null, run = null; const a = lo + k * w, b = a + w;
+    const close = () => { if (run && (!best || run[1] - run[0] > best[1] - best[0])) best = run; run = null; };
+    for (let x = a; x < b; x += 0.5) { if (calm(L, x, 5, 3, 6.5)) { if (run) run[1] = x; else run = [x, x]; } else close(); }
+    close();
+    if (!best) continue;
+    const x = Math.round((best[0] + best[1]) / 2 * 2) / 2, fl = SW.boundsAt(L, x).floor;
+    if (out.length && x - out[out.length - 1].x < 12) continue;
+    out.push({ x, y: fl + 1.15, x0: x - 0.75, x1: x + 0.75, y0: fl - 0.1, y1: fl + 3.4, fl });
+  }
+  L.crates = out; return out;
+}
+/* roll for one attempt: the index of the crate slot, or -1. r() returns [0,1). */
+function roll(L, r) {
+  r = r || Math.random;
+  const c = slots(L); if (!c.length || r() >= chanceFor(L)) return -1;
+  return Math.min(c.length - 1, Math.floor(r() * c.length));
+}
+/* the skin pool is the 50 new skins; a tier is drawn by the odds, then an unowned skin of that tier if there is one */
+function pick(L, r, own) {
+  r = r || Math.random;
+  const pool = SH.NEW_ICONS, od = oddsFor(L); let total = 0;
+  for (const t in od) if (pool.some(x => x.tier === t)) total += od[t];
+  let p = r() * total, tier = 'common';
+  for (const t in od) { if (!pool.some(x => x.tier === t)) continue; tier = t; if (p < od[t]) break; p -= od[t]; }
+  const all = pool.filter(x => x.tier === tier), fresh = all.filter(x => !(own && own[x.id])), from = fresh.length ? fresh : all;
+  const skin = from[Math.min(from.length - 1, Math.floor(r() * from.length))], dup = !!(own && own[skin.id]);
+  return { skin, dup, coins: dup ? DUP[tier] : 0 };
+}
+/* what a player sees: the odds of each tier for one level, as whole percentages of the crates that drop */
+function odds(L) { const od = oddsFor(L), t = Object.keys(od).reduce((a, k) => a + od[k], 0), o = {}; for (const k in od) o[k] = od[k] / t * 100; return o; }
+
+SW.Drops = { CHANCE, ODDS_EASY, ODDS_HARD, DUP, chanceFor, oddsFor, odds, slots, roll, pick, calm };
+if (typeof module !== 'undefined' && module.exports) module.exports = SW.Drops;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
@@ -4008,8 +4754,8 @@ const MP = {
     const out = [];
     for (const p of peers) {
       const lb = p.presence && p.presence.lb; if (!lb || typeof lb.c !== 'string' || !/^[A-Z]{4}$/.test(lb.c)) continue;
-      const rl = SW.Wager ? SW.Wager.rules(lb) : { ty: 'full', tl: 0, ec: 0, eg: 0 };
-      out.push({ code: lb.c, host: MP.cleanNick(lb.h) || 'Host', lv: lb.lv, n: Math.max(1, Math.min(MP.MAX, lb.n | 0)), st: lb.st === 'race' ? 'race' : 'open', mine: !!p.isMe, peer: p.peer, ty: rl.ty, tl: rl.tl, ec: rl.ec, eg: rl.eg, w: Math.max(0, Math.min(99, lb.w | 0)) });
+      const rl = SW.Wager ? SW.Wager.rules(lb) : { ty: 'full', tl: 0, ec: 0, eg: 0, ek: '', et: '' };
+      out.push({ code: lb.c, host: MP.cleanNick(lb.h) || 'Host', lv: lb.lv, n: Math.max(1, Math.min(MP.MAX, lb.n | 0)), st: lb.st === 'race' ? 'race' : 'open', mine: !!p.isMe, peer: p.peer, ty: rl.ty, tl: rl.tl, ec: rl.ec, eg: rl.eg, ek: rl.ek, et: rl.et, w: Math.max(0, Math.min(99, lb.w | 0)) });
     }
     out.sort((a, b) => (a.st === 'open' ? 0 : 1) - (b.st === 'open' ? 0 : 1) || b.n - a.n || (a.code < b.code ? -1 : 1));
     return out;
@@ -4071,6 +4817,138 @@ if (typeof module !== 'undefined' && module.exports) module.exports = MP;
 
 </script>
 <script>
+/* Syncwave real-time racing helpers (no DOM, runs in Node for the tests).
+
+   SURGE: a racer can spend a meter to run the whole world faster for a few seconds (the simulation is stepped
+   SURGE.SCALE times as fast in real time). The level is identical, so it stays beatable; you just have less time to react.
+   That is what lets a racer who is behind catch up and pass.
+
+   GHOST: every other racer is drawn by running the real game physics for them. Each racer sends a small snapshot of
+   their state about every 45 ms (and straight away when they press or release). The receiver rebuilds the simulation
+   state from it, plays it forward by how old it is (measured on the shared server clock), and keeps stepping it every
+   frame with the last known input. A new snapshot replaces the prediction, and the small difference is eased out
+   instead of jumping. So a ghost jumps, lands, rides pads and falls the way the real racer does between updates. */
+(function (root) {
+'use strict';
+const SW = root.SW = root.SW || {};
+
+const SURGE = {
+  SCALE: 1.3,        // how much faster the world runs while surging
+  DRAIN: 0.25,       // meter per second while surging (a full meter lasts 4 s)
+  REGEN: 0.07,       // meter per second otherwise (about 14 s to fill)
+  START: 1,          // the meter at the start of a race
+  MIN: 0.12,         // the least meter you need to start a surge
+  EASE: 9,           // how fast the speed glides to its target (per second)
+  fresh() { return { on: false, m: SURGE.START, sc: 1 }; },
+  /* press the button: returns whether surge is now on */
+  toggle(st) { if (st.on) st.on = false; else if (st.m >= SURGE.MIN) st.on = true; return st.on; },
+  /* advance by real seconds dt; returns the time-scale to run the simulation with this frame */
+  tick(st, dt) {
+    if (st.on) { st.m -= SURGE.DRAIN * dt; if (st.m <= 0) { st.m = 0; st.on = false; } }
+    else st.m = Math.min(1, st.m + SURGE.REGEN * dt);
+    st.sc += ((st.on ? SURGE.SCALE : 1) - st.sc) * Math.min(1, dt * SURGE.EASE);
+    if (!st.on && Math.abs(st.sc - 1) < 0.002) st.sc = 1;
+    return st.sc;
+  }
+};
+
+const GHOST = {
+  MAX_AGE: 0.6,      // a snapshot older than this is not extrapolated further (seconds)
+  SMOOTH: 11,        // how quickly a correction is eased out (per second)
+  SNAP: 3.5,         // a correction bigger than this many tiles just jumps
+  IDLE: 1.0,         // seconds without a snapshot before the ghost stops running on its own
+  JUMP_X: 9,         // a snapshot this far from the prediction rebuilds the ghost
+  make() { return { s: null, at: -1, frozen: false, idle: 0, held: false, sc: 1, tgt: 1, acc: 0, ox: 0, oy: 0, x: 0, y: 0, r: 0, vy: 0, m: 0, mi: 0, g: 1, dead: false, stall: false, init: false, sg: false, sx: 0 }; },
+
+  /* the simulation state a snapshot describes. old = the ghost's current state, used to remember which objects it already passed */
+  build(L, q, old) {
+    const s = SW.createState(L, { x: +q.x || 0, y: +q.y || 0, mode: q.m | 0, spd: q.sp === undefined ? 1 : (q.sp | 0) });
+    s.cr = -1; s.vy = +q.vy || 0; s.gdir = q.g < 0 ? -1 : 1; s.mini = q.mi ? 1 : 0; SW.setDims(s);
+    s.t = +q.tm || 0; s.grounded = !!q.gr; s.on = q.on === undefined ? -1 : (q.on | 0);
+    s.prevHeld = !!q.h; s.pressAge = q.h ? 0.05 : 9; s.buf = 0; s.coyote = 0;
+    /* objects that are behind it were used already; a pad or a portal it is touching right now was triggered when it got there */
+    const used = [], objs = L.objs, x = s.x, hw = s.hw, hh = s.hh;
+    if (old && old.used) for (const id of old.used) { const o = objs[id]; if (o && o.hx1 <= x - 0.05) used.push(id); }
+    const c0 = Math.max(0, Math.floor(x - 3)), c1 = Math.floor(x + 2);
+    for (let c = c0; c <= c1; c++) {
+      const col = L.cols[c]; if (!col) continue;
+      for (const o of col) {
+        if (o.t !== SW.T.PAD && o.t !== SW.T.PORTAL && o.t !== SW.T.COIN) continue;
+        if (used.indexOf(o.id) >= 0) continue;
+        if (o.hx1 <= x - 0.05 || (x - hw < o.hx1 && x + hw > o.hx0 && s.y - hh < o.hy1 && s.y + hh > o.hy0)) used.push(o.id);
+      }
+    }
+    s.used = used;
+    return s;
+  },
+  /* step a state n times with a held input. Stops (and says so) rather than dying: the prediction is only ever a guess */
+  advance(L, s, held, n) {
+    for (let i = 0; i < n; i++) { SW.step(L, s, held, null); if (s.dead || s.win) return false; }
+    return true;
+  },
+  /* a new snapshot q arrived and is `age` seconds old. Returns 'died' the first time a racer is seen dead, otherwise '' */
+  feed(gh, L, q, age) {
+    gh.frozen = q.fz === 1; gh.idle = 0;                                        // finished, out of lives or time up: they are not moving, so neither is the ghost
+    age = gh.frozen ? 0 : (age > 0 ? (age < GHOST.MAX_AGE ? age : GHOST.MAX_AGE) : 0);
+    const scale = q.sg ? SURGE.SCALE : 1;
+    gh.tgt = scale; gh.held = !!q.h; gh.sg = !!q.sg;
+    let ev = '';
+    if (q.d) {
+      if (!gh.dead) ev = 'died';
+      gh.dead = true; gh.at = q.at; gh.s = null; gh.x = +q.x || 0; gh.y = +q.y || 0; gh.ox = gh.oy = 0; gh.init = true; gh.m = q.m | 0; gh.mi = q.mi ? 1 : 0; gh.g = q.g < 0 ? -1 : 1; gh.vy = +q.vy || 0;
+      return ev;
+    }
+    const fresh = !gh.s || gh.dead || q.at !== gh.at;
+    const base = GHOST.build(L, q, fresh ? null : gh.s);
+    const n = Math.round(age * 240 * scale);
+    GHOST.advance(L, base, gh.held, n);
+    if (base.dead || base.win) { base.dead = false; base.win = false; }       // it would have died in the guess; hold the snapshot instead
+    if (fresh || Math.abs(base.x - gh.s.x) > GHOST.JUMP_X) { gh.ox = gh.oy = 0; gh.sc = scale; gh.acc = 0; gh.r = 0; }
+    else {
+      gh.ox += gh.s.x - base.x; gh.oy += gh.s.y - base.y;                     // what you see stays where it was; the error fades
+      if (Math.abs(gh.ox) > GHOST.SNAP || Math.abs(gh.oy) > GHOST.SNAP) { gh.ox = gh.oy = 0; }
+    }
+    gh.s = base; gh.at = q.at; gh.dead = false; gh.stall = false; gh.init = true;
+    GHOST.sync(gh);
+    return ev;
+  },
+  sync(gh) {
+    const s = gh.s; if (!s) return;
+    gh.x = s.x + gh.ox; gh.y = s.y + gh.oy; gh.vy = s.vy; gh.m = s.mode; gh.mi = s.mini; gh.g = s.gdir;
+  },
+  /* one rendered frame (dt real seconds): keep the physics running, ease the correction away, turn the icon */
+  step(gh, L, dt) {
+    if (!gh.s || gh.dead) return;
+    gh.sc += (gh.tgt - gh.sc) * Math.min(1, dt * SURGE.EASE);
+    const k = Math.exp(-dt * GHOST.SMOOTH); gh.ox *= k; gh.oy *= k; if (Math.abs(gh.ox) < 1e-3) gh.ox = 0; if (Math.abs(gh.oy) < 1e-3) gh.oy = 0;
+    gh.idle += dt;
+    if (!gh.stall && !gh.frozen && gh.idle < GHOST.IDLE) {                      // no news for a second: the racer is probably gone quiet, so stop guessing
+      gh.acc += Math.min(dt, 0.1) * gh.sc;
+      const keep = SW.clone(gh.s); let n = 0;
+      while (gh.acc >= SW.DT && n < 48) {
+        SW.step(L, gh.s, gh.held, null); gh.acc -= SW.DT; n++;
+        if (gh.s.dead || gh.s.win) { if (gh.s.dead) { gh.s = keep; gh.stall = true; } gh.acc = 0; break; }       // wait for the next snapshot rather than guess a death
+      }
+    }
+    GHOST.sync(gh);
+    const s = gh.s;                                                                      // the same turning rules as the player's own icon
+    if (s.mode === 0) { if (!s.grounded) gh.r += (s.gdir > 0 ? 1 : -1) * 7.6 * dt; else { const q = Math.PI / 2; gh.r += (Math.round(gh.r / q) * q - gh.r) * Math.min(1, dt * 24); } }
+    else if (s.mode === 2) gh.r += (s.gdir > 0 ? 1 : -1) * SW.BASE * SW.SPEEDS[s.spd] * dt / 0.5;
+    else gh.r += (0 - gh.r) * Math.min(1, dt * 10);
+  },
+  /* the snapshot a racer sends about themselves. Whole numbers where they can be, to keep the message small */
+  pack(s, held, surging, attempt, dead, serverMs) {
+    const r2 = v => Math.round(v * 100) / 100;
+    return { x: r2(s.x), y: r2(s.y), vy: r2(s.vy), m: s.mode, mi: s.mini ? 1 : 0, g: s.gdir, sp: s.spd, gr: s.grounded ? 1 : 0, on: s.on, h: held ? 1 : 0, sg: surging ? 1 : 0, tm: Math.round(s.t * 1000) / 1000, at: attempt, d: dead ? 1 : 0, ts: Math.round(serverMs) };
+  }
+};
+
+SW.Surge = SURGE; SW.Ghost = GHOST;
+if (typeof module !== 'undefined' && module.exports) module.exports = { SURGE, GHOST };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+
+</script>
+<script>
 /* Syncwave race rules and wagers. Pure functions (no DOM, no Firebase) so every rule can be unit-tested in Node.
 
    Three race types:
@@ -4081,7 +4959,10 @@ if (typeof module !== 'undefined' && module.exports) module.exports = MP;
    Money: the host sets an entry fee in coins, gems or both (or none: a free race). Every racer pays it and the winner
    takes the pot. Anyone who is not racing can watch and bet coins and/or gems on a racer; bettors who backed the winner
    share the betting pool in proportion to their stake. A race with no valid winner is void and everything is returned.
-   Each player's own device moves its own coins (see game.js); nothing here touches a wallet. */
+   The host can also ask every racer to put up one skin or one trail of a chosen tier. The winner takes every staked item (a ties
+   deals them out in turn), and spectators can bet an item too: bettors who backed the winner keep their own item and share the
+   items the losing bettors put in. Items you win that you already own pay back coins instead (game.js).
+   Each player's own device moves its own coins and items (see game.js); nothing here touches a wallet or a collection. */
 (function (root) {
 'use strict';
 const SW = root.SW = root.SW || {};
@@ -4091,6 +4972,7 @@ const W = {
   COINS: [0, 25, 50, 100, 250, 500, 1000], GEMS: [0, 1, 2, 5, 10],
   BET_COINS: [0, 10, 25, 50, 100, 250, 500, 1000], BET_GEMS: [0, 1, 2, 5, 10],
   MAX_COINS: 100000, MAX_GEMS: 1000, MAX_BETS: 40, MAX_WATCH: 20,
+  TIERS: ['common', 'rare', 'epic', 'legendary', 'mythic'],
   CAP: { timed: 0, lives: 420, full: 420 },         // seconds after which a race with no result is called (timed uses its own clock)
   TYPES: {
     timed: { id: 'timed', name: 'Timed', blurb: 'One clock for everyone. When it runs out, the most distance wins, and the winner needs at least 50%.' },
@@ -4104,9 +4986,28 @@ const W = {
   rules(o) {
     o = o || {};
     const ty = W.TYPES[o.ty] ? o.ty : 'full', tl = W.int(o.tl || W.DEF_TIME, 10, 600);
-    return { ty, tl: ty === 'timed' ? tl : 0, ec: W.int(o.ec, 0, W.MAX_COINS), eg: W.int(o.eg, 0, W.MAX_GEMS) };
+    const ek = o.ek === 'i' || o.ek === 't' ? o.ek : '', et = ek ? (W.TIERS.includes(o.et) ? o.et : 'common') : '';
+    return { ty, tl: ty === 'timed' ? tl : 0, ec: W.int(o.ec, 0, W.MAX_COINS), eg: W.int(o.eg, 0, W.MAX_GEMS), ek, et };
   },
-  staked(r) { return !!r && ((r.ec | 0) > 0 || (r.eg | 0) > 0); },
+  /* rules as they travel in a lobby's config: no empty item fields */
+  wire(r) { r = W.rules(r); if (!r.ek) { delete r.ek; delete r.et; } return r; },
+  sameRules(a, b) { a = W.rules(a); b = W.rules(b); return a.ty === b.ty && a.tl === b.tl && a.ec === b.ec && a.eg === b.eg && a.ek === b.ek && a.et === b.et; },
+  staked(r) { return !!r && ((r.ec | 0) > 0 || (r.eg | 0) > 0 || !!r.ek); },
+  /* ---- items: a skin is 'i:<id>', a trail is 't:<id>' ---- */
+  itemKey(kind, id) { return kind + ':' + id; },
+  parseKey(k) { const m = typeof k === 'string' && /^([it]):([a-z0-9_]{1,22})$/.exec(k); return m ? { kind: m[1], id: m[2] } : null; },
+  /* cat = { tier(key) -> tier id or '' } : does this key name a real item of the tier the host asked for? */
+  entOk(r, key, cat) { r = W.rules(r); const p = W.parseKey(key); return !!(p && r.ek && p.kind === r.ek && cat.tier(key) === r.et); },
+  /* the frozen entries [[peerId, key], ...] must name one valid item for every racer, nothing else */
+  entsOk(r, ids, ents, cat) {
+    ents = W.list(ents); if (ents.length !== ids.length) return false;
+    const seen = new Set(); for (const e of ents) { if (!Array.isArray(e) || !ids.includes(e[0]) || seen.has(e[0]) || !W.entOk(r, e[1], cat)) return false; seen.add(e[0]); }
+    return true;
+  },
+  /* the stake in words: "50 coins + 2 gems + a Rare skin" (coins and gems as numbers, so the page can add its own icons) */
+  itemText(r) { r = W.rules(r); return r.ek ? 'one ' + r.et + (r.ek === 'i' ? ' skin' : ' trail') : ''; },
+  /* items dealt to the winners in turn, in the order they were put in: item i goes to winner i mod k */
+  deal(keys, win) { const out = {}; for (const w of win) out[w] = []; keys.forEach((k, i) => { if (win.length) out[win[i % win.length]].push(k); }); return out; },
   clock(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); },
   /* one line about the race itself */
   describe(r) {
@@ -4154,39 +5055,49 @@ const W = {
 
   /* ------------------------------------------------------------------ money */
   /* what a racer receives: res = decide() output (or { void: true }); n = racers who paid in */
-  settleEntry(rules, n, res, me) {
-    const r = W.rules(rules);
-    if (res.void) return { c: r.ec, g: r.eg, kind: 'refund' };
+  settleEntry(rules, n, res, me, ents) {
+    const r = W.rules(rules), mine = W.list(ents).find(e => e[0] === me);
+    if (res.void) return { c: r.ec, g: r.eg, items: mine ? [mine[1]] : [], kind: 'refund' };
     const k = res.win.length, i = res.win.indexOf(me);
-    if (i < 0) return { c: 0, g: 0, kind: 'lost' };
+    if (i < 0) return { c: 0, g: 0, items: [], kind: 'lost' };
     const share = pot => Math.floor(pot / k) + (i === 0 ? pot % k : 0);
-    return { c: share(r.ec * n), g: share(r.eg * n), kind: 'won' };
+    return { c: share(r.ec * n), g: share(r.eg * n), items: r.ek ? (W.deal(W.list(ents).map(e => e[1]), res.win)[me] || []) : [], kind: 'won' };
   },
-  /* bets: [[betId, racerId, coins, gems], ...] as frozen by the host when the race started */
+  /* bets: [[betId, racerId, coins, gems, itemKey or ''], ...] as frozen by the host when the race started */
   pools(bets) {
-    const t = { c: 0, g: 0, n: 0, on: {} };
-    for (const b of bets) { t.c += b[2]; t.g += b[3]; t.n++; const o = t.on[b[1]] || (t.on[b[1]] = { c: 0, g: 0, n: 0 }); o.c += b[2]; o.g += b[3]; o.n++; }
+    const t = { c: 0, g: 0, n: 0, i: 0, on: {} };
+    for (const b of bets) { t.c += b[2]; t.g += b[3]; t.n++; if (b[4]) t.i++; const o = t.on[b[1]] || (t.on[b[1]] = { c: 0, g: 0, n: 0, i: 0 }); o.c += b[2]; o.g += b[3]; o.n++; if (b[4]) o.i++; }
     return t;
   },
   /* what one bettor receives. Per currency: winners split what everybody bet, in proportion to their stake; if nobody
      backed the winner with that currency, that currency is handed back to the people who put it in. */
   settleBet(bets, mine, res) {
-    if (res.void) return { c: mine[2], g: mine[3], kind: 'refund' };
+    const myItem = mine[4] || '';
+    if (res.void) return { c: mine[2], g: mine[3], items: myItem ? [myItem] : [], kind: 'refund' };
     const t = W.pools(bets); let wc = 0, wg = 0;
     for (const b of bets) if (res.win.includes(b[1])) { wc += b[2]; wg += b[3]; }
     const backed = res.win.includes(mine[1]);
     const pay = (tot, win, stake) => (win === 0 ? stake : (backed ? Math.floor(tot * stake / win) : 0));
     const c = pay(t.c, wc, mine[2]), g = pay(t.g, wg, mine[3]);
-    return { c, g, kind: backed ? 'won' : (c + g > 0 ? 'back' : 'lost') };
+    /* items: the bettors who backed the winner with an item keep it and get the losing bettors' items dealt to them in bet order;
+       if nobody backed the winner with an item, every item goes back to the one who put it in */
+    const byId = (a, b) => (a[0] < b[0] ? -1 : 1), claim = bets.filter(b => b[4] && res.win.includes(b[1])).sort(byId), lost = bets.filter(b => b[4] && !res.win.includes(b[1])).sort(byId);
+    let items = [];
+    if (myItem) {
+      if (!claim.length) items = [myItem];
+      else if (backed) { const d = W.deal(lost.map(b => b[4]), claim.map(b => b[0])); items = [myItem].concat(d[mine[0]] || []); }
+    }
+    const got = c + g + items.length > 0;
+    return { c, g, items, kind: backed ? 'won' : (got ? 'back' : 'lost') };
   },
   /* bets the host freezes into the race: one per watcher, on a racer who is in the race, within what presence can carry */
   collectBets(peers, ids) {
     const out = [], seen = new Set();
     for (const p of peers) {
       const q = p.presence; if (!q || q.wt !== 1 || q.seat === 1 || !q.bet || typeof q.bet !== 'object') continue;
-      const b = q.bet, c = Math.floor(+b.c) || 0, g = Math.floor(+b.g) || 0;
-      if (typeof b.id !== 'string' || !b.id || b.id.length > 16 || seen.has(b.id) || !ids.includes(b.on) || c < 0 || g < 0 || c + g <= 0 || c > W.MAX_COINS * 100 || g > W.MAX_GEMS * 100) continue;
-      seen.add(b.id); out.push([b.id, b.on, c, g]);
+      const b = q.bet, c = Math.floor(+b.c) || 0, g = Math.floor(+b.g) || 0, it = W.parseKey(b.it) ? b.it : '';
+      if (typeof b.id !== 'string' || !b.id || b.id.length > 16 || seen.has(b.id) || !ids.includes(b.on) || c < 0 || g < 0 || c + g + (it ? 1 : 0) <= 0 || c > W.MAX_COINS * 100 || g > W.MAX_GEMS * 100) continue;
+      seen.add(b.id); out.push([b.id, b.on, c, g, it]);
       if (out.length >= W.MAX_BETS) break;
     }
     return out.sort((a, b) => (a[0] < b[0] ? -1 : 1));
@@ -4301,7 +5212,7 @@ SW.FB = FB;
 'use strict';
 const SW = root.SW = root.SW || {};
 const NAME_RE = /^[a-z0-9][a-z0-9_.-]{0,47}$/, KEY_RE = /^[A-Za-z_][A-Za-z0-9_-]*$/;
-const HB_MS = 25000, STALE_MS = 150000, FLUSH_MS = 40, MAX_ROOMS = 16;
+const HB_MS = 25000, STALE_MS = 150000, FLUSH_MS = 25, MAX_ROOMS = 16;       // writes are batched for FLUSH_MS, so a button press reaches the others about 25 ms after it happens at worst
 const stats = { flushes: 0, calls: 0, maxBytes: 0, rej: [], byRoom: {} };
 const err = (code, message) => Object.assign(new Error(message || code), { code });
 const sleep = (ms, v) => new Promise((_, rej) => setTimeout(() => rej(v || err('upstream_error', 'timeout')), ms));
@@ -4427,6 +5338,7 @@ class Room {
         return () => R.subs.delete(s);
       },
       connected: () => T.connected,
+      serverNow: () => Date.now() + T.offset,                              // the database server's clock, to line racers up (start time, how old a position is)
       onConnection(fn) { const s = { fn }; T.connSubs.add(s); queueMicrotask(() => { if (T.connSubs.has(s)) fn(T.connected); }); return () => T.connSubs.delete(s); },
     };
   }
@@ -4435,8 +5347,10 @@ class Room {
 class Transport {
   constructor(db, uid) {
     this.db = db; this.uid = uid; this.id = 'p' + Array.from({ length: 10 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]).join('');
-    this.rooms = new Set(); this.named = new Map(); this.connSubs = new Set(); this.connected = false; this.everConnected = false;
+    this.rooms = new Set(); this.named = new Map(); this.connSubs = new Set(); this.connected = false; this.everConnected = false; this.offset = 0;
     this.connRef = db.ref('.info/connected');
+    this.offRef = db.ref('.info/serverTimeOffset'); this.onOff = s => { const v = +s.val(); this.offset = isFinite(v) ? v : 0; };
+    this.offRef.on('value', this.onOff);
     this.onConn = s => {
       const c = s.val() === true, was = this.connected; this.connected = c;
       if (c && this.everConnected && !was) for (const R of [...this.rooms]) R.assert();     // reconnect: the server dropped us, announce again
@@ -4447,7 +5361,7 @@ class Transport {
   }
   /* sign-out / sign-in swaps the uid under us: drop every room (their nodes are removed) and stop listening */
   async close() {
-    try { this.connRef.off('value', this.onConn); } catch (e) {}
+    try { this.connRef.off('value', this.onConn); this.offRef.off('value', this.onOff); } catch (e) {}
     this.connSubs.clear();
     await Promise.all([...this.rooms].map(R => R.leave().catch(() => {})));
   }
@@ -4478,7 +5392,7 @@ function connect(cfg, cb) {
       const user = await FB.ensureUser();
       stage = 'db';
       const T = new Transport(FB.db, user.uid); current = T;
-      if (SW.MP) SW.MP.SEND_MS = 70;                                 // lighter on bandwidth than the 50 ms the platform room can take
+      if (SW.MP) SW.MP.SEND_MS = 45;                                 // a racer's state goes out about 22 times a second (and at once when they press or release)
       fin(await T.ns(), 'ok');
     } catch (e) { const info = explain(stage, e); stats.diag = info; console.warn('[syncwave] online racing is unavailable:', info.det); fin(null, 'unavailable', info); }
   })();
@@ -4543,6 +5457,19 @@ function mergeLv(a, b) {
   if (ta < Infinity || tb < Infinity) { const w = ta <= tb ? a : b; m.tm = w.tm; if (w.ta) m.ta = w.ta; }
   return m;
 }
+/* Owned skins and trails. own.i / own.t map an id to when it was acquired (older saves hold 1); own.x holds the moment it was last
+   taken away (staked in a race and lost, say). An item is owned when its acquisition is newer than its removal, so the removal
+   survives a merge with a device that still has the item, and buying or winning it back later wins again. */
+const ownTs = v => (typeof v === 'number' && v > 0 ? v : (v ? 1 : 0));
+function mergeOwn(L, C) {
+  L = L || {}; C = C || {}; const out = { i: {}, t: {}, x: { i: {}, t: {} } };
+  for (const k of ['i', 't']) {
+    const a = L[k] || {}, b = C[k] || {}, xa = (L.x || {})[k] || {}, xb = (C.x || {})[k] || {}, tomb = out.x[k];
+    for (const id of new Set([...Object.keys(xa), ...Object.keys(xb)])) tomb[id] = Math.max(num(xa[id]), num(xb[id]));
+    for (const id of new Set([...Object.keys(a), ...Object.keys(b)])) { const ts = Math.max(ownTs(a[id]), ownTs(b[id])); if (ts > (tomb[id] || 0)) out[k][id] = ts; }
+  }
+  return out;
+}
 /* L = this device's save, C = the cloud copy (or null), base = {c, g, sk} as of the last sync of this device+account (or null).
    Progress only moves forward; the wallet is cloud + (local change since base); the look follows whichever side changed it. */
 function merge(L, C, base, opt) {
@@ -4557,7 +5484,7 @@ function merge(L, C, base, opt) {
   const lg = L.gaunt || {}, cg = M.gaunt || {};
   M.gaunt = Object.assign({}, cg, { best: Math.max(num(lg.best), num(cg.best)), done: Math.max(num(lg.done), num(cg.done)) });
   if (lg.stars || cg.stars) M.gaunt.stars = Math.max(num(lg.stars), num(cg.stars));
-  M.own = { i: Object.assign({}, (C.own || {}).i, (L.own || {}).i), t: Object.assign({}, (C.own || {}).t, (L.own || {}).t) };
+  M.own = mergeOwn(L.own, C.own);
   M.stats = {}; const ls = L.stats || {}, cs = C.stats || {}; for (const k of new Set([...Object.keys(ls), ...Object.keys(cs)])) M.stats[k] = Math.max(num(ls[k]), num(cs[k]));
   M.lb = Object.assign({}, C.lb); for (const k in (L.lb || {})) M.lb[k] = M.lb[k] === undefined ? L.lb[k] : Math.min(M.lb[k], L.lb[k]);
   const ld = L.daily || { day: -1, streak: 0 }, cd = C.daily || { day: -1, streak: 0 };
@@ -4653,6 +5580,7 @@ async function login(name, pin) {
 async function logout(force) {
   if (!S.user) return { ok: true };
   if (!force) { try { await sync(true); } catch (e) {} if (S.status !== 'synced') return { ok: false, unsynced: true }; }
+  try { H && H.leaving && await H.leaving(); } catch (e) {}      // leave the racing rooms while this account can still remove its own entries
   try { await SW.FB.auth.signOut(); } catch (e) {}
   S.user = null; S.meta = { uid: '', name: '', base: null }; saveMeta(); S.status = 'off'; S.dirty = false; S.pend = {};
   if (H) H.reset();
@@ -4777,7 +5705,7 @@ async function top(board, n) {
 const Acct = {
   S, init, register, login, logout, sync, dirty, overwrite, report, flushScores, top, seedBoards,
   get enabled() { return S.enabled; }, get user() { return S.user; },
-  pure: { validName, validPin, emailFor, passFor, scoreKey, entryFor, fmtMs, rankRows, merge, mergeLv, boardOf, friendly, NONE }
+  pure: { validName, validPin, emailFor, passFor, scoreKey, entryFor, fmtMs, rankRows, merge, mergeLv, mergeOwn, boardOf, friendly, NONE }
 };
 SW.Acct = Acct;
 if (typeof module !== 'undefined' && module.exports) module.exports = Acct.pure;
@@ -5194,6 +6122,7 @@ const R = {
       else if (o.t === 6 && !(s.coins & (1 << o.idx))) this.drawCoin(o, t, g.coinGot);
     }
     this.drawRift(g);
+    if (s.cr >= 0 && L.crates && L.crates[s.cr]) this.drawCrate(L.crates[s.cr], t);
     // practice checkpoints
     if (g.cps) for (const cp of g.cps) {
       const x = this.sx(cp.x), y = this.sy(cp.y), r = ppt * 0.3;
@@ -5341,18 +6270,35 @@ const R = {
   /* other racers: drawn to a small offscreen canvas first so the whole icon (auras and glow included) fades evenly */
   drawGhost(gh, t) {
     const ctx = this.ctx, ppt = this.ppt, sx = this.sx(gh.x), sy = this.sy(gh.y);
-    if (gh.dead || sx < -ppt * 3 || sx > this.W + ppt * 3) return;
+    if (gh.dead) return;
+    if (sx < -ppt * 3 || sx > this.W + ppt * 3) { this.drawRivalMarker(gh, sx, sy); return; }
     const S = Math.ceil(ppt * 4.6), cv = gh.cv || (gh.cv = document.createElement('canvas'));
     if (cv.width !== S) { cv.width = cv.height = S; gh.cx = cv.getContext('2d'); }
     const c = gh.cx; c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, S, S);
     FX.drawPlayer(c, S / 2, S / 2, ppt, { mode: gh.m, mini: gh.mi, rot: gh.r, vy: gh.vy, vx: 1, gdir: gh.g, skin: gh.skin, t });
-    ctx.globalAlpha = 0.62; ctx.drawImage(cv, sx - S / 2, sy - S / 2); ctx.globalAlpha = 1;
+    if (gh.sg) {                                         // surging: streaks behind the icon
+      ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round'; ctx.strokeStyle = gh.col;
+      for (let i = 0; i < 5; i++) { const yy = sy + (i - 2) * ppt * 0.2, len = ppt * (1.6 + 0.5 * ((i * 7 + Math.floor(t * 18)) % 3)); ctx.globalAlpha = 0.5 - i * 0.04; ctx.lineWidth = Math.max(2, ppt * 0.05); ctx.beginPath(); ctx.moveTo(sx - ppt * 0.5, yy); ctx.lineTo(sx - ppt * 0.5 - len, yy); ctx.stroke(); }
+      ctx.restore();
+    }
+    ctx.globalAlpha = 0.82; ctx.drawImage(cv, sx - S / 2, sy - S / 2); ctx.globalAlpha = 1;
     // name tag
     const fs = Math.max(11, Math.round(ppt * 0.34)); ctx.font = '700 ' + fs + 'px "Chakra Petch", system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     const ty = sy - ppt * (gh.m === 1 || gh.m === 3 ? 0.95 : 0.9) - 4;
     ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(5,2,14,0.85)'; ctx.strokeText(gh.name, sx, ty);
     ctx.fillStyle = gh.col; ctx.fillText(gh.name, sx, ty);
     ctx.beginPath(); ctx.moveTo(sx - 4, ty + 4); ctx.lineTo(sx + 4, ty + 4); ctx.lineTo(sx, ty + 9); ctx.closePath(); ctx.fill();
+  },
+  /* a racer who is off the screen: an arrow on the edge says which way, who and how far (in tiles) */
+  drawRivalMarker(gh, sx, sy) {
+    const ctx = this.ctx, ppt = this.ppt, ahead = sx > this.W / 2, W = this.W, H = this.H, pad = ppt * 0.5;
+    const x = ahead ? W - pad : pad, y = Math.max(ppt * 1.8, Math.min(H - ppt * 1.4, sy)), dir = ahead ? 1 : -1;
+    const dist = Math.round(Math.abs(gh.x - (this.camX + W / ppt * 0.3)));
+    ctx.save(); ctx.globalAlpha = 0.9; ctx.fillStyle = gh.col; ctx.strokeStyle = 'rgba(5,2,14,0.85)'; ctx.lineWidth = 3;
+    const a = ppt * 0.28; ctx.beginPath(); ctx.moveTo(x + dir * a, y); ctx.lineTo(x - dir * a, y - a * 1.1); ctx.lineTo(x - dir * a, y + a * 1.1); ctx.closePath(); ctx.stroke(); ctx.fill();
+    const fs = Math.max(10, Math.round(ppt * 0.3)); ctx.font = '700 ' + fs + 'px "Chakra Petch", system-ui, sans-serif'; ctx.textAlign = ahead ? 'right' : 'left'; ctx.textBaseline = 'middle';
+    const label = gh.name + ' ' + (ahead ? '+' : '−') + dist, tx = x - dir * (a * 1.6);
+    ctx.strokeText(label, tx, y); ctx.fillText(label, tx, y); ctx.restore();
   },
   drawCoin(o, t, got) {
     const ctx = this.ctx, ppt = this.ppt, x = this.sx(o.x), y = this.sy(o.y);
@@ -5361,6 +6307,31 @@ const R = {
     ctx.fillStyle = have ? 'rgba(255,210,63,0.4)' : '#ffd23f'; ctx.strokeStyle = '#fff4b8'; ctx.lineWidth = max(2, ppt * 0.06);
     ctx.beginPath(); ctx.ellipse(x, y, max(2, r * sc), r, 0, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = '#b8860b'; ctx.beginPath(); ctx.ellipse(x, y, max(1, r * sc * 0.55), r * 0.55, 0, 0, TAU); ctx.stroke();
+  },
+
+  /* skin crate: a mystery box that floats a little above the floor; its tier is a surprise until it is picked up */
+  drawCrate(c, t) {
+    const ctx = this.ctx, ppt = this.ppt, x = this.sx(c.x), y = this.sy(c.y) + sin(t * 2.6) * ppt * 0.09, r = ppt * 0.6;
+    if (x < -ppt * 4 || x > this.W + ppt * 4) return;
+    const COL = ['#ff4fa3', '#ffd36b', '#46ff8a', '#38f3ff', '#b78cff'], k = (t * 1.2) % COL.length, i = floor(k), f = k - i;
+    ctx.save();
+    const beam = ctx.createLinearGradient(0, y, 0, y - ppt * 4.2); beam.addColorStop(0, 'rgba(255,255,255,0.16)'); beam.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = beam; ctx.fillRect(x - r * 0.7, y - ppt * 4.2, r * 1.4, ppt * 4.2);
+    ctx.globalAlpha = (1 - f) * 0.55; ctx.drawImage(this.haloImg(COL[i % COL.length]), x - r * 3.4, y - r * 3.4, r * 6.8, r * 6.8);
+    ctx.globalAlpha = f * 0.55; ctx.drawImage(this.haloImg(COL[(i + 1) % COL.length]), x - r * 3.4, y - r * 3.4, r * 6.8, r * 6.8);
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    ctx.translate(x, y); ctx.rotate(sin(t * 1.7) * 0.1);
+    const g = ctx.createLinearGradient(-r, -r, r, r); g.addColorStop(0, '#7a5cff'); g.addColorStop(1, '#2fd0ff');
+    const rr = r * 0.22, w = r * 2 * 0.5; ctx.beginPath(); ctx.moveTo(-r + rr, -r); ctx.lineTo(r - rr, -r); ctx.quadraticCurveTo(r, -r, r, -r + rr); ctx.lineTo(r, r - rr); ctx.quadraticCurveTo(r, r, r - rr, r); ctx.lineTo(-r + rr, r); ctx.quadraticCurveTo(-r, r, -r, r - rr); ctx.lineTo(-r, -r + rr); ctx.quadraticCurveTo(-r, -r, -r + rr, -r); ctx.closePath();
+    ctx.fillStyle = g; ctx.fill(); ctx.lineWidth = max(2, ppt * 0.07); ctx.strokeStyle = '#ffffff'; ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.88)'; ctx.fillRect(-r * 0.16, -r, r * 0.32, r * 2); ctx.fillRect(-r, -r * 0.16, r * 2, r * 0.32);
+    ctx.fillStyle = '#ffd36b'; ctx.beginPath(); ctx.arc(0, 0, r * 0.36, 0, TAU); ctx.fill(); ctx.strokeStyle = '#8a5a00'; ctx.lineWidth = max(1, ppt * 0.04); ctx.stroke();
+    ctx.fillStyle = '#5a2a00'; ctx.font = '800 ' + Math.round(r * 0.62) + 'px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('?', 0, r * 0.03);
+    ctx.restore();
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (let q = 0; q < 4; q++) { const a = t * 1.6 + q * TAU / 4, rad = r * (1.5 + 0.2 * sin(t * 3 + q)), sx = x + cos(a) * rad, sy = y + sin(a) * rad * 0.75, sz = r * (0.1 + 0.07 * sin(t * 5 + q * 2));
+      ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.beginPath(); ctx.moveTo(sx, sy - sz * 2); ctx.lineTo(sx + sz * 0.5, sy - sz * 0.5); ctx.lineTo(sx + sz * 2, sy); ctx.lineTo(sx + sz * 0.5, sy + sz * 0.5); ctx.lineTo(sx, sy + sz * 2); ctx.lineTo(sx - sz * 0.5, sy + sz * 0.5); ctx.lineTo(sx - sz * 2, sy); ctx.lineTo(sx - sz * 0.5, sy - sz * 0.5); ctx.closePath(); ctx.fill(); }
+    ctx.restore();
   },
 
   /* ------------------------------------------------------------ per-frame */
@@ -6246,9 +7217,9 @@ const X = {
     ctx.translate(px, py); ctx.scale(z, z); ctx.translate(-px, -py);
   },
   drawStreaks(g) {
-    const s = g.s, fast = (s.spd || 1) >= 2, k = this.kick;
-    if (!this.flashOn || this.q < 1 || (!fast && k < 0.05) || g.dead) return;
-    const ctx = this.ctx, W = this.W, H = this.H, ppt = this.ppt, P = this.cur, w = this.wt, a = (fast ? 0.1 : 0) + 0.5 * k;
+    const s = g.s, fast = (s.spd || 1) >= 2, k = this.kick, sgk = Math.max(0, ((g.surge || 1) - 1) / 0.3);
+    if (!this.flashOn || this.q < 1 || (!fast && k < 0.05 && sgk < 0.05) || g.dead) return;
+    const ctx = this.ctx, W = this.W, H = this.H, ppt = this.ppt, P = this.cur, w = this.wt, a = (fast ? 0.1 : 0) + 0.5 * k + 0.22 * sgk;
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
     for (let i = 0; i < 22; i++) {
       const y = hash(i * 1.7 + 4) * H, v = 0.8 + hash(i * 3.1) * 1.6, len = ppt * (2.5 + hash(i) * 4) * (0.6 + (s.spd || 1) * 0.3), x = W - (((w * v * 0.9 + hash(i * 5.3)) % 1.4) * (W + len) - len * 0.2);
@@ -6263,7 +7234,7 @@ if (R) Object.assign(R, X);
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 
 </script>
-<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "179a73a525";</script>
+<script>window.SW_GAUNT_SEEDS = [1, 2, 3, 4, 5, 6, 7, 8];window.SW_BUILD = "2febf51808";</script>
 <script>
 /* Syncwave game shell: save data, input, run loop, menus. */
 (function () {
@@ -6278,21 +7249,25 @@ const KEY = 'syncwave.v1';
 
 /* ------------------------------------------------------------------- save */
 const defSave = () => ({ v: 2, lv: {}, gaunt: { best: 0, done: 0 }, skin: { face: 0, c1: '#38f3ff', c2: '#ff4fa3', trail: 0, icon: null, tfx: null },
-  wallet: { c: 200, g: 5 }, own: { i: {}, t: {} }, daily: { day: -1, streak: 0 }, nick: '',
+  wallet: { c: 200, g: 5 }, own: { i: {}, t: {}, x: { i: {}, t: {} } }, daily: { day: -1, streak: 0 }, nick: '',
   cfg: { music: 0.7, sfx: 0.8, quality: matchMedia('(pointer: coarse)').matches ? 1 : 2, shake: true, flash: true, hitbox: false, autocp: false },
   stats: { attempts: 0, deaths: 0, jumps: 0 }, lb: {}, gen: 0, wg: {}, hw: { chests: 0, got: 0, opened: 0 } });
 let save = defSave();
+/* '<kind>:<id>' keys name one skin or trail ('i:tripop', 't:puff'); see wager.js */
+function itemOf(key) { const p = SW.Wager.parseKey(key); return p ? (p.kind === 'i' ? SH.iconById[p.id] : SH.trailById[p.id]) || null : null; }
 function sanitize() {
   const d = defSave();
   save.cfg = Object.assign(d.cfg, save.cfg || {}); save.skin = Object.assign(d.skin, save.skin || {}); save.stats = Object.assign(d.stats, save.stats || {});
   save.wallet = Object.assign(d.wallet, save.wallet || {}); save.daily = Object.assign(d.daily, save.daily || {});
-  save.own = { i: Object.assign({}, save.own && save.own.i), t: Object.assign({}, save.own && save.own.t) };
-  save.nick = MP.cleanNick(save.nick);
+  { const o = save.own || {}, ox = o.x || {}, fix = m => { const r = {}; for (const k of Object.keys(m || {})) { const v = m[k]; if (v) r[k] = typeof v === 'number' && v > 0 ? v : 1; } return r; };
+    save.own = { i: fix(o.i), t: fix(o.t), x: { i: {}, t: {} } };                                  // own.i/t: id -> when it was acquired; own.x: id -> when it was last taken away (see acct.js mergeOwn)
+    for (const k of ['i', 't']) for (const id of Object.keys(ox[k] || {})) if (+ox[k][id] > 0) save.own.x[k][id] = +ox[k][id]; }
+  save.nick = MP.cleanNick(save.nick); if (typeof save.nu !== 'string') save.nu = null;      // nu: which account the racing name belongs to ('' = a guest, null = not known yet)
   { const h = save.hw && typeof save.hw === 'object' ? save.hw : {}; save.hw = { chests: Math.max(0, Math.floor(+h.chests || 0)), got: h.got ? 1 : 0, opened: Math.max(0, Math.floor(+h.opened || 0)) }; }   // Halloween: unopened chests, free chest claimed, chests opened
   if (!save.lb || typeof save.lb !== 'object') save.lb = {};
   save.gen = Math.max(0, Math.floor(+save.gen || 0));
   if (!save.wg || typeof save.wg !== 'object') save.wg = {};            // entry fees and bets waiting for a race to be settled (this device only)
-  for (const k of Object.keys(save.wg)) { const e = save.wg[k]; if (!e || (e.k !== 'e' && e.k !== 'b') || !(e.c >= 0) || !(e.g >= 0)) delete save.wg[k]; }
+  for (const k of Object.keys(save.wg)) { const e = save.wg[k]; if (!e || (e.k !== 'e' && e.k !== 'b') || !(e.c >= 0) || !(e.g >= 0) || (e.it && !itemOf(e.it))) delete save.wg[k]; }
   for (const k of Object.keys(save.lb)) if (!(save.lb[k] >= 0)) delete save.lb[k];
   save.wallet.c = Math.max(0, Math.floor(+save.wallet.c || 0)); save.wallet.g = Math.max(0, Math.floor(+save.wallet.g || 0));
   for (const k of Object.keys(save.own.i)) if (!SH.iconById[k]) delete save.own.i[k];
@@ -6397,7 +7372,7 @@ function startRun(spec, mp) {
   beginAttempt(true);
   if (!mp && save.stats.attempts === 0 && spec.kind === 'lv' && spec.i === 0 && !spec.practice) toast(matchMedia('(pointer: coarse)').matches ? 'Tap to jump. Hold for ship and wave.' : 'Click or press Space to jump. Hold for ship and wave.');
 }
-function endRun() { if (G.run) { G.run = null; } A.stop(true); $('mpmode').hidden = true; $('mpfollow').hidden = true; }
+function endRun() { if (G.run) { G.run = null; } A.stop(true); A.setRate(1); surgeRate = 1; $('hud').classList.remove('surging'); $('surge').hidden = true; $('mpmode').hidden = true; $('mpfollow').hidden = true; }
 function showEarn(pop) {
   const e = $('earn'), r = G.run;
   if (!r || r.practice || !(r.earnC || r.earnG)) { e.classList.remove('on'); return; }
@@ -6410,7 +7385,7 @@ function beginAttempt(first) {
   const L = run.L;
   if (!run.practice) run.clock += run.s.t || 0;                 // total simulated time of the attempts so far (the leaderboard time counts retries)
   if (run.practice && run.snaps.length) run.s = SW.clone(run.snaps[run.snaps.length - 1].s);
-  else run.s = SW.createState(L);
+  else run.s = SW.createState(L, { cr: (run.practice || run.mp) ? -1 : SW.Drops.roll(L) });
   run.dead = false; run.deadT = 0; run.aliveSince = run.s.t; run.lastCp = run.s.t;
   FX.reset(); R.rot = 0; R.fin = null; run.snapCam = true;
   const g = view(); g.snapCam = true; R.camX = run.s.x - R.W / R.ppt * 0.3; R.update(0.5, g);
@@ -6420,7 +7395,7 @@ function beginAttempt(first) {
 function view() {
   const run = G.run || { s: G.demoS, L: G.demo };
   const w = !!(run.mp && (run.mp.spec || run.mp.out) && run.watchS);          // spectators and racers who are out ride along with another racer
-  return { s: w ? run.watchS : run.s, L: run.L, skin: skin(), dead: w ? false : !!run.dead, deadT: run.deadT, cps: run.practice ? run.snaps : null, showHitbox: save.cfg.hitbox, coinGot: run.coinGot, snapCam: run.snapCam, ghosts: run.mp ? run.mp.gv : null, spec: w };
+  return { s: w ? run.watchS : run.s, L: run.L, skin: skin(), dead: w ? false : !!run.dead, deadT: run.deadT, cps: run.practice ? run.snaps : null, showHitbox: save.cfg.hitbox, coinGot: run.coinGot, snapCam: run.snapCam, ghosts: run.mp ? run.mp.gv : null, spec: w, surge: run.mp && run.mp.sg ? run.mp.sg.sc : 1 };
 }
 function die(run) {
   const s = run.s;
@@ -6435,6 +7410,7 @@ function die(run) {
   const pct = Math.min(1, s.x / run.L.length);
   if (run.mp) {
     const mp = run.mp;
+    mp.sg.on = false; mp.sg.sc = 1; surgeUi(mp.sg, 1);
     run.lastPct = pct; const att = $('att'); att.textContent = Math.floor(pct * 100) + '%'; att.classList.remove('show'); void att.offsetWidth; att.classList.add('show');
     if (mp.ty === 'lives' && mp.phase === 'race' && !mp.spec && !mp.fz) {                 // four lives: every crash costs one
       mp.lives = Math.max(0, mp.lives - 1);
@@ -6515,6 +7491,20 @@ function showEnd(run, coins) {
 function press() { G.held = true; G.queued = true; }
 function release() { G.held = false; }
 function inGame() { return G.mode === 'play' && !G.paused && G.run; }
+/* ---- Surge: spend the meter to run the world faster for a few seconds (races only) ---- */
+let surgeRate = 1;
+function surgeToggle() {
+  const run = G.run, mp = run && run.mp; if (!mp || mp.spec || mp.out || mp.fz || mp.phase !== 'race' || run.dead || run.won || G.paused) return;
+  const was = mp.sg.on, on = SW.Surge.toggle(mp.sg);
+  if (on !== was) A.sfx(on ? 'surge' : 'back'); else if (!on) { A.sfx('deny'); toast('Surge is still charging'); }
+  surgeUi(mp.sg, mp.sg.sc); mpSend(run, performance.now());
+}
+function surgeUi(sg, scale) {
+  const b = $('surge'), hud = $('hud');
+  b.style.setProperty('--m', sg.m.toFixed(3)); b.classList.toggle('on', sg.on); b.classList.toggle('low', !sg.on && sg.m < SW.Surge.MIN);
+  hud.classList.toggle('surging', scale > 1.02); hud.style.setProperty('--sg', Math.max(0, (scale - 1) / (SW.Surge.SCALE - 1)).toFixed(2));
+  if (Math.abs(scale - surgeRate) > 0.004) { surgeRate = scale; A.setRate(scale); }                   // the music speeds up with the world, so the beat still lines up
+}
 document.addEventListener('pointerdown', e => {
   A.unlock();
   if (G.screen === 'title') return;
@@ -6534,6 +7524,7 @@ document.addEventListener('keydown', e => {
   if (k === 'Space' || k === 'ArrowUp' || k === 'KeyW') { e.preventDefault(); if (!e.repeat && inGame()) { G.keys.add(k); press(); } return; }
   if (e.repeat) return;
   if (k === 'Escape' || k === 'KeyP') { if (G.mode === 'play' && G.screen !== 'mpres') togglePause(); else if (G.screen !== 'menu' && G.screen !== 'title') goMenu(); e.preventDefault(); }
+  else if ((k === 'ShiftLeft' || k === 'ShiftRight' || k === 'KeyS' || k === 'ArrowDown') && inGame() && G.run.mp) { surgeToggle(); e.preventDefault(); }
   else if (k === 'KeyR' && inGame()) { restartNow(); }
   else if (k === 'KeyZ' && inGame()) placeCp();
   else if (k === 'KeyX' && inGame()) removeCp();
@@ -6566,6 +7557,25 @@ function placeCp() {
 }
 function removeCp() { const run = G.run; if (!run || !run.practice || !run.snaps.length) return; run.snaps.pop(); toast('Checkpoint removed'); }
 
+/* ------------------------------------------------------------ skin crates */
+const CRATE = { t: 0, skin: null, T: 0 };
+function claimCrate(run, e) {
+  const d = SW.Drops.pick(run.L, Math.random, save.own.i), it = d.skin, col = SH.TIERS[it.tier].color;
+  if (d.dup) { save.wallet.c += d.coins; run.earnC += d.coins; showEarn(true); } else grantOwn('icon', it.id);
+  persist();
+  A.sfx('buy'); FX.ring(e.x, e.y, col, 3, 0.6); FX.burst(e.x, e.y, { n: 36, color: col, speed: 8, life: 0.8, grav: 2 }); FX.burst(e.x, e.y, { n: 18, color: '#ffffff', speed: 5, life: 0.6, grav: 1 }); FX.addShake(0.2);
+  const pop = $('cratepop'); pop.style.setProperty('--tc', col); $('crn').textContent = it.name;
+  $('crs').textContent = SH.TIERS[it.tier].name + ' · ' + (d.dup ? 'Duplicate +' + d.coins + ' coins' : 'New skin, added to your shop');
+  CRATE.skin = it; CRATE.T = performance.now(); pop.hidden = false; void pop.offsetWidth; pop.classList.add('on');
+  clearTimeout(CRATE.hide); CRATE.hide = setTimeout(() => { pop.classList.remove('on'); setTimeout(() => { if (!pop.classList.contains('on')) pop.hidden = true; CRATE.skin = null; }, 500); }, 3600);
+  if (run.crates) run.crates.push(it.id); else run.crates = [it.id];
+}
+function drawCratePop() {
+  if (!CRATE.skin) return; const cv = $('crcv'), c = cv.getContext('2d'), t = (performance.now() - CRATE.T) / 1000;
+  c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height);
+  FX.drawPlayer(c, 72, 74, 66, { mode: 0, mini: 0, rot: Math.sin(t * 2.4) * 0.14, vy: 0, vx: 1, gdir: 1, skin: { icon: CRATE.skin.id, face: 0, c1: '#fff', c2: '#fff' }, t });
+}
+
 /* ------------------------------------------------------------- game loop */
 const DT = SW.DT;
 const evs = [];
@@ -6580,6 +7590,7 @@ function handleEvents(run) {
       case 'orb': A.sfx('orb'); FX.ring(e.x, e.y, '#ffffff', 1.6, 0.4); FX.burst(e.x, e.y, { n: 12, color: '#ffe680', speed: 5, life: 0.45, grav: 0 }); break;
       case 'portal': A.sfx('portal'); FX.ring(e.x, e.y, '#ffffff', 2.4, 0.5); FX.addShake(0.25); break;
       case 'coin': A.sfx('coin'); run.coinGot.push(e.idx); FX.burst(e.x, e.y, { n: 18, color: '#ffd23f', speed: 6, life: 0.6, grav: 2 }); FX.ring(e.x, e.y, '#ffd23f', 2, 0.5); break;
+      case 'crate': if (!run.practice && !run.mp) claimCrate(run, e); break;
       case 'die': die(run); break;
       case 'win': win(run); break;
     }
@@ -6587,6 +7598,7 @@ function handleEvents(run) {
   evs.length = 0;
 }
 function frame(ts) {
+  if (CRATE.skin) drawCratePop();
   requestAnimationFrame(frame);
   const dt = Math.min(0.05, (ts - (G.last || ts)) / 1000); G.last = ts;
   const run = G.run;
@@ -6594,7 +7606,7 @@ function frame(ts) {
     const mp = run.mp;
     if (mp) mpRules(run, performance.now());
     if (mp && mp.phase === 'count') {
-      const left = mp.goAt - performance.now(), cd = $('mpcd'), n = Math.ceil(left / 1000);
+      const left = mp.goAt - performance.now(), cd = $('mpcd'), n = Math.min(MP.COUNT, Math.ceil(left / 1000));
       if (left > 0) { if (cd.dataset.n !== String(n)) { cd.dataset.n = n; cd.textContent = n; cd.classList.remove('on'); void cd.offsetWidth; cd.classList.add('on'); A.sfx('check'); } }
       else { mp.phase = 'race'; mp.t0 = performance.now(); cd.textContent = 'GO'; cd.dataset.n = ''; cd.classList.remove('on'); void cd.offsetWidth; cd.classList.add('on'); setTimeout(() => cd.classList.remove('on'), 700); A.sfx('star', 2); A.play(trackOf(run.L), run.L.bpm, run.s.t, run.L.song); }
       G.acc = 0;
@@ -6608,13 +7620,16 @@ function frame(ts) {
       run.deadT += dt;
       if (run.deadT > 0.62 || (run.deadT > 0.18 && G.queued)) { run.attempt++; beginAttempt(); }
     } else if (!run.won) {
-      G.acc += dt; let n = 0;
+      const sg = mp && mp.phase === 'race' && !mp.spec ? mp.sg : null, scale = sg ? SW.Surge.tick(sg, dt) : 1;       // Surge runs the whole world a little faster
+      if (sg) surgeUi(sg, scale);
+      G.acc += dt * scale; let n = 0;
       const s = run.s;
-      while (G.acc >= DT && n < 36 && !s.dead && !s.win) {
+      run.heldNow = G.held || G.queued;                                           // what the next step will see, for the others to copy
+      while (G.acc >= DT && n < 48 && !s.dead && !s.win) {
         SW.step(run.L, s, G.held || (n === 0 && G.queued), evs); G.acc -= DT; n++;
         if (evs.length) handleEvents(run);
       }
-      if (n >= 36) G.acc = 0;
+      if (n >= 48) G.acc = 0;
       if (run.practice && save.cfg.autocp && s.grounded && s.t - run.lastCp > 4 && !s.dead) { run.lastCp = s.t; run.snaps.push({ s: SW.clone(s), x: s.x, y: s.y }); }
       const pct = Math.min(1, s.x / run.L.length);
       $('pfill').style.width = (pct * 100).toFixed(1) + '%'; $('pct').textContent = Math.floor(pct * 100) + '%';
@@ -6661,6 +7676,7 @@ function buildLevels() {
       '<div class="pips">' + pips + '</div>' +
       '<div class="kv"><span>Best</span><b>' + Math.floor(sv.best * 100) + '%</b></div><div class="bar"><i style="width:' + (sv.best * 100) + '%"></i></div>' +
       '<div class="kv"><span>Practice</span><b>' + Math.floor(sv.pbest * 100) + '%</b></div><div class="bar"><i style="width:' + (sv.pbest * 100) + '%"></i></div>' +
+      '<div class="kv drop" title="Each attempt has this chance to hide a skin crate somewhere on the level"><span>Skin crate</span><b>' + Math.round(SW.Drops.chanceFor(d) * 100) + '% per run</b></div>' +
       '<div class="row" style="justify-content:space-between"><div class="coins">' + coins + '</div><div class="stars">' + stars + '</div></div>' +
       '<div class="row"><button class="btn sm hot" data-play="' + i + '"><span>Play</span></button><button class="btn sm" data-practice="' + i + '"><span>Practice</span></button>' + (HOSTED ? '<button class="btn sm ghost" data-rank="' + i + '"><span>Ranks</span></button>' : '') + '</div>';
     row.appendChild(el);
@@ -6716,9 +7732,15 @@ function drawPreview() {
 }
 
 /* ------------------------------------------------------------------- shop */
-const SHOP = { tab: 'icons', filter: 'all', vis: new Set(), io: null, sel: null, armed: '', armT: 0, raf: 0 };
+const SHOP = { tab: 'icons', filter: 'all', tier: 'all', vis: new Set(), io: null, sel: null, armed: '', armT: 0, raf: 0 };
 const kindKey = k => (k === 'icon' ? 'i' : 't');
 const owns = (k, id) => !!save.own[kindKey(k)][id];
+/* acquiring is stamped newer than any removal of the same item, so a skin won back always counts (acct.js mergeOwn) */
+function grantOwn(k, id) { const kk = kindKey(k); save.own[kk][id] = Math.max(Date.now(), (save.own.x[kk][id] | 0) + 1); }
+function takeOwn(k, id) {
+  const kk = kindKey(k); save.own.x[kk][id] = Math.max(Date.now(), (save.own[kk][id] | 0) + 1); delete save.own[kk][id];
+  if (kk === 'i' && save.skin.icon === id) save.skin.icon = null; if (kk === 't' && save.skin.tfx === id) save.skin.tfx = null;
+}
 const isEq = (k, id) => (k === 'icon' ? save.skin.icon === id : save.skin.tfx === id);
 const tierCol = it => SH.TIERS[it.tier].color;
 function updateWallet() { $('wc').innerHTML = CN + '<b>' + fmt(save.wallet.c) + '</b>'; $('wg').innerHTML = GM + '<b>' + fmt(save.wallet.g) + '</b>'; }
@@ -6740,6 +7762,12 @@ function buildShop() {
     const b = document.createElement('button'); b.className = 'tbtn' + (SHOP.filter === k ? ' sel' : ''); b.innerHTML = k === 'coin' ? CN + 'Coins' : (k === 'gem' ? GM + 'Gems' : label);
     b.onclick = () => { SHOP.filter = k; A.sfx('click'); buildShop(); }; fl.appendChild(b);
   }
+  const tr = $('stiers'); tr.innerHTML = ''; tr.hidden = SHOP.tab === 'exchange' || SHOP.tab === 'halloween';
+  for (const k of ['all', 'common', 'rare', 'epic', 'legendary', 'mythic']) {
+    const b = document.createElement('button'); b.className = 'tbtn tier' + (SHOP.tier === k ? ' sel' : ''); b.textContent = k === 'all' ? 'All tiers' : SH.TIERS[k].name;
+    if (k !== 'all') b.style.setProperty('--tc', SH.TIERS[k].color);
+    b.onclick = () => { SHOP.tier = k; A.sfx('click'); $('sgrid').scrollTop = 0; buildShop(); }; tr.appendChild(b);
+  }
   if (SHOP.tab === 'exchange') buildExchange(); else if (SHOP.tab === 'halloween') buildHalloween(); else buildItems();
 }
 
@@ -6747,7 +7775,7 @@ function buildItems() {
   const grid = $('sgrid'), kind = SHOP.tab === 'icons' ? 'icon' : 'trail', list = kind === 'icon' ? SH.ICONS : SH.TRAILS;
   grid.className = kind === 'trail' ? 't' : ''; grid.innerHTML = '';
   shopObserver(grid);
-  const items = list.filter(it => !it.chest && (SHOP.filter === 'all' || (SHOP.filter === 'owned' ? owns(kind, it.id) : it.cur === SHOP.filter)));
+  const items = list.filter(it => !it.chest && (SHOP.tier === 'all' || it.tier === SHOP.tier) && (SHOP.filter === 'all' || (SHOP.filter === 'owned' ? owns(kind, it.id) : it.cur === SHOP.filter)));
   if (!items.length) { const e = document.createElement('div'); e.className = 'mnote'; e.style.cssText = 'grid-column:1/-1;text-align:center;padding:24px'; e.textContent = SHOP.filter === 'owned' ? 'Nothing owned yet. Buy something and it shows up here.' : 'Nothing here.'; grid.appendChild(e); return; }
   items.forEach((it, n) => addItem(grid, kind, it, n));
 }
@@ -6791,14 +7819,16 @@ function effectTags(it) {
   const tags = [];
   if (modeOf(it) === 'icon') {
     if (it.chest) tags.push('Halloween chest skin');
-    const B = { stripes: 'Sliding stripes', checker: 'Flipping tiles', pixel: 'Shuffling pixels', neon: 'Neon glow', sunset: 'Sunset scene', circuit: 'Live circuit', ice: 'Frost facets', lava: 'Molten cracks', gradient: 'Gradient', carbon: 'Carbon weave', hologram: 'Hologram', matrix: 'Code rain', ocean: 'Waves', disco: 'Mirror tiles', solid: 'Solid', plasma: 'Plasma', lightning: 'Lightning', chrome: 'Chrome', rainbow: 'Rainbow cycle', galaxy: 'Nebula', glitch: 'Glitch slices', gold: 'Gold glint', void: 'Void rings', fire: 'Living fire' };
+    const B = { stripes: 'Sliding stripes', checker: 'Flipping tiles', pixel: 'Shuffling pixels', neon: 'Neon glow', sunset: 'Sunset scene', circuit: 'Live circuit', ice: 'Frost facets', lava: 'Molten cracks', gradient: 'Gradient', carbon: 'Carbon weave', hologram: 'Hologram', matrix: 'Code rain', ocean: 'Waves', disco: 'Mirror tiles', solid: 'Solid', plasma: 'Plasma', lightning: 'Lightning', chrome: 'Chrome', rainbow: 'Rainbow cycle', galaxy: 'Nebula', glitch: 'Glitch slices', gold: 'Gold glint', void: 'Void rings', fire: 'Living fire', honey: 'Honeycomb', scales: 'Scale armor', bricks: 'Brick wall', tartan: 'Tartan', halftone: 'Pulsing dots', zigzag: 'Chevron stripes', wire: 'Wireframe tunnel', facets: 'Cut facets', marble: 'Veined marble', wood: 'Wood grain', argyle: 'Argyle', radar: 'Radar sweep', target: 'Bullseye', spiral: 'Hypno spiral', blueprint: 'Blueprint', confetti: 'Confetti', pearl: 'Pearl sheen' };
     if (B[it.body] && it.body !== 'solid') tags.push(B[it.body]);
-    const AU = { sparkle: 'Sparkles', pixel: 'Pixel dust', ring: 'Pulse rings', bits: 'Data bits', snow: 'Snow', sparks: 'Sparks', bubbles: 'Bubbles', streaks: 'Speed streaks', notes: 'Music notes', petals: 'Petals', electric: 'Lightning', orbit: 'Orbiting lights', stars: 'Orbiting stars', ghost: 'Ghost wisps', flame: 'Flames', eq: 'Equalizer', smoke: 'Smoke', gyro: 'Gyro rings', dark: 'Dark matter', ribbons: 'Aurora ribbons', coins: 'Orbiting coins', feathers: 'Feathers' };
-    const AC = { catears: 'Cat ears', headphones: 'Beat headphones', tophat: 'Top hat', halo: 'Halo', horns: 'Horns', crown: 'Crown', antenna: 'Antenna', wings: 'Flapping wings' };
+    const AU = { sparkle: 'Sparkles', pixel: 'Pixel dust', ring: 'Pulse rings', bits: 'Data bits', snow: 'Snow', sparks: 'Sparks', bubbles: 'Bubbles', streaks: 'Speed streaks', notes: 'Music notes', petals: 'Petals', electric: 'Lightning', orbit: 'Orbiting lights', stars: 'Orbiting stars', ghost: 'Ghost wisps', flame: 'Flames', eq: 'Equalizer', smoke: 'Smoke', gyro: 'Gyro rings', dark: 'Dark matter', ribbons: 'Aurora ribbons', coins: 'Orbiting coins', feathers: 'Feathers', gears: 'Orbiting gears', runes: 'Floating runes', hearts: 'Hearts', leaves: 'Falling leaves', shards: 'Orbiting shards', moons: 'Two moons', fireflies: 'Fireflies' };
+    const AC = { catears: 'Cat ears', headphones: 'Beat headphones', tophat: 'Top hat', halo: 'Halo', horns: 'Horns', crown: 'Crown', antenna: 'Antenna', wings: 'Flapping wings', visor: 'Scanning visor', monocle: 'Monocle', bowtie: 'Bow tie', laurel: 'Laurel wreath', propeller: 'Propeller cap', partyhat: 'Party hat', mohawk: 'Mohawk', tiara: 'Tiara', shades: 'Sunglasses' };
+    const SHN = { tri: 'Triangle', diamond: 'Diamond', hex: 'Hexagon', oct: 'Octagon', penta: 'Pentagon', circle: 'Circle', star5: 'Star', star4: 'Four-point star', star6: 'Six-point star', plus: 'Cross', shield: 'Shield', kite: 'Kite', heart: 'Heart', drop: 'Teardrop', squircle: 'Squircle', chamfer: 'Cut corners', trap: 'Trapezoid', para: 'Slanted' };
+    if (it.shape) tags.push((SHN[it.shape] || 'Shape') + ' shape');
     for (const a of it.aura) if (AU[a]) tags.push(AU[a]);
     for (const a of it.acc) if (AC[a]) tags.push(AC[a]);
   } else {
-    const TS = { strobe: 'Flashing', pixel: 'Pixels', sparkle: 'Sparkles', bubbles: 'Bubbles', echo: 'Afterimages', speed: 'Speed lines', snow: 'Snow', petals: 'Petals', laser: 'Twin lasers', rings: 'Shock rings', binary: 'Binary', notes: 'Music notes', flame: 'Flames', electric: 'Electricity', coins: 'Spinning coins', rainbow: 'Rainbow', comet: 'Comet tail', glitch: 'Glitch', dna: 'Double helix', galaxy: 'Stardust' };
+    const TS = { strobe: 'Flashing', pixel: 'Pixels', sparkle: 'Sparkles', bubbles: 'Bubbles', echo: 'Afterimages', speed: 'Speed lines', snow: 'Snow', petals: 'Petals', laser: 'Twin lasers', rings: 'Shock rings', binary: 'Binary', notes: 'Music notes', flame: 'Flames', electric: 'Electricity', coins: 'Spinning coins', rainbow: 'Rainbow', comet: 'Comet tail', glitch: 'Glitch', dna: 'Double helix', galaxy: 'Stardust', smoke: 'Smoke puffs', leaves: 'Falling leaves', hearts: 'Hearts', confetti: 'Confetti', dashes: 'Dashed line', rain: 'Rain', checker: 'Checkered flag', arrows: 'Chevrons', orbs: 'Wisps', bars: 'Equalizer bars', ribbon: 'Twin ribbons', zigzag: 'Zig-zag bolt', shards: 'Crystal shards', embers: 'Embers', paint: 'Paint strokes', stars: 'Spinning stars', gears: 'Gears', chain: 'Star chain', shuriken: 'Throwing stars', frost: 'Ice crystals', vortex: 'Corkscrew', slash: 'Blade slashes', prism: 'Prism split', bats: 'Bats', runes: 'Glowing runes', plasma: 'Plasma blobs', beam: 'Light beam', ink: 'Ink brush', wave: 'Sound waves' };
     for (const a of it.styles) if (TS[a]) tags.push(TS[a]);
     if (it.rainbow) tags.push('Colour cycling');
   }
@@ -6837,6 +7867,11 @@ function renderActions() {
       if (it.cur === 'gem') mk('Exchange', '', () => { closeDetail(); SHOP.tab = 'exchange'; A.sfx('click'); buildShop(); }, CN + 'Exchange to ' + GM + 'gems');
     }
   }
+  if (kind === 'icon' && it.set === 2) {
+    const D = SW.Drops, n = SH.NEW_ICONS.filter(x => x.tier === it.tier).length, pc = v => String(Math.round(v / n * 10) / 10), tot = o => Object.keys(o).reduce((a, k) => a + o[k], 0);
+    const e = D.ODDS_EASY[it.tier] / tot(D.ODDS_EASY) * 100, h = D.ODDS_HARD[it.tier] / tot(D.ODDS_HARD) * 100;
+    note.innerHTML += (note.innerHTML ? '<br>' : '') + 'Also drops from skin crates: ' + pc(e) + '% of crates' + (own ? '' : ' (' + pc(h) + '% on levels 4 to 6 and the Gauntlet)') + '.';
+  }
   mk('Close', 'ghost', () => { closeDetail(); A.sfx('back'); });
 }
 function buyItem(kind, it) {
@@ -6846,7 +7881,7 @@ function buyItem(kind, it) {
   if (SHOP.armed !== key) { SHOP.armed = key; clearTimeout(SHOP.armT); SHOP.armT = setTimeout(() => { if (SHOP.armed === key) { SHOP.armed = ''; renderActions(); } }, 3000); A.sfx('click'); renderActions(); return; }
   SHOP.armed = '';
   if (it.cur === 'gem') save.wallet.g -= it.price; else save.wallet.c -= it.price;
-  save.own[kindKey(kind)][it.id] = 1; equip(kind, it.id);
+  grantOwn(kind, it.id); equip(kind, it.id);
   A.sfx('buy'); toast('Unlocked ' + it.name + ' · equipped');
   buildShop(); renderActions();
 }
@@ -6906,7 +7941,7 @@ function openChest() {
   if (HWS.open || save.hw.chests < 1) return;
   const res = SH.rollChest(Math.random, save.own.i);                    // decided and saved first, so closing the page mid-animation never loses the prize
   save.hw.chests--; save.hw.opened++;
-  if (res.dup) save.wallet.c += res.coins; else save.own.i[res.skin.id] = 1;
+  if (res.dup) save.wallet.c += res.coins; else grantOwn('icon', res.skin.id);
   persist(); updateWallet();
   HWS.open = { res, t0: performance.now() / 1000, parts: [], burst: false, shown: false, last: 0 };
   const m = $('hwopen'); m.hidden = false; $('hwores').classList.remove('on'); $('hwoact').innerHTML = ''; m.style.setProperty('--tc', '#ff8a1f'); m.firstElementChild.style.setProperty('--tc', '#ff8a1f');
@@ -7027,16 +8062,24 @@ function claimDaily() {
 // when the host's result matches what that device saw itself (src/wager.js has the rules).
 const BUILD = window.SW_BUILD || 'dev';
 const W = SW.Wager;
+const ITEMCAT = { tier: key => { const it = itemOf(key); return it ? it.tier : ''; } };
 const MPS = { ns: null, state: 'init', lb: null, code: '', host: false, lv: 0, rid: '', unsubs: [], tickIv: 0, settleT: 0, noHost: 0, peers: [], myPeer: '', conn: true, connT: 0,
   sent: {}, sentAt: 0, advKey: '', loop: 0, settled: false, racing: false, busy: false, slotCv: [], rafR: 0, rafL: 0,
-  watch: false, entry: '', betId: '', bet: null, draft: { on: '', c: 0, g: 0 }, rsig: '', cr: { ty: 'full', tl: W.DEF_TIME, ec: 0, eg: 0 } };
+  watch: false, entry: '', betId: '', bet: null, draft: { on: '', c: 0, g: 0, it: '' }, rsig: '', cr: { ty: 'full', tl: W.DEF_TIME, ec: 0, eg: 0, ek: '', et: '' } };
 const r2 = v => Math.round(v * 100) / 100, r3 = v => Math.round(v * 1000) / 1000;
+/* the shared clock: the database server's when there is one (so every racer starts at the same instant and knows how old a position is), otherwise this device's */
+const mpNow = () => (MPS.ns && MPS.ns.serverNow ? MPS.ns.serverNow() : Date.now());
+const HAS_CLOCK = () => !!(MPS.ns && MPS.ns.serverNow);
 const PLACE = ['1st', '2nd', '3rd', '4th'];
 const lvLabel = lv => (lv === 'g' ? 'Gauntlet' : (SW.Levels.def(+lv) ? SW.Levels.def(+lv).name : 'Level'));
-const nick = () => save.nick || (save.nick = MP.defaultNick());
+const nick = () => save.nick || (SW.Acct && SW.Acct.user && MP.cleanNick(SW.Acct.user.name)) || (save.nick = MP.defaultNick());      // no custom name: a signed-in player is their username, a guest gets a Racer number
 const fmtT = t => SW.Acct.pure.fmtMs(Math.round(t * 1000)) + 's';
 const hostOf = () => MP.host(MP.roster(MPS.peers));
 const hostCfg = () => { const h = hostOf(); return (h && h.presence.cfg) || {}; };
+/* an entry or a bet in words: coins, gems and/or an item */
+const stakeHtml = (r) => [r.ec > 0 ? fmt(r.ec) + ' ' + CN : '', r.eg > 0 ? fmt(r.eg) + ' ' + GM : '', r.ek ? W.itemText(r) : ''].filter(Boolean).join(' + ') || 'nothing';
+const poolHtml = o => [o.c > 0 ? fmt(o.c) + ' ' + CN : '', o.g > 0 ? fmt(o.g) + ' ' + GM : '', o.i > 0 ? o.i + (o.i > 1 ? ' items' : ' item') : ''].filter(Boolean).join(' + ') || 'nothing';
+const betHtml = b => [b.c > 0 ? fmt(b.c) + ' ' + CN : '', b.g > 0 ? fmt(b.g) + ' ' + GM : '', b.it ? itemTitle(b.it) : ''].filter(Boolean).join(' + ') || 'nothing';
 const moneyHtml = (c, g, free) => [c > 0 ? fmt(c) + ' ' + CN : '', g > 0 ? fmt(g) + ' ' + GM : ''].filter(Boolean).join(' + ') || (free === undefined ? 'nothing' : free);
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function tb(label, sel, fn, off) { const b = el('button', 'tbtn' + (sel ? ' sel' : '') + (off ? ' off' : ''), label); b.onclick = () => { A.sfx('click'); fn(); }; return b; }
@@ -7044,16 +8087,67 @@ function tb(label, sel, fn, off) { const b = el('button', 'tbtn' + (sel ? ' sel'
 /* ---- the wager ledger: entry fees and bets wait here, outside the wallet, until the race is settled ---- */
 const WG = {
   who() { const u = SW.Acct && SW.Acct.user; return u ? u.name : ''; },
-  can(c, g) { return save.wallet.c >= c && save.wallet.g >= g; },
-  add(kind, c, g, room) {
+  can(c, g, item) { return save.wallet.c >= c && save.wallet.g >= g && (!item || haveKey(item)); },
+  add(kind, c, g, room, item) {
     const id = 'w' + Date.now().toString(36) + Math.floor(Math.random() * 46656).toString(36);
-    save.wallet.c -= c; save.wallet.g -= g; save.wg[id] = { k: kind, c, g, st: 'lobby', u: WG.who(), room, at: Date.now() }; persist(); walletChanged(); return id;
+    save.wallet.c -= c; save.wallet.g -= g; if (item) takeKey(item);                  // a staked skin or trail leaves the collection until the race is settled
+    save.wg[id] = { k: kind, c, g, it: item || '', st: 'lobby', u: WG.who(), room, at: Date.now() }; persist(); walletChanged(); return id;
   },
   live(id) { const e = id && save.wg[id]; if (e && e.st !== 'live') { e.st = 'live'; persist(); } },
-  pay(id, c, g) { const e = id && save.wg[id]; if (!e) return false; delete save.wg[id]; save.wallet.c += c; save.wallet.g += g; persist(); walletChanged(); return true; },
-  refund(id) { const e = id && save.wg[id]; return e ? WG.pay(id, e.c, e.g) : false; },
-  drop(id) { if (id && save.wg[id]) { delete save.wg[id]; persist(); } }              // forfeited: the money simply stays gone
+  /* settle: coins and gems go to the wallet, items to the collection (one you already own pays coins instead). Returns what was granted, or null if there was nothing to settle */
+  pay(id, c, g, items) { const e = id && save.wg[id]; if (!e) return null; delete save.wg[id]; save.wallet.c += c; save.wallet.g += g; const got = grantKeys(items || []); persist(); walletChanged(); return got; },
+  refund(id) { const e = id && save.wg[id]; return e ? WG.pay(id, e.c, e.g, e.it ? [e.it] : []) : null; },
+  drop(id) { if (id && save.wg[id]) { delete save.wg[id]; persist(); } }              // forfeited: the money (and the item) simply stay gone
 };
+const haveKey = key => { const p = W.parseKey(key); return !!(p && owns(p.kind === 'i' ? 'icon' : 'trail', p.id)); };
+function takeKey(key) { const p = W.parseKey(key); if (p) takeOwn(p.kind === 'i' ? 'icon' : 'trail', p.id); }
+/* hand out won or returned items: [{ key, item, dup, coins }] */
+function grantKeys(keys) {
+  const out = [];
+  for (const key of keys) {
+    const p = W.parseKey(key), item = itemOf(key); if (!p || !item) continue;
+    const kind = p.kind === 'i' ? 'icon' : 'trail';
+    if (owns(kind, p.id)) { const coins = SW.Drops.DUP[item.tier] || 0; save.wallet.c += coins; out.push({ key, item, dup: true, coins }); }
+    else { grantOwn(kind, p.id); out.push({ key, item, dup: false, coins: 0 }); }
+  }
+  return out;
+}
+const itemTitle = key => { const it = itemOf(key), p = W.parseKey(key); return it ? it.name + (p.kind === 'i' ? ' (skin)' : ' (trail)') : 'an item'; };
+const gotHtml = got => got.map(x => x.dup ? 'a copy of ' + x.item.name + ' you already own, paid as +' + x.coins + ' ' + CN : itemTitle(x.key)).join(', ');
+/* items the player could put up: owned, optionally of one tier. kind is 'i' (skins) or 't' (trails) */
+function itemsOwned(kind, tier) {
+  const k = kind === 'i' ? 'icon' : 'trail', list = kind === 'i' ? SH.ICONS : SH.TRAILS;
+  return list.filter(it => owns(k, it.id) && (!tier || it.tier === tier));
+}
+/* a picker over the player's own skins or trails; resolves to an item key ('i:<id>') or null when cancelled */
+const IPK = { raf: 0, io: null, vis: new Set(), done: null, tier: '' };
+function pickItem(kind, tier, title, note) {
+  return new Promise(resolve => {
+    const m = $('itempick'), grid = $('ipgrid'), k = kind === 'i' ? 'icon' : 'trail';
+    $('iptt').textContent = title; $('ipnote').textContent = note || '';
+    IPK.tier = tier || '';
+    const close = key => { m.hidden = true; cancelAnimationFrame(IPK.raf); IPK.raf = 0; if (IPK.io) IPK.io.disconnect(); IPK.vis.clear(); IPK.done = null; resolve(key); };
+    IPK.done = close;
+    const build = () => {
+      const tiers = $('ipTiers'); tiers.innerHTML = ''; tiers.hidden = !!tier;
+      if (!tier) for (const t of ['', 'common', 'rare', 'epic', 'legendary', 'mythic']) { const b = tb(t ? SH.TIERS[t].name : 'All', IPK.tier === t, () => { IPK.tier = t; build(); }); if (t) b.style.setProperty('--tc', SH.TIERS[t].color); b.classList.add('tier'); tiers.appendChild(b); }
+      grid.className = kind === 't' ? 't' : ''; grid.innerHTML = ''; IPK.vis.clear(); if (IPK.io) IPK.io.disconnect();
+      IPK.io = new IntersectionObserver(es => { for (const e of es) e.isIntersecting ? IPK.vis.add(e.target) : IPK.vis.delete(e.target); }, { root: grid, rootMargin: '60px' });
+      const items = itemsOwned(kind, IPK.tier);
+      if (!items.length) { grid.appendChild(el('div', 'mnote', 'You have nothing ' + (IPK.tier ? 'of this tier ' : '') + 'to put up.')); return; }
+      items.forEach((it, n) => {
+        const b = el('button', 'item'); b.style.setProperty('--tc', SH.TIERS[it.tier].color); b.setAttribute('aria-label', it.name + ', ' + SH.TIERS[it.tier].name);
+        const cv = document.createElement('canvas'); cv.width = kind === 't' ? 200 : 144; cv.height = kind === 't' ? 120 : 144; cv._it = it; cv._kind = k; cv._ph = n * 0.37; b.appendChild(cv);
+        b.appendChild(el('div', 'nm', it.name)); b.appendChild(el('div', 'tr', SH.TIERS[it.tier].name));
+        b.onclick = () => { A.sfx('click'); close(W.itemKey(kind, it.id)); };
+        grid.appendChild(b); IPK.io.observe(cv);
+      });
+    };
+    build(); m.hidden = false; grid.scrollTop = 0;
+    const frame = () => { if (m.hidden) { IPK.raf = 0; return; } IPK.raf = requestAnimationFrame(frame); const t = performance.now() / 1000; for (const cv of IPK.vis) drawItem(cv, t); };
+    IPK.raf = requestAnimationFrame(frame);
+  });
+}
 function walletChanged() { if (G.screen === 'menu') updateMenuStats(); if (G.screen === 'shop') updateWallet(); }
 /* anything left over from a session that ended early: lobby money comes back, money from a race already under way does not */
 function wgRecover() {
@@ -7095,7 +8189,17 @@ function stakeChips(box) {
   const row = (label, vals, nameOf, cur, set, over) => { box.appendChild(el('div', 'lab', label)); const s = el('div', 'seg'); for (const v of vals) s.appendChild(tb(nameOf(v), cur === v, () => { set(v); stakeChips(box); }, over(v))); box.appendChild(s); };
   row('Coins', W.COINS, v => (v ? fmt(v) : 'Free'), r.ec, v => { r.ec = v; }, v => v > save.wallet.c);
   row('Gems', W.GEMS, v => (v ? String(v) : 'None'), r.eg, v => { r.eg = v; }, v => v > save.wallet.g);
-  const n = el('div', 'mnote sub'); n.innerHTML = W.staked(r) ? 'Each racer pays ' + moneyHtml(r.ec, r.eg) + '. The winner takes the pot. You pay when you create the lobby.' : 'A free race. Winners still earn the usual placement coins.'; box.appendChild(n);
+  const have = (k, t) => itemsOwned(k, t).length;
+  box.appendChild(el('div', 'lab', 'Skin or trail'));
+  { const s2 = el('div', 'seg');
+    for (const [k, label] of [['', 'None'], ['i', 'One skin'], ['t', 'One trail']]) s2.appendChild(tb(label, r.ek === k, () => { r.ek = k; if (k && !r.et) r.et = 'common'; stakeChips(box); }, !!k && !have(k)));
+    box.appendChild(s2); }
+  if (r.ek) {
+    box.appendChild(el('div', 'lab', 'Tier it must be'));
+    const s3 = el('div', 'seg'); for (const t of W.TIERS) { const b = tb(SH.TIERS[t].name, r.et === t, () => { r.et = t; stakeChips(box); }, !have(r.ek, t)); b.style.color = SH.TIERS[t].color; s3.appendChild(b); } box.appendChild(s3);
+    if (!have(r.ek, r.et)) { const t = W.TIERS.find(t2 => have(r.ek, t2)); if (t) { r.et = t; stakeChips(box); return; } }
+  }
+  const n = el('div', 'mnote sub'); n.innerHTML = W.staked(r) ? 'Each racer puts up ' + stakeHtml(W.rules(r)) + '. The winner takes everything that was put up' + (r.ek ? ' (a skin or trail you already own pays coins instead)' : '') + '. You pay when you create the lobby.' : 'A free race. Winners still earn the usual placement coins.'; box.appendChild(n);
 }
 
 function mpInit() {
@@ -7135,7 +8239,7 @@ function mpRenderList() {
   if (!L.length) { list.appendChild(el('div', 'empty', 'No open lobbies right now. Create one and send the code to a friend.')); return; }
   for (const l of L) {
     const row = el('div', 'lrow'), cd = el('div', 'cd', l.code), mid = el('div', 'mid'), b = el('b', '', l.host), sm = el('small');
-    sm.innerHTML = lvLabel(l.lv) + ' · ' + W.TYPES[l.ty].name + (l.ty === 'timed' ? ' ' + l.tl + ' s' : '') + ' · ' + (W.staked(l) ? '<span class="stk">' + moneyHtml(l.ec, l.eg) + '</span>' : 'free') + (l.w ? ' · ' + l.w + ' watching' : '') + (l.st === 'race' ? ' · racing' : '');
+    sm.innerHTML = lvLabel(l.lv) + ' · ' + W.TYPES[l.ty].name + (l.ty === 'timed' ? ' ' + l.tl + ' s' : '') + ' · ' + (W.staked(l) ? '<span class="stk">' + stakeHtml(l) + '</span>' : 'free') + (l.w ? ' · ' + l.w + ' watching' : '') + (l.st === 'race' ? ' · racing' : '');
     mid.append(b, sm);
     const n = el('div', 'n', l.n + '/4'), btns = el('div', 'btns');
     const j = el('button', 'btn sm'); j.innerHTML = '<span>Join</span>'; j.disabled = l.st === 'race' || l.n >= 4 || l.mine;
@@ -7152,8 +8256,14 @@ async function mpCreate() {
     if (!WG.who()) { A.sfx('deny'); toast('Sign in to race for coins or gems'); return; }
     if (!WG.can(r.ec, r.eg)) { A.sfx('deny'); toast('You do not have enough to put up that entry'); return; }
   }
+  let item = '';
+  if (r.ek) {
+    if (!itemsOwned(r.ek, r.et).length) { A.sfx('deny'); toast('You do not own a ' + r.et + (r.ek === 'i' ? ' skin' : ' trail') + ' to put up'); return; }
+    item = await pickItem(r.ek, r.et, 'Put up a ' + SH.TIERS[r.et].name + (r.ek === 'i' ? ' skin' : ' trail'), 'Every racer puts up one. The winner takes them all. It leaves your collection when you create the lobby and comes back if the race is called off.');
+    if (!item) return;
+  }
   const taken = new Set(MP.lobbyList(MPS.ns.peers()).map(l => l.code)); let code; do { code = MP.genCode(); } while (taken.has(code));
-  await mpEnter(code, true);
+  await mpEnter(code, true, { item });
 }
 function mpJoinCode() {
   const c = MP.normCode($('mpcode').value); if (!c) { A.sfx('deny'); toast('Codes are 4 letters'); return; }
@@ -7166,13 +8276,13 @@ async function mpEnter(code, asHost, opt) {
     let rr; try { rr = await MPS.ns.join(MP.roomName(code)); } catch (e) { toast('Could not join the lobby (' + ((e && e.code) || 'error') + ')'); return; }
     const watch = !!(opt && opt.watch), rules = asHost ? W.rules(MPS.cr) : null;
     MPS.lb = rr; MPS.code = code; MPS.host = asHost; MPS.watch = watch; MPS.rid = ''; MPS.noHost = 0; MPS.settled = asHost || watch; MPS.racing = false; MPS.sent = {}; MPS.peers = rr.peers();
-    MPS.entry = ''; MPS.betId = ''; MPS.bet = null; MPS.draft = { on: '', c: 0, g: 0 }; MPS.rsig = '';
+    MPS.entry = ''; MPS.betId = ''; MPS.bet = null; MPS.draft = { on: '', c: 0, g: 0, it: '' }; MPS.rsig = '';
     const sk = skin(), I = sk.icon && SH.iconById[sk.icon];
     const me = { nm: nick(), ic: I ? I.id : '', c1: sk.c1, c2: sk.c2, fc: sk.face | 0, jn: Date.now(), seat: asHost ? 1 : 0, rd: asHost ? 1 : 0, v: BUILD, host: asHost ? 1 : 0 };
     if (watch) me.wt = 1;
     if (asHost) {
-      me.cfg = Object.assign({ st: 'lobby', lv: MPS.lv, seed: gauntletSpec(false).seed, rid: '' }, rules);
-      if (W.staked(rules)) { MPS.entry = WG.add('e', rules.ec, rules.eg, code); me.pd = 1; }       // the host puts up the same entry as everybody
+      me.cfg = Object.assign({ st: 'lobby', lv: MPS.lv, seed: gauntletSpec(false).seed, rid: '' }, W.wire(rules));
+      if (W.staked(rules)) { const it = rules.ek && opt && opt.item && W.entOk(rules, opt.item, ITEMCAT) && haveKey(opt.item) ? opt.item : ''; if (!rules.ek || it) { MPS.entry = WG.add('e', rules.ec, rules.eg, code, it); me.pd = 1; if (it) me.ent = it; } }       // the host puts up the same entry as everybody
     }
     rr.presence(me).catch(() => {});
     MPS.unsubs = [rr.onPeers(mpOnPeers, mpRoomErr), rr.onConnection(c => { MPS.conn = c; if (!c) MPS.connT = Date.now(); })];
@@ -7209,8 +8319,9 @@ function mpAdvert() {
   if (MPS.lb && MPS.host) {
     const r = MP.roster(MPS.peers), h = MP.host(r), cfg = (h && h.presence.cfg) || {}, rl = W.rules(cfg), w = r.filter(p => p.presence.wt === 1).length;
     adv = { c: MPS.code, h: nick(), lv: cfg.lv === undefined ? MPS.lv : cfg.lv, n: Math.max(1, MP.seated(r).length), st: MPS.racing ? 'race' : 'open', ty: rl.ty, tl: rl.tl, ec: rl.ec, eg: rl.eg, w };
+    if (rl.ek) { adv.ek = rl.ek; adv.et = rl.et; }
   }
-  const key = adv ? [adv.c, adv.h, adv.lv, adv.n, adv.st, adv.ty, adv.tl, adv.ec, adv.eg, adv.w].join('|') : '';
+  const key = adv ? [adv.c, adv.h, adv.lv, adv.n, adv.st, adv.ty, adv.tl, adv.ec, adv.eg, adv.w, adv.ek, adv.et].join('|') : '';
   if (key === MPS.advKey) return; MPS.advKey = key;
   MPS.ns.presence({ lb: adv }).catch(() => {});
 }
@@ -7239,7 +8350,7 @@ function mpSetCfg(p) {
   if (!MPS.host || !MPS.lb) return;
   const cfg = hostCfg(); if (cfg.st !== 'lobby') return;
   const next = Object.assign({}, cfg, p), rl = W.rules(Object.assign({}, cfg, p)), keep = W.rules(cfg);
-  next.ty = rl.ty; next.tl = rl.tl; next.ec = keep.ec; next.eg = keep.eg;
+  next.ty = rl.ty; next.tl = rl.tl; next.ec = keep.ec; next.eg = keep.eg; if (keep.ek) { next.ek = keep.ek; next.et = keep.et; } else { delete next.ek; delete next.et; }
   if (p.lv !== undefined) MPS.lv = p.lv;
   MPS.lb.presence({ cfg: next }).catch(() => {});
 }
@@ -7249,13 +8360,20 @@ function mpKick(peer) {
 }
 
 /* paying the entry, sitting out, taking a seat, betting */
-function mpPay() {
-  if (!MPS.lb || !MPS.settled || MPS.entry || MPS.watch) return;
+async function mpPay() {
+  if (!MPS.lb || !MPS.settled || MPS.entry || MPS.watch || MPS.paying) return;
   const cfg = hostCfg(), rl = W.rules(cfg); if (cfg.st !== 'lobby' || !W.staked(rl)) return;
   if (!WG.who()) { A.sfx('deny'); toast('Sign in from the main menu to pay the entry'); return; }
   if (!WG.can(rl.ec, rl.eg)) { A.sfx('deny'); toast('You need ' + (rl.ec ? fmt(rl.ec) + ' coins' : '') + (rl.ec && rl.eg ? ' and ' : '') + (rl.eg ? rl.eg + ' gems' : '') + ' for the entry'); return; }
-  MPS.entry = WG.add('e', rl.ec, rl.eg, MPS.code); A.sfx('buy'); toast('Entry paid');
-  MPS.lb.presence({ pd: 1 }).catch(() => {}); mpRenderRoom();
+  let item = '';
+  if (rl.ek) {
+    if (!itemsOwned(rl.ek, rl.et).length) { A.sfx('deny'); toast('You do not own a ' + rl.et + (rl.ek === 'i' ? ' skin' : ' trail') + ' to put up'); return; }
+    MPS.paying = true;
+    try { item = await pickItem(rl.ek, rl.et, 'Put up a ' + SH.TIERS[rl.et].name + (rl.ek === 'i' ? ' skin' : ' trail'), 'The winner takes every item that is put up. It leaves your collection now and comes back if the race is called off or you leave the lobby.'); } finally { MPS.paying = false; }
+    const cfg2 = hostCfg(); if (!item || !MPS.lb || MPS.entry || MPS.watch || cfg2.st !== 'lobby' || !W.sameRules(W.rules(cfg2), rl) || !haveKey(item) || !WG.can(rl.ec, rl.eg)) return;
+  }
+  MPS.entry = WG.add('e', rl.ec, rl.eg, MPS.code, item); A.sfx('buy'); toast('Entry paid');
+  MPS.lb.presence(item ? { pd: 1, ent: item } : { pd: 1 }).catch(() => {}); mpRenderRoom();
 }
 function mpSeatToggle() {
   if (!MPS.lb || MPS.host || hostCfg().st !== 'lobby') return;
@@ -7271,15 +8389,15 @@ function mpSeatToggle() {
   }
   mpRenderRoom();
 }
-function mpStand() { MPS.watch = true; MPS.lb.presence({ wt: 1, seat: 0, rd: 0, pd: null }).catch(() => {}); }
+function mpStand() { MPS.watch = true; MPS.lb.presence({ wt: 1, seat: 0, rd: 0, pd: null, ent: null }).catch(() => {}); }
 function mpPlaceBet() {
   const d = MPS.draft; if (!MPS.lb || !MPS.watch || MPS.betId || hostCfg().st !== 'lobby') return;
   if (!WG.who()) { A.sfx('deny'); toast('Sign in from the main menu to bet'); return; }
   const racers = MP.seated(MP.roster(MPS.peers));
   if (!d.on || !racers.some(p => p.peer === d.on)) { A.sfx('deny'); toast('Pick a racer to back'); return; }
-  if (!(d.c + d.g > 0)) { A.sfx('deny'); toast('Choose how much to bet'); return; }
-  if (!WG.can(d.c, d.g)) { A.sfx('deny'); toast('You do not have that much'); return; }
-  MPS.betId = WG.add('b', d.c, d.g, MPS.code); MPS.bet = { id: MPS.betId, on: d.on, c: d.c, g: d.g };
+  if (!(d.c + d.g > 0 || d.it)) { A.sfx('deny'); toast('Choose what to bet'); return; }
+  if (!WG.can(d.c, d.g, d.it)) { A.sfx('deny'); toast('You do not have that'); return; }
+  MPS.betId = WG.add('b', d.c, d.g, MPS.code, d.it); MPS.bet = { id: MPS.betId, on: d.on, c: d.c, g: d.g }; if (d.it) MPS.bet.it = d.it; d.it = '';
   MPS.lb.presence({ bet: MPS.bet }).catch(() => {}); A.sfx('buy'); toast('Bet placed'); mpRenderRoom();
 }
 function mpCancelBet(silent) {
@@ -7301,7 +8419,7 @@ function betPanel(box, r, seated, rl) {
   if (!WG.who()) { box.appendChild(el('div', 'mnote', HOSTED ? 'Sign in from the main menu to bet coins or gems. You can still watch.' : 'Betting needs the hosted version of the game with an account. You can still watch.')); }
   else if (seated.length < 2) { box.appendChild(el('div', 'mnote', 'Waiting for the racers to take their seats.')); }
   else if (MPS.betId && MPS.bet) {
-    const on = seated.find(p => p.peer === MPS.bet.on), m = el('div', 'mine'); m.innerHTML = 'Your bet: ' + moneyHtml(MPS.bet.c, MPS.bet.g) + ' on ' + (on ? '' : 'a racer who left') + '<span id="betname"></span>'; box.appendChild(m);
+    const on = seated.find(p => p.peer === MPS.bet.on), m = el('div', 'mine'); m.innerHTML = 'Your bet: ' + betHtml(MPS.bet) + ' on ' + (on ? '' : 'a racer who left') + '<span id="betname"></span>'; box.appendChild(m);
     if (on) m.querySelector('#betname').textContent = lab(on);
     box.appendChild(el('div', 'mnote', 'Locked in when the host starts the race. If you leave once it has started, the bet is forfeited.'));
     const row = el('div', 'row'), c = el('button', 'btn sm ghost'); c.innerHTML = '<span>Take it back</span>'; c.onclick = () => mpCancelBet(false); row.appendChild(c); box.appendChild(row);
@@ -7313,12 +8431,19 @@ function betPanel(box, r, seated, rl) {
     const sc = el('div', 'seg'); for (const v of W.BET_COINS) sc.appendChild(tb(v ? fmt(v) : '0', d.c === v, () => { d.c = v; mpRenderRoom(); }, v > save.wallet.c)); box.appendChild(sc);
     box.appendChild(el('div', 'lab', 'Gems'));
     const sg = el('div', 'seg'); for (const v of W.BET_GEMS) sg.appendChild(tb(String(v), d.g === v, () => { d.g = v; mpRenderRoom(); }, v > save.wallet.g)); box.appendChild(sg);
+    if (d.it && !haveKey(d.it)) d.it = '';
+    box.appendChild(el('div', 'lab', 'Skin or trail'));
+    const si = el('div', 'seg');
+    si.appendChild(tb('None', !d.it, () => { d.it = ''; mpRenderRoom(); }));
+    if (d.it) { const b = tb(itemTitle(d.it), true, () => {}); b.style.color = SH.TIERS[itemOf(d.it).tier].color; si.appendChild(b); }
+    for (const [k, label] of [['i', d.it ? 'Change skin' : 'Pick a skin'], ['t', d.it ? 'Change trail' : 'Pick a trail']]) si.appendChild(tb(label, false, async () => { const key = await pickItem(k, '', 'Bet a ' + (k === 'i' ? 'skin' : 'trail'), 'It leaves your collection while the bet is on. If you back the winner you keep it and share the items the losing bettors put in; otherwise it goes to the winning bettors.'); if (key && MPS.lb) MPS.draft.it = key; mpRenderRoom(); }, !itemsOwned(k).length));
+    box.appendChild(si);
     const row = el('div', 'row'), go = el('button', 'btn sm hot'); go.innerHTML = '<span>Place bet</span>'; go.onclick = mpPlaceBet; row.appendChild(go); box.appendChild(row);
-    box.appendChild(el('div', 'mnote', 'Everyone who backs the winner shares the pool in proportion to what they bet. No one backed the winner with coins or gems? Those come back.'));
+    box.appendChild(el('div', 'mnote', 'Everyone who backs the winner shares the pool in proportion to what they bet. No one backed the winner with coins, gems or an item? Those come back.'));
   }
   if (pools.n) {
     box.appendChild(el('div', 'lab', 'Betting pool'));
-    seated.forEach((p, i) => { const o = pools.on[p.peer] || { c: 0, g: 0, n: 0 }, row = el('div', 'brow' + (MPS.bet && MPS.bet.on === p.peer ? ' mine' : '')); row.style.setProperty('--rc', MP.COLORS[i]); const s = el('span'); s.innerHTML = o.n ? o.n + (o.n > 1 ? ' bets · ' : ' bet · ') + moneyHtml(o.c, o.g) : 'no bets'; row.append(el('b', '', lab(p)), s); box.appendChild(row); });
+    seated.forEach((p, i) => { const o = pools.on[p.peer] || { c: 0, g: 0, n: 0 }, row = el('div', 'brow' + (MPS.bet && MPS.bet.on === p.peer ? ' mine' : '')); row.style.setProperty('--rc', MP.COLORS[i]); const s = el('span'); s.innerHTML = o.n ? o.n + (o.n > 1 ? ' bets · ' : ' bet · ') + poolHtml(o) : 'no bets'; row.append(el('b', '', lab(p)), s); box.appendChild(row); });
   }
 }
 function mpRenderRoom() {
@@ -7335,8 +8460,8 @@ function mpRenderRoom() {
   const stBox = $('roomstake'); stBox.innerHTML = '';
   if (!staked) stBox.appendChild(el('div', 'free', 'Free race'));
   else {
-    const a = el('div', 'rl'); a.innerHTML = 'Entry · ' + moneyHtml(rl.ec, rl.eg) + ' each'; stBox.appendChild(a);
-    const n = Math.max(2, seated.length), p = el('div', 'pot'); p.innerHTML = 'Winner takes ' + moneyHtml(rl.ec * n, rl.eg * n) + ' with ' + n + ' racers'; stBox.appendChild(p);
+    const a = el('div', 'rl'); a.innerHTML = 'Entry · ' + stakeHtml(rl) + ' each'; stBox.appendChild(a);
+    const n = Math.max(2, seated.length), p = el('div', 'pot'); p.innerHTML = 'Winner takes ' + [moneyHtml(rl.ec * n, rl.eg * n, ''), rl.ek ? n + (rl.ek === 'i' ? ' skins' : ' trails') : ''].filter(Boolean).join(' + ') + ' with ' + n + ' racers'; stBox.appendChild(p);
   }
   const slots = $('slots'); slots.innerHTML = ''; MPS.slotCv = [];
   for (let i = 0; i < 4; i++) {
@@ -7344,6 +8469,7 @@ function mpRenderRoom() {
     if (!p) { d.textContent = 'Waiting for a racer…'; slots.appendChild(d); continue; }
     const q = p.presence, cv = document.createElement('canvas'); cv.width = cv.height = 120; cv._sk = slotSkin(q); cv._ph = i * 0.9; d.appendChild(cv); MPS.slotCv.push(cv);
     const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = MP.cleanNick(q.nm) || 'Racer'; d.appendChild(nm);
+    if (staked && rl.ek && q.pd === 1) { const ei = W.entOk(rl, q.ent, ITEMCAT) ? itemOf(q.ent) : null; d.appendChild(el('div', 'ent', ei ? ei.name : 'Invalid item')); }
     const paid = q.pd === 1, st = document.createElement('div');
     st.className = 'st' + (staked && !paid ? ' unpaid' : (q.host === 1 ? ' hst' : (q.rd === 1 ? ' rdy' : '')));
     st.textContent = q.v !== BUILD ? 'Old version' : (q.host === 1 ? (staked ? (paid ? 'Host · paid' : 'Host · unpaid') : 'Host') : (staked && !paid ? 'Unpaid' : (q.rd === 1 ? 'Ready' : 'Not ready'))); d.appendChild(st);
@@ -7354,20 +8480,20 @@ function mpRenderRoom() {
   const stale = seated.find(p => p.presence.v !== BUILD);
   const bets = W.collectBets(r, seated.map(p => p.peer)), pools = W.pools(bets);
   const wt = $('roomwatch'); wt.innerHTML = '';
-  if (watchers.length || pools.n) { wt.textContent = (watchers.length ? 'Watching (' + watchers.length + '): ' + watchers.slice(0, 6).map(p => MP.cleanNick(p.presence.nm) || 'Guest').join(', ') + (watchers.length > 6 ? '…' : '') : '') + (pools.n ? (watchers.length ? ' · ' : '') + 'Bets: ' : ''); if (pools.n) { const s = el('span'); s.innerHTML = moneyHtml(pools.c, pools.g); wt.appendChild(s); } }
+  if (watchers.length || pools.n) { wt.textContent = (watchers.length ? 'Watching (' + watchers.length + '): ' + watchers.slice(0, 6).map(p => MP.cleanNick(p.presence.nm) || 'Guest').join(', ') + (watchers.length > 6 ? '…' : '') : '') + (pools.n ? (watchers.length ? ' · ' : '') + 'Bets: ' : ''); if (pools.n) { const s = el('span'); s.innerHTML = poolHtml(pools); wt.appendChild(s); } }
   const bb = $('roombet'); bb.hidden = !(MPS.watch && lobbyOpen); if (!bb.hidden) betPanel(bb, r, seated, rl);
   const ready = $('mpready'), start = $('mpstart'), note = $('roomnote'), pay = $('mppay'), seat = $('mpseat');
   const mustPay = staked && iAmSeated && !MPS.entry && lobbyOpen && !MPS.watch;
-  pay.hidden = !mustPay; if (mustPay) pay.firstChild.innerHTML = 'Pay entry · ' + moneyHtml(rl.ec, rl.eg);
+  pay.hidden = !mustPay; if (mustPay) pay.firstChild.innerHTML = 'Pay entry · ' + stakeHtml(rl);
   ready.hidden = MPS.host || MPS.watch; start.hidden = !MPS.host;
   const myRd = me && me.presence.rd === 1;
   ready.firstChild.textContent = myRd ? 'Not ready' : 'Ready'; ready.disabled = !iAmSeated || !lobbyOpen || (staked && !MPS.entry);
   seat.hidden = MPS.host || !lobbyOpen || (MPS.watch && seated.length >= MP.MAX); seat.firstChild.textContent = MPS.watch ? 'Race instead' : 'Watch instead';
   if (MPS.host) {
-    const waiting = seated.filter(p => p.presence.rd !== 1), unpaid = staked ? seated.filter(p => p.presence.pd !== 1) : [];
-    start.disabled = !(seated.length >= 2 && !waiting.length && !unpaid.length && !stale && lobbyOpen);
+    const waiting = seated.filter(p => p.presence.rd !== 1), unpaid = staked ? seated.filter(p => p.presence.pd !== 1) : [], badItem = rl.ek ? seated.filter(p => p.presence.pd === 1 && !W.entOk(rl, p.presence.ent, ITEMCAT)) : [];
+    start.disabled = !(seated.length >= 2 && !waiting.length && !unpaid.length && !badItem.length && !stale && lobbyOpen);
     const nm = l => l.map(p => MP.cleanNick(p.presence.nm)).join(', ');
-    note.textContent = stale ? (MP.cleanNick(stale.presence.nm) + ' has an old version of the page. Ask them to reload.') : (seated.length < 2 ? 'Share the code ' + MPS.code + ' with a friend. You need at least 2 racers.' : (unpaid.length ? 'Waiting for ' + nm(unpaid) + ' to pay the entry' : (waiting.length ? 'Waiting for ' + nm(waiting) : 'Everyone is ready.')));
+    note.textContent = stale ? (MP.cleanNick(stale.presence.nm) + ' has an old version of the page. Ask them to reload.') : (seated.length < 2 ? 'Share the code ' + MPS.code + ' with a friend. You need at least 2 racers.' : (unpaid.length ? 'Waiting for ' + nm(unpaid) + ' to pay the entry' : (badItem.length ? nm(badItem) + ' put up an item that is not allowed in this race' : (waiting.length ? 'Waiting for ' + nm(waiting) : 'Everyone is ready.'))));
   } else if (MPS.watch) {
     note.textContent = !lobbyOpen ? 'The race is under way.' : 'You are watching. When the host starts, you follow the race live.';
   } else {
@@ -7386,9 +8512,10 @@ function roomLoop() {
 function mpStart() {
   if (!MPS.host || !MPS.lb) return;
   const r = MP.roster(MPS.peers), seated = MP.seated(r), h = MP.host(r), cfg = (h && h.presence.cfg) || {}, rl = W.rules(cfg);
-  if (cfg.st !== 'lobby' || seated.length < 2 || !seated.every(p => p.presence.rd === 1 && p.presence.v === BUILD && (!W.staked(rl) || p.presence.pd === 1))) { A.sfx('deny'); return; }
+  if (cfg.st !== 'lobby' || seated.length < 2 || !seated.every(p => p.presence.rd === 1 && p.presence.v === BUILD && (!W.staked(rl) || p.presence.pd === 1) && (!rl.ek || W.entOk(rl, p.presence.ent, ITEMCAT)))) { A.sfx('deny'); return; }
   const rid = Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36), ids = seated.map(p => p.peer);
-  const next = Object.assign({}, rl, { st: 'count', lv: cfg.lv, seed: cfg.seed, rid, ids, go: Date.now() + MP.COUNT * 1000 });
+  const next = Object.assign({}, rl, { st: 'count', lv: cfg.lv, seed: cfg.seed, rid, ids, go: Math.round(mpNow()) + MP.COUNT * 1000 + 300 });       // the same instant for everybody, a moment ahead so the message gets there first
+  if (!rl.ek) { delete next.ek; delete next.et; } else next.ents = seated.map(p => [p.peer, p.presence.ent]);       // the items put up are frozen with the race, like the bets
   const bets = W.collectBets(r, ids); if (bets.length) next.bets = bets;       // from here on the bets are frozen
   MPS.racing = true;
   MPS.lb.presence({ cfg: next }).catch(() => {});
@@ -7402,8 +8529,13 @@ function mpMode(cfg) {
   const rl = W.rules(cfg);
   return { rl, spec: cfg.lv === 'g' ? { kind: 'gaunt', seed: cfg.seed | 0, practice: false } : { kind: 'lv', i: +cfg.lv, practice: false } };
 }
+/* milliseconds until the race clock says go: everybody counts down to the same server time. Without a shared clock, or if the message came very late, each device just counts three seconds */
+function mpLead(cfg) {
+  const go = +cfg.go, lead = go - mpNow();
+  return HAS_CLOCK() && isFinite(lead) && lead > 400 && lead < 6000 ? lead : MP.COUNT * 1000;
+}
 function newMp(cfg, rl, over) {
-  return Object.assign({ rid: cfg.rid, ids: W.list(cfg.ids).slice(0, 4), phase: 'count', goAt: performance.now() + MP.COUNT * 1000, t0: 0, ft: 0, bp: 0, cp: 0, gh: new Map(), last: new Map(), gv: [], standT: 0, firstFin: 0, paid: false, shown: false, finalized: false, cfg,
+  return Object.assign({ rid: cfg.rid, ids: W.list(cfg.ids).slice(0, 4), phase: 'count', goAt: performance.now() + mpLead(cfg), sg: SW.Surge.fresh(), t0: 0, ft: 0, bp: 0, cp: 0, gh: new Map(), last: new Map(), gv: [], standT: 0, firstFin: 0, paid: false, shown: false, finalized: false, cfg,
     ty: rl.ty, tl: rl.tl, stake: rl, lives: rl.ty === 'lives' ? W.LIVES : 0, fz: false, out: false, spec: false, follow: '', target: '', absent: new Map(), hud: '' }, over || {});
 }
 function startMpRun(cfg) {
@@ -7422,38 +8554,47 @@ function startWatch(cfg) {
     else { WG.refund(MPS.betId); MPS.betId = ''; MPS.bet = null; toast('Your bet came in too late. It was returned'); }
   }
   if (MPS.entry && !W.list(cfg.ids).includes(MPS.myPeer)) { WG.refund(MPS.entry); MPS.entry = ''; toast('The race started without you. Your entry was returned'); }
-  const mp = newMp(cfg, m.rl, { spec: true }), lead = (+cfg.go || 0) - Date.now();
+  const mp = newMp(cfg, m.rl, { spec: true }), lead = (+cfg.go || 0) - mpNow();
   if (+cfg.go && lead < -1500 && lead > -(W.capFor(m.rl) * 1000)) { mp.phase = 'race'; mp.t0 = performance.now() + lead; }     // joined a race already under way: line up with its clock
   else mp.goAt = performance.now() + (+cfg.go && lead > 0 && lead < 4000 ? lead : MP.COUNT * 1000);
   startRun(m.spec, mp);
   $('mpfollow').hidden = false; mpFollowUi();
 }
 function mpGhosts(run, dt) {
-  const mp = run.mp, now = Date.now(); mp.gv.length = 0;
-  const by = new Map(); for (const p of MPS.peers) by.set(p.peer, p);
+  const mp = run.mp, by = new Map(); mp.gv.length = 0; for (const p of MPS.peers) by.set(p.peer, p);
+  const clock = HAS_CLOCK(), nowS = mpNow(), nowL = Date.now();
   mp.ids.forEach((id, i) => {
     if (id === MPS.myPeer && !mp.spec) return;
     const p = by.get(id); if (!p) return;
     const q = p.presence; mp.last.set(id, q);
     if (typeof q.x !== 'number' || typeof q.y !== 'number') return;
-    let gh = mp.gh.get(id); if (!gh) { gh = MP.newGhost(); mp.gh.set(id, gh); }
-    if (MP.stepGhost(gh, q, (now - p.updatedAt) / 1000, dt)) { FX.burst(gh.x, gh.y, { n: 16, color: MP.COLORS[i % 4], speed: 7, life: 0.7, square: true, size: 0.12, grav: 10 }); FX.ring(gh.x, gh.y, MP.COLORS[i % 4], 2.4, 0.4); }
+    let gh = mp.gh.get(id); if (!gh) { gh = SW.Ghost.make(); mp.gh.set(id, gh); }
+    if (gh.q !== q) {                                                 // news from this racer: how old is it? (their clock reading against the shared one; without a shared clock, assume a typical delay)
+      gh.q = q;
+      const age = clock && typeof q.ts === 'number' ? (nowS - q.ts) / 1000 : (nowL - p.updatedAt) / 1000 + 0.08;
+      if (SW.Ghost.feed(gh, run.L, q, age) === 'died') { FX.burst(gh.x, gh.y, { n: 16, color: MP.COLORS[i % 4], speed: 7, life: 0.7, square: true, size: 0.12, grav: 10 }); FX.ring(gh.x, gh.y, MP.COLORS[i % 4], 2.4, 0.4); }
+    }
+    SW.Ghost.step(gh, run.L, dt);
     const key = (q.ic || '') + '|' + q.c1 + '|' + q.c2 + '|' + q.fc;
     if (gh.key !== key) { gh.key = key; gh.skin = slotSkin(q); }
     gh.name = MP.cleanNick(q.nm) || 'Racer'; gh.col = MP.COLORS[i % 4]; gh.id = id; gh.cp = +q.cp || 0;
+    if (!gh.init) return;
     mp.gv.push(gh);
   });
 }
 function mpSend(run, now) {
   const mp = run.mp, s = run.s; if (!MPS.lb || !MPS.settled || mp.spec) return;
   if (!mp.out) { mp.cp = Math.min(1, s.x / run.L.length); if (mp.cp > mp.bp) mp.bp = mp.cp; }
-  const st = { x: r2(s.x), y: r2(s.y), m: s.mode, mi: s.mini ? 1 : 0, r: r2(R.rot), vy: r2(s.vy), g: s.gdir, d: run.dead ? 1 : 0, at: run.attempt, sp: s.spd, cp: r3(mp.cp), bp: r3(mp.bp), ft: mp.ft ? r2(mp.ft) : 0, fz: mp.fz ? 1 : 0, lf: mp.ty === 'lives' ? mp.lives : undefined };
-  const urgent = st.d !== MPS.sent.d || st.at !== MPS.sent.at || st.ft !== MPS.sent.ft || st.fz !== MPS.sent.fz || st.lf !== MPS.sent.lf;
+  /* the state of the player, as the others rebuild it (src/ghost.js), plus the numbers the standings and the host's verdict use */
+  const held = !run.dead && !mp.fz && !mp.out && mp.phase === 'race' && !!run.heldNow;
+  const st = SW.Ghost.pack(s, held, mp.sg.on && !run.dead, run.attempt, run.dead, mpNow());
+  st.cp = r3(mp.cp); st.bp = r3(mp.bp); st.ft = mp.ft ? r2(mp.ft) : 0; st.fz = mp.fz ? 1 : 0; st.lf = mp.ty === 'lives' ? mp.lives : undefined;
+  const sent = MPS.sent, urgent = st.d !== sent.d || st.at !== sent.at || st.ft !== sent.ft || st.fz !== sent.fz || st.lf !== sent.lf || st.h !== sent.h || st.sg !== sent.sg;
   if (!urgent && now - MPS.sentAt < MP.SEND_MS) return;
   const patch = {}; let any = false;
-  for (const k in st) if (st[k] !== MPS.sent[k]) { patch[k] = st[k]; any = true; }
+  for (const k in st) if (st[k] !== sent[k]) { patch[k] = st[k]; if (k !== 'ts') any = true; }          // a clock reading alone is not news
   if (!any) return;
-  Object.assign(MPS.sent, st); MPS.sentAt = now; MPS.lb.presence(patch).catch(() => {});
+  Object.assign(sent, st); MPS.sentAt = now; MPS.lb.presence(patch).catch(() => {});
 }
 /* everyone in the race, as this device sees them. strict: somebody who is not in the room right now has left */
 function mpEntries(run, strict) {
@@ -7482,8 +8623,9 @@ function mpStandings(run, now) {
 /* the little banner under the progress bar: race type, clock or lives */
 function mpHud(run, pn) {
   const mp = run.mp, box = $('mpmode'); let html = '', warn = false;
-  if (mp.phase === 'done') { box.hidden = true; return; }
+  if (mp.phase === 'done') { box.hidden = true; $('surge').hidden = true; return; }
   const name = W.TYPES[mp.ty].name;
+  $('surge').hidden = mp.spec || mp.out || mp.fz || run.won;
   if (mp.ty === 'timed') {
     const left = mp.phase === 'race' ? Math.max(0, mp.tl - (pn - mp.t0) / 1000) : (mp.phase === 'done' ? 0 : mp.tl);
     html = name + ' · ' + W.clock(Math.ceil(left)); warn = mp.phase === 'race' && left <= 10;
@@ -7585,23 +8727,26 @@ function mpPayout(run, cfg) {
   }
   const line = (cls, html) => lines.push([cls, html]);
   const entryLed = MPS.entry && save.wg[MPS.entry], betLed = MPS.betId && save.wg[MPS.betId];
+  const took = (c, g, got) => [moneyHtml(c, g, ''), got.length ? gotHtml(got) : ''].filter(Boolean).join(' + ') || 'nothing';
   if (!mp.spec && entryLed) {
-    const same = entryLed.c === rl.ec && entryLed.g === rl.eg;
-    const pay = same ? W.settleEntry(rl, mp.ids.length, res, MPS.myPeer) : { c: entryLed.c, g: entryLed.g, kind: 'refund' };
-    WG.pay(MPS.entry, pay.c, pay.g);
-    if (pay.kind === 'won') line('w', 'You won the pot: +' + moneyHtml(pay.c, pay.g));
-    else if (pay.kind === 'lost') line('l', 'You lost your entry: −' + moneyHtml(entryLed.c, entryLed.g));
-    else line('r', 'Entry returned: ' + moneyHtml(pay.c, pay.g));
+    const ents = W.list(cfg && cfg.ents), mineE = ents.find(e => e[0] === MPS.myPeer);
+    const sameMoney = entryLed.c === rl.ec && entryLed.g === rl.eg;
+    const sameItem = rl.ek ? !!(entryLed.it && mineE && mineE[1] === entryLed.it && W.entsOk(rl, mp.ids, ents, ITEMCAT)) : !entryLed.it;     // the frozen entries must name my item and one valid item per racer
+    const pay = sameMoney && sameItem ? W.settleEntry(rl, mp.ids.length, res, MPS.myPeer, ents) : { c: entryLed.c, g: entryLed.g, items: entryLed.it ? [entryLed.it] : [], kind: 'refund' };
+    const got = WG.pay(MPS.entry, pay.c, pay.g, pay.items) || [];
+    if (pay.kind === 'won') line('w', 'You won the pot: +' + took(pay.c, pay.g, got));
+    else if (pay.kind === 'lost') line('l', 'You lost your entry: −' + betHtml({ c: entryLed.c, g: entryLed.g, it: entryLed.it }));
+    else line('r', 'Entry returned: ' + took(pay.c, pay.g, got));
     MPS.entry = '';
   }
   if (betLed) {
-    const bets = W.list(cfg && cfg.bets), mine = bets.find(b => b[0] === MPS.betId), ok = mine && mine[2] === betLed.c && mine[3] === betLed.g;
-    const pay = ok ? W.settleBet(bets, mine, res) : { c: betLed.c, g: betLed.g, kind: 'refund' };
-    WG.pay(MPS.betId, pay.c, pay.g);
-    if (pay.kind === 'won') line('w', 'Your bet won: +' + moneyHtml(pay.c, pay.g));
-    else if (pay.kind === 'lost') line('l', 'Your bet lost: −' + moneyHtml(betLed.c, betLed.g));
-    else if (pay.kind === 'back') line('r', 'Your bet lost, but ' + moneyHtml(pay.c, pay.g) + ' came back: nobody else backed the winner with that');
-    else line('r', 'Bet returned: ' + moneyHtml(pay.c, pay.g));
+    const bets = W.list(cfg && cfg.bets), mine = bets.find(b => b[0] === MPS.betId), ok = mine && mine[2] === betLed.c && mine[3] === betLed.g && (mine[4] || '') === (betLed.it || '');
+    const pay = ok ? W.settleBet(bets, mine, res) : { c: betLed.c, g: betLed.g, items: betLed.it ? [betLed.it] : [], kind: 'refund' };
+    const got = WG.pay(MPS.betId, pay.c, pay.g, pay.items) || [];
+    if (pay.kind === 'won') line('w', 'Your bet won: +' + took(pay.c, pay.g, got));
+    else if (pay.kind === 'lost') line('l', 'Your bet lost: −' + betHtml({ c: betLed.c, g: betLed.g, it: betLed.it }));
+    else if (pay.kind === 'back') line('r', 'Your bet lost, but ' + took(pay.c, pay.g, got) + ' came back: nobody else backed the winner with that');
+    else line('r', 'Bet returned: ' + took(pay.c, pay.g, got));
     MPS.betId = ''; MPS.bet = null;
   }
   return { res, lines };
@@ -7643,8 +8788,8 @@ function mpBack() {
   endRun(); G.mode = 'attract'; $('hud').hidden = true; $('mpst').hidden = true; resize();
   MPS.racing = false; MPS.sent = {};
   if (!MPS.lb) { A.play(0, 124, 0); show('mp'); return; }
-  const clr = { x: null, y: null, m: null, mi: null, r: null, vy: null, g: null, d: null, at: null, sp: null, cp: null, bp: null, ft: null, fz: null, lf: null, pd: null, bet: null, rd: host ? 1 : 0 };
-  if (host) clr.cfg = Object.assign({}, W.rules(cfg0), { st: 'lobby', lv: cfg0 ? cfg0.lv : MPS.lv, seed: cfg0 ? cfg0.seed : 0, rid: MPS.rid });
+  const clr = { x: null, y: null, m: null, mi: null, r: null, vy: null, g: null, d: null, at: null, sp: null, cp: null, bp: null, ft: null, fz: null, lf: null, pd: null, ent: null, bet: null, rd: host ? 1 : 0 };
+  if (host) clr.cfg = Object.assign({}, W.wire(cfg0), { st: 'lobby', lv: cfg0 ? cfg0.lv : MPS.lv, seed: cfg0 ? cfg0.seed : 0, rid: MPS.rid });
   MPS.lb.presence(clr).catch(() => {});
   A.play(0, 124, 0); show('room'); mpAdvert();
 }
@@ -7694,7 +8839,7 @@ function applyCloud(M) {                       // cloud + this device merged: ta
   if (G.screen === 'menu') updateMenuStats(); if (G.screen === 'shop') updateWallet(); if (G.screen === 'levels') buildLevels();
 }
 function resetLocal() {                        // signing out: this device goes back to a clean guest save
-  const cfg = save.cfg, nk = save.nick; save = defSave(); save.cfg = cfg; save.nick = nk; sanitize(); persistLocal();
+  const cfg = save.cfg; save = defSave(); save.cfg = cfg; save.nick = ''; save.nu = ''; sanitize(); persistLocal();      // settings stay with the device, the racing name does not
   applyCfg(); if (G.screen === 'menu') updateMenuStats(); closeDetail && closeDetail();
 }
 function seedList() {                          // everything this device has already earned, to post when an account is first linked
@@ -7735,7 +8880,24 @@ function updateChip() {
   if (u) { const dot = document.createElement('i'); dot.className = 'dotp' + (st === 'synced' ? '' : st === 'syncing' ? ' wait' : ' off'); sp.append(dot, u.name); } else sp.textContent = 'Sign in';
   b.appendChild(sp); b.setAttribute('aria-label', u ? 'Account: ' + u.name : 'Sign in or create an account');
 }
-function uiChanged() { updateChip(); if (G.screen === 'acct') acctRefresh(); if (G.screen === 'ranks') rkWho(); wgRecover(); if (G.screen === 'mp') stakeChips($('mpstake')); }
+/* The racing name belongs to whoever is signed in. When the signed-in account changes (sign out, then someone else signs in) the name
+   follows it, so the next player never races under the previous player's name. A custom name is remembered per account on this device. */
+const NICKS = KEY + '.nicks';
+function nickMemo(uid, set) {
+  try { const m = JSON.parse(localStorage.getItem(NICKS) || '{}') || {}; if (set === undefined) return typeof m[uid] === 'string' ? m[uid] : ''; m[uid] = set; localStorage.setItem(NICKS, JSON.stringify(m)); } catch (e) {}
+  return '';
+}
+function nickSync() {
+  const AT = ACCT(); if (!HOSTED || !AT || !AT.S.booted) return;
+  const u = AT.user, uid = u ? u.uid : '';
+  if (save.nu === uid) return;
+  const guestPick = save.nu === '' && !!u && !!save.nick && !/^Racer\d+$/.test(save.nick);      // typed while a guest: it stays through the first sign-in
+  if (u) { if (guestPick) nickMemo(uid, save.nick); else save.nick = MP.cleanNick(nickMemo(uid)); }      // empty = follow the username
+  else save.nick = '';
+  save.nu = uid; persistLocal();
+  const f = G.screen === 'mp' && $('mpnick'); if (f) f.value = nick();
+}
+function uiChanged() { nickSync(); updateChip(); if (G.screen === 'acct') acctRefresh(); if (G.screen === 'ranks') rkWho(); wgRecover(); if (G.screen === 'mp') stakeChips($('mpstake')); }
 function acMode(m) {
   AC.mode = m; for (const b of document.querySelectorAll('#actabs .tbtn')) b.classList.toggle('sel', b.dataset.m === m);
   $('acpin2w').hidden = m !== 'reg'; $('acgo').firstChild.textContent = m === 'reg' ? 'Create account' : 'Sign in';
@@ -7754,17 +8916,17 @@ function acctRefresh() {
 }
 async function acGo() {
   if (AC.busy) return; const AT = ACCT(), msg = $('acmsg');
-  if (MPS.lb) await mpLeave(true);                                              // the lobby belongs to whoever was signed in
   const name = $('acname').value.trim(), pin = $('acpin').value.trim();
   const fail = (t, det) => { msg.className = 'acmsg bad'; msg.textContent = t; if (det) { const sm = document.createElement('small'); sm.textContent = det; msg.appendChild(sm); } SW.Audio.sfx('deny'); };
   const pre = AT.pure.validName(name) || AT.pure.validPin(pin); if (pre) return fail(AC.mode === 'in' ? 'Wrong username or PIN.' : pre);
   if (AC.mode === 'reg' && pin !== $('acpin2').value.trim()) return fail('The two PINs do not match.');
   AC.busy = true; $('acgo').disabled = true; msg.className = 'acmsg'; msg.textContent = AC.mode === 'reg' ? 'Creating your account…' : 'Signing in…';
+  await mpClose();                                                               // the lobby belongs to whoever was signed in: leave it as the old identity
   const r = AC.mode === 'reg' ? await AT.register(name, pin) : await AT.login(name, pin);
   AC.busy = false; $('acgo').disabled = false;
-  if (!r.ok) return fail(r.msg, /^(auth\/(?!email-already|invalid-cred|invalid-login|wrong|user-not))/.test(r.det || '') ? r.det : '');
+  if (!r.ok) { mpReconnect(); return fail(r.msg, /^(auth\/(?!email-already|invalid-cred|invalid-login|wrong|user-not))/.test(r.det || '') ? r.det : ''); }
   $('acpin').value = $('acpin2').value = ''; msg.textContent = '';
-  if (!save.nick || /^Racer\d+$/.test(save.nick)) { save.nick = MP.cleanNick(r.name); persistLocal(); }
+  nickSync();
   SW.Audio.sfx('buy'); toast(AC.mode === 'reg' ? 'Welcome, ' + r.name + '!' : 'Signed in as ' + r.name); acctRefresh(); updateChip();
 }
 async function acLogout() {
@@ -7778,14 +8940,20 @@ async function acLogout() {
   AC.armOut = setTimeout(() => { AC.armOut = 0; btn.firstChild.textContent = 'Sign out'; msg.textContent = ''; }, 6000);
 }
 /* the racing connection belongs to whoever is signed in: when that changes, leave and reconnect */
-async function mpReconnect() {
+/* leave every racing room (the race lobby and the shared lobby list) while the current identity can still remove its own entries;
+   once the sign-in changes the server would refuse, and the old player would linger in the lobby for a couple of minutes */
+async function mpClose() {
   if (!HOSTED) return;
   try { if (MPS.lb) await mpLeave(true); } catch (e) {}
   try { await SW.MPFB.close(); } catch (e) {}
   MPS.ns = null; MPS.advKey = ''; MPS.peers = [];
+}
+async function mpReconnect() {
+  if (!HOSTED) return;
+  await mpClose();
   mpInit(); if (G.screen === 'mp') buildMp();
 }
-const acctHost = { snapshot: snapshotSave, apply: applyCloud, reset: resetLocal, isFresh: isFreshSave, lb: () => save.lb, persist, boards: seedList, changed: uiChanged, authSwitched: mpReconnect };
+const acctHost = { snapshot: snapshotSave, apply: applyCloud, reset: resetLocal, isFresh: isFreshSave, lb: () => save.lb, persist, boards: seedList, changed: uiChanged, authSwitched: mpReconnect, leaving: mpClose };
 
 /* ranks screen */
 const RK = { board: '1', n: 0 };
@@ -7871,7 +9039,7 @@ $('mpcreate').onclick = () => { A.sfx('click'); mpCreate(); };
 $('mpjoin').onclick = mpJoinCode;
 $('mpcode').onkeydown = e => { if (e.key === 'Enter') mpJoinCode(); };
 $('mpcode').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z]/g, ''); };
-$('mpnick').oninput = e => { save.nick = MP.cleanNick(e.target.value); persist(); };
+$('mpnick').oninput = e => { save.nick = MP.cleanNick(e.target.value); if (save.nu) nickMemo(save.nu, save.nick); persist(); };
 $('mpnick').onblur = e => { e.target.value = nick(); };
 $('mpleaveroom').onclick = () => { A.sfx('back'); mpLeave(); };
 $('mpcopy').onclick = () => { const c = MPS.code; try { navigator.clipboard.writeText(c).then(() => toast('Code ' + c + ' copied'), () => toast('Code: ' + c)); } catch (e) { toast('Code: ' + c); } };
@@ -7883,6 +9051,9 @@ $('mpprev').onclick = () => mpFollowStep(-1);
 $('mpnext').onclick = () => mpFollowStep(1);
 $('mpback').onclick = () => { A.sfx('click'); mpBack(); };
 $('mpquit').onclick = () => { A.sfx('back'); mpLeave(); };
+$('ipcancel').onclick = () => { A.sfx('back'); if (IPK.done) IPK.done(null); };
+$('surge').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); surgeToggle(); });         // pressed with a thumb while the other one jumps
+$('surge').addEventListener('click', e => { if (e.detail === 0) surgeToggle(); e.currentTarget.blur(); });                // the keyboard can reach it too
 $('mpkeep').onclick = () => { A.sfx('click'); $('mpleave').hidden = true; };
 $('mpquit2').onclick = () => { A.sfx('back'); mpLeave(); };
 new ResizeObserver(resize).observe($('app'));
@@ -7896,7 +9067,7 @@ show('title');
 updateChip();
 if (HOSTED) ACCT().init(acctHost);
 mpInit();
-window.SW.G = G; window.SW.save = () => save; window.SW.MPS = MPS; window.SW.persist = persist;
+window.SW.G = G; window.SW.save = () => save; window.SW.MPS = MPS; window.SW.nick = nick; window.SW.persist = persist;
 requestAnimationFrame(frame);
 })();
 
