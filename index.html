@@ -380,6 +380,115 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 .rkgap { text-align: center; color: var(--dim); letter-spacing: 0.4em; line-height: 0.8; }
 #endrank { min-height: 1.4em; text-align: center; }
 @media (prefers-reduced-motion: reduce) { .logo, .blink { animation: none; } }
+
+/* Syncwave front door + Beatprint */
+#title .tag { max-width: 90vw; }
+#menu { justify-content: flex-start; padding: max(66px, calc(var(--u) * 4)) max(22px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(22px, env(safe-area-inset-left, 0px)); }
+.menu-shell { width: min(1120px, 100%); display: flex; flex-direction: column; gap: clamp(12px, 2.2vh, 24px); min-height: 0; }
+.menu-brand { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.menu-brand .logo { text-align: left; font-size: clamp(28px, 5.4vh, 58px); filter: drop-shadow(0 0 18px rgba(255,79,163,.34)); }
+.eyebrow, .feature-kicker, .world-index > span, .world-index i, .menu-live, .beat-sample span { color: #a9bad9; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+.menu-live { display:flex; align-items:center; gap:8px; margin-bottom: 4px; color:#a2f8ea; }
+.menu-live i { width:7px; height:7px; border-radius:50%; background:#48ffae; box-shadow:0 0 12px #48ffae; }
+.menu-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(265px,.78fr); gap:clamp(12px,2vw,22px); min-height:0; }
+.world-feature, .beat-feature, .daily-feature { position:relative; overflow:hidden; border:1px solid rgba(155,218,255,.24); border-radius:18px; background:linear-gradient(145deg,rgba(8,28,62,.94),rgba(30,10,56,.94)); box-shadow:0 16px 54px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.06); }
+.world-feature { min-height:clamp(340px,58vh,550px); display:flex; align-items:center; padding:clamp(24px,4vw,48px); box-sizing:border-box; }
+.world-feature::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 72% 40%,rgba(45,237,255,.18),transparent 34%),linear-gradient(110deg,rgba(7,20,48,.94) 6%,rgba(7,20,48,.77) 47%,rgba(7,20,48,.2) 100%); z-index:1; }
+.world-orbit { position:absolute; width:min(48vw,480px); aspect-ratio:1; right:-3%; top:50%; transform:translateY(-52%); border:1px solid rgba(90,244,255,.45); border-radius:50%; box-shadow:0 0 70px rgba(46,234,255,.15), inset 0 0 55px rgba(46,234,255,.10); background:radial-gradient(circle at 48% 43%,#88f8ff 0 2%,#3cbed7 3% 5%,#245d9b 6% 23%,#122e65 24% 43%,transparent 44%); }
+.world-orbit::before,.world-orbit::after { content:""; position:absolute; border:1px solid rgba(255,111,199,.45); border-radius:50%; inset:14% -8%; transform:rotate(-24deg); }
+.world-orbit::after { inset:5% -16%; border-color:rgba(74,236,255,.36); transform:rotate(31deg); }
+.world-orbit span { position:absolute; width:11px;height:11px;top:17%;left:23%;border-radius:50%;background:#ffe498;box-shadow:0 0 25px #ffe498; }
+.world-orbit i,.world-orbit b { position:absolute; width:6px;height:6px;border-radius:50%;background:#ff78ce;box-shadow:0 0 15px #ff78ce;right:14%;top:54%; }
+.world-orbit b { width:8px;height:8px;left:19%;top:auto;bottom:19%;background:#5cf4ff;box-shadow:0 0 16px #5cf4ff; }
+.feature-copy { width:min(56%,510px); position:relative; z-index:2; }
+.feature-kicker { display:flex; gap:14px; align-items:center; color:#72f0ff; }
+.feature-kicker b { padding:5px 8px;border:1px solid rgba(114,240,255,.32);border-radius:999px;color:#fff;font-size:9px;letter-spacing:.12em; }
+.feature-copy h2 { margin:17px 0 10px; font:clamp(30px,5.2vh,53px)/1.06 var(--display); letter-spacing:.01em; }
+.feature-copy h2 em { font-style:normal; background:linear-gradient(90deg,#6cf5ff,#ff80d4);-webkit-background-clip:text;background-clip:text;color:transparent; }
+.feature-copy p,.beat-feature p { margin:0;color:#c0c9e1;max-width:39em;font-size:clamp(12px,1.6vh,15px);line-height:1.65;letter-spacing:.035em; }
+.feature-tags { display:flex; flex-wrap:wrap; gap:7px; margin:18px 0 22px; }
+.feature-tags span { padding:7px 9px;border:1px solid rgba(176,192,232,.19);border-radius:6px;background:rgba(4,10,31,.35);color:#c1d7ee;font-size:8px;letter-spacing:.12em; }
+.feature-actions { display:flex; flex-wrap:wrap; gap:9px; }
+.feature-actions .btn { transform:none; border-radius:8px; }
+.feature-actions .btn:hover,.feature-actions .btn:focus-visible { transform:translateY(-2px); }
+.feature-actions .btn.hot { background:linear-gradient(100deg,#ff4fa3,#a861ff);border:0;box-shadow:0 8px 30px rgba(255,79,163,.26); }
+.world-index { position:absolute;z-index:2;bottom:18px;right:22px;text-align:right;display:flex;flex-direction:column;gap:5px; }
+.world-index b { font:12px var(--display);letter-spacing:.07em;color:#eefaff; }
+.world-index i { font-size:8px;font-style:normal;letter-spacing:.13em; }
+.menu-side { display:flex;flex-direction:column;gap:clamp(10px,1.6vh,16px);min-height:0; }
+.beat-feature { flex:1;min-height:190px;padding:clamp(16px,2.2vh,24px);box-sizing:border-box;background:linear-gradient(150deg,rgba(33,16,63,.96),rgba(7,24,49,.97)); }
+.beat-feature h3,.daily-feature h3 { margin:12px 0 6px;font:clamp(17px,2.3vh,23px) var(--display);letter-spacing:.02em; }
+.beat-rings { position:absolute;right:24px;top:43px;width:92px;height:92px;border:1px solid rgba(255,90,188,.45);border-radius:50%;display:grid;place-items:center;box-shadow:0 0 34px rgba(255,74,179,.14),inset 0 0 30px rgba(71,236,255,.08); }
+.beat-rings::before,.beat-rings::after { content:"";position:absolute;inset:11px;border:1px solid rgba(73,239,255,.45);border-radius:50%;animation:beatRing 2.5s ease-out infinite; }
+.beat-rings::after { animation-delay:1.25s; }
+.beat-rings i { position:absolute;width:11px;height:11px;background:#fff;border-radius:50%;box-shadow:0 0 18px 6px #ff4fa3,0 0 35px #42edff; }
+.beat-rings b { font-size:8px;letter-spacing:.2em;color:#fff; }
+@keyframes beatRing { 0% { transform:scale(.6);opacity:.8 } 100% { transform:scale(1.3);opacity:0 } }
+.beat-feature p { max-width:34em;font-size:12px; }
+.beat-sample { display:flex;align-items:center;gap:10px;margin-top:14px; }
+.beat-sample span { font-size:8px; }
+.beat-sample b { color:#ffaddb;font-size:12px;letter-spacing:.08em; }
+.daily-feature { padding:clamp(15px,2vh,22px);background:linear-gradient(145deg,rgba(10,24,52,.95),rgba(12,8,34,.96)); }
+.daily-feature h3 { margin:6px 0 10px;font-size:15px; }
+.quick-actions { display:flex;flex-direction:column;gap:5px; }
+.quick { display:flex;align-items:center;gap:10px;min-height:40px;padding:5px 8px;border:1px solid rgba(164,186,223,.15);border-radius:8px;background:rgba(255,255,255,.035);color:var(--ink);text-align:left;cursor:pointer; }
+.quick:hover,.quick:focus-visible { border-color:rgba(56,243,255,.6);background:rgba(56,243,255,.08);outline:none; }
+.quick-icon { width:26px;height:26px;display:grid;place-items:center;border-radius:7px;background:rgba(255,79,163,.12);color:#ff87cd;font-size:17px; }
+.quick b,.quick small { display:block; }.quick b { font-size:11px;letter-spacing:.07em;text-transform:uppercase; }.quick small { color:var(--dim);font-size:9px;margin-top:2px; }.quick > i { margin-left:auto;color:#74efff;font-style:normal; }
+.menu-footer { display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:4px; }
+.menu-footer .stats { gap:clamp(10px,2vw,24px);font-size:11px; }
+.menu-tools { display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end; }
+.menu-tools .btn { transform:none;border-radius:6px; }
+#syncHud { position:absolute;left:50%;top:calc(var(--u)*3.4);transform:translateX(-50%);min-width:188px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(102,237,255,.5);border-radius:999px;background:rgba(5,12,35,.8);box-shadow:0 0 26px rgba(56,243,255,.15);pointer-events:none;z-index:3; }
+#syncHud span { color:#90f5ff;font-size:9px;letter-spacing:.17em; }
+#syncHud b { color:#fff;font:12px var(--display); }
+#syncHud i { color:#bba9d9;font-size:9px;font-style:normal;letter-spacing:.1em; }
+#syncHud.perfect { border-color:#ffe17a;box-shadow:0 0 26px rgba(255,225,122,.42); }
+#syncHud.perfect b,#syncHud.perfect i { color:#ffe17a; }
+#syncHud.sync { border-color:#78f6ff;box-shadow:0 0 26px rgba(56,243,255,.36); }
+#syncHud.sync b { color:#78f6ff; }
+@media (max-width:740px) {
+  #menu { padding-top:58px;overflow-y:auto;justify-content:flex-start;touch-action:pan-y; }
+  .menu-shell { width:min(600px,100%);gap:11px; }
+  .menu-brand { align-items:center; }
+  .menu-live { font-size:8px;letter-spacing:.11em; }
+  .menu-grid { grid-template-columns:1fr; }
+  .world-feature { min-height:330px;padding:22px; }
+  .world-orbit { width:70vw;right:-18%;opacity:.75; }
+  .feature-copy { width:74%; }
+  .feature-copy h2 { font-size:clamp(27px,5vh,42px); }
+  .feature-copy p { font-size:12px; }
+  .feature-tags { margin:13px 0 15px; }
+  .feature-tags span { font-size:7px;padding:6px; }
+  .world-index { right:13px;bottom:12px; }
+  .menu-side { display:grid;grid-template-columns:1fr 1fr; }
+  .beat-feature { min-height:180px; }
+  .beat-rings { width:58px;height:58px;right:13px;top:35px; }
+  .beat-rings b { font-size:6px; }
+  .beat-feature p { font-size:10px; }
+  .daily-feature { display:flex;flex-direction:column;justify-content:center; }
+  .menu-footer { align-items:flex-start;flex-direction:column; }
+  .menu-tools { justify-content:flex-start; }
+}
+@media (max-width:430px) {
+  .menu-side { grid-template-columns:1fr; }
+  .beat-feature { min-height:165px; }
+  .daily-feature { min-height:145px; }
+  .feature-copy { width:86%; }
+  .world-orbit { right:-30%; }
+  .world-index i { font-size:7px; }
+  .menu-footer .stats { flex-wrap:wrap; }
+}
+@media (max-height:620px) and (min-width:741px) {
+  #menu { padding-top:52px;overflow-y:auto;justify-content:flex-start;touch-action:pan-y; }
+  .menu-shell { gap:8px; }
+  .world-feature { min-height:calc(100vh - 145px); }
+  .beat-feature { min-height:130px; }
+  .beat-feature p { max-width:64%;font-size:10px;line-height:1.4; }
+  .beat-rings { width:64px;height:64px;top:34px;right:15px; }
+}
+@media (prefers-reduced-motion: reduce) { .beat-rings::before,.beat-rings::after { animation:none; } }
+
 </style>
 <div id="app">
   <canvas id="cv"></canvas>
@@ -389,6 +498,7 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
     <div id="pmode" hidden>Practice</div>
     <div id="pwrap"><div id="pbar"><div id="pfill"></div></div><div id="pct">0%</div></div>
     <button id="bpause" aria-label="Pause">❚❚</button>
+    <div id="syncHud" hidden><span>BEATPRINT</span><b id="syncCombo">READY</b><i id="syncGrade">FIND THE BEAT</i></div>
     <div id="att"></div>
     <div id="earn"></div>
     <div id="reefhud" hidden><span id="rgem"><i class="gm"></i><b id="rgn">0</b></span><span id="rtok" hidden>x2 coins</span></div>
@@ -404,22 +514,32 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
 
   <section class="screen" id="title">
     <h1 class="logo">SYNCWAVE</h1>
-    <div class="tag">Five levels · five modes · zero mercy</div>
-    <div class="blink" id="tapstart">Tap to start</div>
+    <div class="tag">Rhythm-shaped worlds · five ways to ride · zero mercy</div>
+    <div class="blink" id="tapstart">Tap to enter the signal</div>
   </section>
 
   <section class="screen dim" id="menu" hidden>
-    <h1 class="logo sm">SYNCWAVE</h1>
-    <div class="row"><button class="btn hot" data-go="levels"><span>Play</span></button></div>
-    <div class="row">
-      <button class="btn" id="bgaunt"><span>Gauntlet</span></button>
-      <button class="btn" id="bmp" data-go="mp" hidden><span>Race</span></button>
-      <button class="btn" id="branks" data-go="ranks" hidden><span>Ranks</span></button>
-      <button class="btn " id="bshop" data-go="shop"><span>Shop</span></button>
-      <button class="btn" data-go="custom"><span>Icon kit</span></button>
-      <button class="btn" data-go="settings"><span>Settings</span></button>
+    <div class="menu-shell">
+      <div class="menu-brand"><div><div class="eyebrow">A rhythm world that answers back</div><h1 class="logo sm">SYNCWAVE</h1></div><div class="menu-live"><i></i> MUSIC-SYNCED · WORLD ALIVE</div></div>
+      <div class="menu-grid">
+        <article class="world-feature">
+          <div class="world-orbit" aria-hidden="true"><span></span><i></i><b></b></div>
+          <div class="feature-copy">
+            <div class="feature-kicker"><span>WAVE WORLDS</span><b>01 / 02</b></div>
+            <h2>Ride the<br><em>living tide.</em></h2>
+            <p>Leap across floating islands as the music reshapes the sky, the route, and the rhythm beneath you.</p>
+            <div class="feature-tags"><span>♪ BEAT-LOCKED WORLDS</span><span>✦ SECRET ROUTES</span><span>◈ SKIN REWARDS</span></div>
+            <div class="feature-actions"><button class="btn hot" id="bwave"><span>Explore Wave Worlds&nbsp; ↗</span></button><button class="btn ghost" data-go="levels"><span>All levels</span></button></div>
+          </div>
+          <div class="world-index"><span>FEATURED WORLD</span><b>FIRSTLIGHT REEF</b><i>146 BPM · PULSEWAKE ARCHIPELAGO</i></div>
+        </article>
+        <aside class="menu-side">
+          <div class="beat-feature"><div class="feature-kicker"><span>NEW · BEATPRINT</span><b>SYNC / 01</b></div><div class="beat-rings" aria-hidden="true"><i></i><b>SYNC</b></div><h3>Make the beat yours.</h3><p>Every jump and gravity flip can lock to the song. Build a sync streak and see your rhythm in the results.</p><div class="beat-sample"><span>PERFECT WINDOW</span><b>± 120 ms</b></div></div>
+          <div class="daily-feature"><span class="eyebrow">YOUR NEXT RUN</span><h3>Choose your signal.</h3><div class="quick-actions"><button class="quick" id="bgaunt"><span class="quick-icon">∞</span><span><b>Gauntlet</b><small>One endless-feeling run</small></span><i>↗</i></button><button class="quick" id="bmp" data-go="mp" hidden><span class="quick-icon">⇄</span><span><b>Race live</b><small>Bring up to 4 players</small></span><i>↗</i></button><button class="quick" id="branks" data-go="ranks" hidden><span class="quick-icon">♛</span><span><b>Global ranks</b><small>See who leads the signal</small></span><i>↗</i></button></div></div>
+        </aside>
+      </div>
+      <footer class="menu-footer"><div class="stats" id="mstats"></div><div class="menu-tools"><button class="btn sm ghost" id="bshop" data-go="shop"><span>Shop</span></button><button class="btn sm ghost" data-go="custom"><span>Icon kit</span></button><button class="btn sm ghost" data-go="settings"><span>Settings</span></button></div></footer>
     </div>
-    <div class="stats" id="mstats"></div>
     <button class="btn sm ghost" id="bacct" data-go="acct" hidden><span>Sign in</span></button>
     <button class="btn sm ghost" id="bfs" style="position:absolute;top:calc(var(--u)*0.8);right:max(16px,env(safe-area-inset-right,0px))" hidden><span>⛶ Fullscreen</span></button>
   </section>
@@ -9716,7 +9836,10 @@ const SCREENS = ['title', 'menu', 'levels', 'custom', 'shop', 'mp', 'room', 'mpr
 function show(name) {
   G.screen = name;
   for (const s of SCREENS) $(s).hidden = s !== name;
-  if (name === 'levels') buildLevels();
+  if (name === 'levels') {
+    buildLevels();
+    if (G.waveFocus) requestAnimationFrame(() => { const card = document.querySelector('#lvrow .card.reef'); if (card) card.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); G.waveFocus = false; });
+  }
   if (name === 'custom') buildCustom();
   if (name === 'shop') { closeDetail(); buildShop(); startShopLoop(); }
   if (name === 'mp') buildMp();
@@ -9757,14 +9880,14 @@ function startRun(spec, mp) {
   A.unlock();
   const L = getLevel(spec);
   endRun();
-  G.run = { prevBest: spec.kind === 'lv' ? lvSave(L.id).best : save.gaunt.best, spec, L, practice: !!spec.practice, s: SW.createState(L), attempt: 1, snaps: [], dead: false, deadT: 0, won: false, aliveSince: 0, lastCp: 0, coinGot: [], earnC: 0, earnG: 0, clock: 0 };
+  G.run = { prevBest: spec.kind === 'lv' ? lvSave(L.id).best : save.gaunt.best, spec, L, practice: !!spec.practice, s: SW.createState(L), attempt: 1, snaps: [], dead: false, deadT: 0, won: false, aliveSince: 0, lastCp: 0, coinGot: [], earnC: 0, earnG: 0, clock: 0, sync: { total: 0, hits: 0, chain: 0, best: 0, score: 0 } };
   if (mp) G.run.mp = mp;
   showEarn(false);
   $('mpst').hidden = !mp; $('mpfin').hidden = true; $('mpmode').hidden = !mp; $('mpfollow').hidden = true; $('mpcd').classList.remove('on'); $('mpleave').hidden = true;
   G.mode = 'play'; G.paused = false; G.acc = 0;
   R.setLevel(L); R.rot = 0; A.preloadSong(L.song);
   for (const s of SCREENS) $(s).hidden = true;
-  $('hud').hidden = false; $('pmode').hidden = !G.run.practice; $('prac').hidden = !G.run.practice;
+  $('hud').hidden = false; $('pmode').hidden = !G.run.practice; $('prac').hidden = !G.run.practice; $('syncHud').hidden = !!mp; $('syncHud').className = ''; $('syncCombo').textContent = 'READY'; $('syncGrade').textContent = 'FIND THE BEAT';
   resize();
   beginAttempt(true);
   if (!mp && save.stats.attempts === 0 && spec.kind === 'lv' && spec.i === 0 && !spec.practice) toast(matchMedia('(pointer: coarse)').matches ? 'Tap to jump. Hold for ship and wave.' : 'Click or press Space to jump. Hold for ship and wave.');
@@ -9891,6 +10014,10 @@ function showEnd(run, coins) {
     }
     lines = [['Attempts', run.attempt], ['Mode', run.practice ? 'Practice' : 'Normal']];
   }
+  if (!run.practice && run.sync && run.sync.total) {
+    const accuracy = Math.round(run.sync.hits / run.sync.total * 100);
+    lines.push(['Beatprint', accuracy + '% sync · best streak ×' + run.sync.best + ' · ' + run.sync.score + ' pts']);
+  }
   if (gc || gg) {
     save.wallet.c += gc; save.wallet.g += gg; run.earnC += gc; run.earnG += gg;
     lines.push(['Earned', '+' + fmt(gc) + ' ' + CN + (gg ? ' &nbsp;+' + gg + ' ' + GM : '')]);
@@ -10001,12 +10128,30 @@ function drawCratePop() {
 /* ------------------------------------------------------------- game loop */
 const DT = SW.DT;
 const evs = [];
+function beatprint(run) {
+  if (!run || run.mp || !run.L || !run.sync) return;
+  const L = run.L, s = run.s, q = (s.t - (L.beat0 || 0)) / L.beatLen;
+  const offset = Math.abs(q - Math.round(q)) * L.beatLen;
+  const window = Math.min(0.12, L.beatLen * 0.28), perfect = Math.min(0.055, L.beatLen * 0.13);
+  const synced = offset <= window, exact = offset <= perfect, st = run.sync;
+  st.total++;
+  if (synced) { st.hits++; st.chain++; st.best = Math.max(st.best, st.chain); st.score += exact ? 100 + Math.min(50, st.chain * 2) : 60 + Math.min(30, st.chain); }
+  else st.chain = 0;
+  const hud = $('syncHud'); hud.classList.toggle('perfect', synced && exact); hud.classList.toggle('sync', synced && !exact);
+  $('syncCombo').textContent = synced ? '×' + st.chain : 'BREAK';
+  $('syncGrade').textContent = synced ? (exact ? 'PERFECT SYNC' : 'ON BEAT') : 'OFFBEAT';
+  if (synced) {
+    const col = exact ? '#ffe17a' : '#78f6ff';
+    FX.ring(s.x, s.y, col, exact ? 2.2 : 1.6, 0.42);
+    if (exact && st.chain % 4 === 0) { FX.burst(s.x, s.y, { n: 18, color: '#ffe17a', speed: 6, life: 0.65, size: 0.09, grav: 0 }); FX.addShake(0.12); }
+  }
+}
 function handleEvents(run) {
   const s = run.s, sk = skin();
   for (const e of evs) {
     switch (e.e) {
-      case 'jump': A.sfx('jump'); save.stats.jumps++; break;
-      case 'flip': A.sfx('flip'); FX.ring(s.x, s.y, FX.cols(sk)[1], 1.3, 0.3); break;
+      case 'jump': beatprint(run); A.sfx('jump'); save.stats.jumps++; break;
+      case 'flip': beatprint(run); A.sfx('flip'); FX.ring(s.x, s.y, FX.cols(sk)[1], 1.3, 0.3); break;
       case 'land': FX.burst(s.x, s.gdir > 0 ? s.y - s.hh : s.y + s.hh, { n: 5, color: R.th.edge, speed: 3, life: 0.35, size: 0.07, a0: 0.1, a1: Math.PI - 0.1, grav: 4 }); break;
       case 'pad': A.sfx('pad'); FX.ring(e.x, e.y + 0.2, '#ffd23f', 1.6, 0.35); FX.burst(e.x, e.y + 0.2, { n: 10, color: '#ffd23f', speed: 5, life: 0.4, a0: 0.4, a1: Math.PI - 0.4, grav: 3 }); break;
       case 'orb': A.sfx('orb'); FX.ring(e.x, e.y, '#ffffff', 1.6, 0.4); FX.burst(e.x, e.y, { n: 12, color: '#ffe680', speed: 5, life: 0.45, grav: 0 }); break;
@@ -11454,6 +11599,7 @@ document.addEventListener('click', e => {
   if (t.dataset.rank !== undefined) { A.sfx('click'); RK.board = String(SW.Levels.def(+t.dataset.rank).id); show('ranks'); return; }
   if (t.dataset.practice !== undefined) { A.sfx('click'); startRun({ kind: 'lv', i: +t.dataset.practice, practice: true }); return; }
 });
+$('bwave').onclick = () => { A.sfx('click'); G.waveFocus = true; show('levels'); };
 $('bgaunt').onclick = () => { A.sfx('click'); startRun(gauntletSpec(false)); };
 for (const b of document.querySelectorAll('#actabs .tbtn')) b.onclick = () => { A.sfx('click'); acMode(b.dataset.m); };
 $('acgo').onclick = acGo;
