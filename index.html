@@ -525,13 +525,13 @@ input.txt.code { text-transform: uppercase; text-align: center; letter-spacing: 
         <article class="world-feature">
           <div class="world-orbit" aria-hidden="true"><span></span><i></i><b></b></div>
           <div class="feature-copy">
-            <div class="feature-kicker"><span>WAVE WORLDS</span><b>01 / 02</b></div>
+            <div class="feature-kicker"><span>WAVE WORLDS</span><b>03 / 03</b></div>
             <h2>Ride the<br><em>living tide.</em></h2>
-            <p>Leap across floating islands as the music reshapes the sky, the route, and the rhythm beneath you.</p>
+            <p>Three vast routes now span the archipelago. Ride an aurora-lit storm, flip gravity through the mirror bridge, then surf the open sky.</p>
             <div class="feature-tags"><span>♪ BEAT-LOCKED WORLDS</span><span>✦ SECRET ROUTES</span><span>◈ SKIN REWARDS</span></div>
             <div class="feature-actions"><button class="btn hot" id="bwave"><span>Explore Wave Worlds&nbsp; ↗</span></button><button class="btn ghost" data-go="levels"><span>All levels</span></button></div>
           </div>
-          <div class="world-index"><span>FEATURED WORLD</span><b>FIRSTLIGHT REEF</b><i>146 BPM · PULSEWAKE ARCHIPELAGO</i></div>
+          <div class="world-index"><span>NEW · WORLD 03</span><b>STORMGLASS EXPANSE</b><i>147 BPM · AURORA STORM SURF</i></div>
         </article>
         <aside class="menu-side">
           <div class="beat-feature"><div class="feature-kicker"><span>NEW · BEATPRINT</span><b>SYNC / 01</b></div><div class="beat-rings" aria-hidden="true"><i></i><b>SYNC</b></div><h3>Make the beat yours.</h3><p>Every jump and gravity flip can lock to the song. Build a sync streak and see your rhythm in the results.</p><div class="beat-sample"><span>PERFECT WINDOW</span><b>± 120 ms</b></div></div>
@@ -2266,6 +2266,7 @@ const THEMES = {
   reef:    { style: 'reef',   sky0: '#1b1a52', sky1: '#ff9d6b', sun: '#ffe9a8', a: '#52f2ff', b: '#ff7ad9', block: '#10304a', edge: '#5ff6ff', ground: '#0a3550', glow: '#ffb86b' },
   /* deep ocean blue, bright cyan, emerald and signal gold; the sky itself is driven by the level's own tod keys */
   coast:   { style: 'reef',   sky0: '#071a46', sky1: '#2a86c9', sun: '#ffe8a8', a: '#2cf3ff', b: '#35e8a0', block: '#0a2e3a', edge: '#2cf3ff', ground: '#0b3a44', glow: '#ffd36b' },
+  tempest: { style: 'reef',   sky0: '#09102f', sky1: '#24458d', sun: '#d6f4ff', a: '#73e7ff', b: '#be8cff', block: '#101e4b', edge: '#73e7ff', ground: '#102d59', glow: '#ae8aff' },
   horizon: { style: 'void',    sky0: '#050003', sky1: '#3a0010', sun: '#ff2d3d', a: '#ff3b4e', b: '#ffb347', block: '#14040a', edge: '#ff3b4e', ground: '#240710', glow: '#ff2d3d' }
 };
 
@@ -2388,7 +2389,7 @@ const REEF = [
 ];
 DEFS.push(REEF[0]);
 
-/* Wave Worlds, level 1 of the world's coast: Loopline Coast. The song is 147 BPM, 4 beats a bar, 207 bars (5:39):
+/* Wave Worlds, journey 2: Loopline Coast. The song is 147 BPM, 4 beats a bar, 207 bars (5:39):
    calm approach 0-17, first speed-up 17-46, lull 46-53, groove 53-85, broken islands 85-109, build 109-116, silence 116, the big drop 117 (the transformation),
    super route 117-181, breakdown 181-190, final push 190-199, finish 205. The zones are pinned to those bars. */
 const COAST_TOD = [
@@ -2435,6 +2436,40 @@ const COAST = { id: 8, order: 5.5, world: 'wave', look: 'coast', pay: 2, name: '
     { z: 'isle', spd: 3, n: 40, d: [0.5, 0.58], pool: ['causeway'], endBar: 204, byX: true }
   ] };
 DEFS.push(COAST);
+
+/* Wave World 03: Stormglass Expanse. A dusk-to-aurora crossing with three distinct acts,
+   an island run, a mirror-gravity bridge, an open-water flight, then a long storm-surf finale. */
+const TEMPEST_TOD = [
+  [0,   { sky0: '#10133c', sky1: '#6a4a9c', sun: '#ffd6a0', a: '#73e7ff', b: '#be8cff', glow: '#d9a7ff', night: 0.4, sunH: 0.08 }],
+  [24,  { sky0: '#17245f', sky1: '#5a68b5', sun: '#c7f5ff', a: '#73e7ff', b: '#be8cff', glow: '#b7a1ff', night: 0.12, sunH: 0.55 }],
+  [52,  { sky0: '#090d2c', sky1: '#263c83', sun: '#8beaff', a: '#73e7ff', b: '#be8cff', glow: '#8a9aff', night: 0.65, sunH: -0.02 }],
+  [74,  { sky0: '#080b28', sky1: '#182a64', sun: '#b8b9ff', a: '#73e7ff', b: '#be8cff', glow: '#a78bff', night: 0.94, sunH: -0.2 }],
+  [110, { sky0: '#111844', sky1: '#49479a', sun: '#ffe1b2', a: '#73e7ff', b: '#be8cff', glow: '#dda0ff', night: 0.38, sunH: 0.2 }],
+  [146, { sky0: '#10133c', sky1: '#6a4a9c', sun: '#fff0c6', a: '#73e7ff', b: '#be8cff', glow: '#e8b2ff', night: 0.12, sunH: 0.78 }],
+  [190, { sky0: '#09102f', sky1: '#24458d', sun: '#e4faff', a: '#73e7ff', b: '#be8cff', glow: '#ae8aff', night: 0.18, sunH: 0.48 }],
+  [206, { sky0: '#10133c', sky1: '#6a4a9c', sun: '#fff1d0', a: '#73e7ff', b: '#be8cff', glow: '#d9a7ff', night: 0.08, sunH: 0.9 }]
+];
+const TEMPEST = { id: 9, order: 5.75, world: 'wave', look: 'coast', pay: 2, name: 'Stormglass Expanse', sub: 'Chase the aurora', diff: 8, bpm: 147.0, beat0: 0.205, song: 'loopline-coast', seed: 909, theme: THEMES.tempest, music: 0, hues: [0], tod: TEMPEST_TOD,
+  script: [
+    { z: 'isle', n: 1, d: [0, 0], pool: ['cove'] },
+    { z: 'isle', n: 40, d: [0.08, 0.18], pool: ['hops', 'causeway', 'i_platform', 'tideway'], endBar: 14, byX: true, coins: { 1: 0 } },
+    { z: 'isle', spd: 2, n: 40, d: [0.16, 0.3], pool: ['stepway', 'i_spikes', 'risers', 'i_orbchain', 'hops'], endBar: 32, byX: true },
+    { z: 'isle', n: 1, d: [0.2, 0.2], pool: ['cove'] },
+    { z: 'isle', spd: 2, n: 40, d: [0.25, 0.4], pool: ['causeway', 'i_saws', 'i_padwall', 'tideway', 'i_cannon'], endBar: 50, byX: true, coins: { 2: 1 } },
+    { z: 'isleflip', spd: 1, n: 1, d: [0.3, 0.3], pool: ['i_flipcube'], endBar: 58 },
+    { z: 'isle', spd: 1, n: 40, d: [0.2, 0.35], pool: ['hops', 'risers', 'sinkers', 'stepway'], endBar: 72, byX: true },
+    { z: 'ship', spd: 2, n: 40, d: [0.35, 0.55], pool: ['slalom', 'rotorfield', 'flysaws', 'projswarm'], endBar: 91, byX: true },
+    { z: 'isle', n: 1, d: [0.18, 0.18], pool: ['cove'] },
+    { z: 'isle', spd: 2, n: 40, d: [0.4, 0.56], pool: ['causeway', 'i_orbchain', 'beacons', 'i_pistonfloor', 'hops'], endBar: 112, byX: true, coins: { 1: 2 } },
+    { z: 'wave', spd: 1, n: 40, d: [0.35, 0.55], pool: ['wavezig', 'wavegates', 'wavepistons'], endBar: 130, byX: true },
+    { z: 'isle', spd: 1, n: 1, d: [0.22, 0.22], pool: ['cove'], endBar: 134 },
+    { z: 'isle', spd: 3, n: 40, d: [0.55, 0.7], pool: ['causeway', 'i_saws', 'i_cannon', 'i_orbchain', 'i_spikes', 'stepway'], endBar: 158, byX: true },
+    { z: 'isleflip', spd: 2, n: 1, d: [0.55, 0.55], pool: ['i_flipcube'], endBar: 164 },
+    { z: 'isle', spd: 3, n: 40, d: [0.65, 0.82], pool: ['hops', 'i_rockfall', 'i_laserfence', 'i_pistonfloor', 'sinkers', 'beacons'], endBar: 185, byX: true, coins: { 3: 2 } },
+    { z: 'ship', spd: 3, n: 40, d: [0.5, 0.72], pool: ['meteors', 'laserweave', 'projswarm', 'rotorfield'], endBar: 198, byX: true },
+    { z: 'isle', spd: 2, n: 40, d: [0.25, 0.4], pool: ['causeway', 'hops', 'tideway'], endBar: 205, byX: true }
+  ] };
+DEFS.push(TEMPEST);
 
 /* Gauntlet: long run that ramps difficulty and speed. */
 function gauntletDef(seed) {
@@ -2483,7 +2518,7 @@ function autopilot(L, s) {
 SW.Levels = {
   demo, autopilot,
   count: DEFS.length,
-  /* the order the level select lists them in: by `order` when a level has one (Loopline Coast opens Wave Worlds, ahead of Firstlight Reef), else by id */
+  /* the order the level select lists them in: by `order` when a level has one, else by id */
   order: DEFS.map((d, i) => i).sort((a, b) => ((DEFS[a].order !== undefined ? DEFS[a].order : a) - (DEFS[b].order !== undefined ? DEFS[b].order : b))),
   def: i => DEFS[i],
   build: i => build(DEFS[i]),
@@ -10243,7 +10278,7 @@ function buildLevels() {
     const i = ord[n], d = SW.Levels.def(i), sv = lvSave(d.id), c = d.theme.a, wave = d.world === 'wave';
     if (wave && !(n > 0 && SW.Levels.def(ord[n - 1]).world === 'wave')) {                       // the first level of Wave Worlds opens with a banner
       const bn = document.createElement('div'); bn.className = 'card world'; bn.dataset.banner = '1'; bn.style.setProperty('--c', '#5cf4ff');
-      bn.innerHTML = '<div class="wk">New world</div><h3>Wave<br>Worlds</h3><p>Floating islands over open sea. Long, alive and double-paying.</p><p style="color:#9ff4ff">Tide diamonds · double coins · skin crates</p>';
+      bn.innerHTML = '<div class="wk">3 worlds · 3 journeys</div><h3>Wave<br>Worlds</h3><p>Cross a living archipelago, then chase the aurora through a stormglass sky.</p><p style="color:#9ff4ff">Gravity bridges · open-water flight · double coins</p>';
       row.appendChild(bn);
     }
     const stars = [0, 1, 2].map(k => '<span class="' + ((sv.stars || 0) > k ? 'on' : '') + '">★</span>').join('');
@@ -10269,9 +10304,9 @@ function buildLevels() {
     const im = el.querySelector('img[data-chest]'); if (im) { const sp = SW.Sprites.get('chest_1'); if (sp) im.src = sp.src; else im.hidden = true; }
   }
   const lastWave = SW.Levels.def(SW.Levels.count - 1).world === 'wave';
-  if (lastWave) for (let k = 0; k < 2; k++) {                                              // more Wave Worlds levels are on the way
+  if (lastWave) for (let k = 0; k < 2; k++) {                                              // reserve two future expedition slots
     const lk = document.createElement('div'); lk.className = 'card lock'; lk.dataset.lock = '1'; lk.style.setProperty('--c', '#9ff4ff');
-    lk.innerHTML = '<div class="num">' + String(SW.Levels.count + k + 1).padStart(2, '0') + '</div><div class="lk">🔒</div><h3>Wave Worlds</h3><div class="sub">Level ' + (k + 3) + ' of the coast</div><div class="soon">Coming soon</div>';
+    lk.innerHTML = '<div class="num">' + String(SW.Levels.count + k + 1).padStart(2, '0') + '</div><div class="lk">🔒</div><h3>Wave Worlds</h3><div class="sub">Journey ' + (k + 4) + ' of the archipelago</div><div class="soon">On the horizon</div>';
     row.appendChild(lk);
   }
   const target = (() => { for (const i of ord) if (!lvSave(SW.Levels.def(i).id).done) return i; return ord[ord.length - 1]; })();
